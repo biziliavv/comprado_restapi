@@ -45,5 +45,5 @@ class Test_004_My_Profile_Edit(unittest.TestCase):
         userdata = json.dumps({"name": "VitaliyBizilia"})
 
         response2 = s.post(self.url_profile_edit, data=userdata, headers=headers)
-        print response2
+
         self.assertEqual(response2.status_code, SUCCESS)
