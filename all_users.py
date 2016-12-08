@@ -34,9 +34,6 @@ class Test_004_ServerRegister(unittest.TestCase):
         _response = requests.get(_url)
         return _response.status_code, _response.json()
 
-    def _get_list_of(self, key):
-        _, data = self._get_accounts()
-        return map(lambda x: x.get(key), data.get('full_name'))
 
     def _delete_account(self, identificator):
         _response = requests.delete("{}/{}".format(self.url_all_users, identificator))
