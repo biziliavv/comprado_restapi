@@ -83,7 +83,7 @@ BADDATA = 422
 
 TAN = 9999
 FIRSTNAME = "Oleg"
-LASTNAME = time.strftime("%d/%m/%Y"+"%H:%M:%S")
+LASTNAME = time.strftime("%d/%m/%Y"+"%H:%M:%S")+"@"+"test.com"
 EMAIL = 'biziliavv@gmail.com'
 PSW = "123456"
 host = '54.93.81.169/api/v1'
