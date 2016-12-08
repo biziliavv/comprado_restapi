@@ -19,7 +19,7 @@ class Test_004_ServerRegister(unittest.TestCase):
             data = json.load(data_file)
         s = requests.Session()
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
-        userdata = json.dumps({"email": "tester@test.com", "password": "123456", "full_name": "FullName"})
+        userdata = json.dumps({"email": "tester@test.com", "full_name": "FullName"})
         response2 = s.post(self.url_signup, data=userdata, headers=headers)
         self.assertEqual(response2.status_code, SUCCESS)
 
@@ -28,6 +28,6 @@ class Test_004_ServerRegister(unittest.TestCase):
             data = json.load(data_file)
         s = requests.Session()
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
-        userdata = json.dumps({"email": "tester@test.com", "password": "123456", "full_name": "Full Name"})
+        userdata = json.dumps({"email": "tester@test.com", "full_name": "Full Name"})
         response2 = s.post(self.url_signup, data=userdata, headers=headers)
         self.assertEqual(response2.status_code, BADDATA)
