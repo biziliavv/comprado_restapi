@@ -45,8 +45,8 @@ class Test_004_category_Show(unittest.TestCase):
         m = json.loads(categories.content)
 
         print m
-        print m['data'][172]
-        index = int(m['data'][172]['id'])
+        print m['data'][75]
+        index = int(m['data'][75]['id'])
         print index
         self.host = host
         self.command_category_show = 'categories/show'
@@ -93,8 +93,8 @@ class Test_004_category_Deleting(unittest.TestCase):
             m = json.loads(categories.content)
 
             print m
-            print m['data'][172]
-            index = int(m['data'][172]['id'])
+            print m['data'][75]
+            index = int(m['data'][75]['id'])
             print index
 
             self.host = host

@@ -26,6 +26,6 @@ class Test_004_ServerLoginByFacebook(unittest.TestCase):
 
         s = requests.Session()
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
-        userdata = json.dumps({"access_token": "EAACEdEose0cBAK7coIDWjkV6kGzlWyNwTrBAuzOSCEx0lWUCTav3nDdsADHvOHRUMIttFbajv6ZCVDFMUOcgoRJ6CmDeK5heXMl7DkfYD4GzGZCOvsg7VsQe56qluNxS42v1QwDUFeK0vJSnkjh1xi9Vaz6Owq6OBsWAl9ngZDZD"})
+        userdata = json.dumps({"access_token": "EAACEdEose0cBADJ2tzbnRcQ4k66ntqKztnkMzZANjKPQcV693M6IB5q2u8bZCW4Mj4ZBCzXr2BQqVgA4oRMqDuB5Vd8SMJxD27h8b83jwiIJZCLO0drsAMZATEIgOBjhW9a320PGUsOm0KbIlqIwn5VGZCIxmd8but6gSY0rqjfQZDZD"})
         response2 = s.post(self.url_signinbyfb, data=userdata, headers=headers)
         self.assertEqual(response2.status_code, SUCCESS)

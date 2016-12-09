@@ -20,7 +20,7 @@ class Test_004_My_Profile_View(unittest.TestCase):
         with open('USER_DATA.json') as data_file:
             data = json.load(data_file)
         s = requests.Session()
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': "Bearer :eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluXC9mYiIsImlhdCI6MTQ4MTE4MjQwNSwiZXhwIjoxNDgxMTg2MDA1LCJuYmYiOjE0ODExODI0MDUsImp0aSI6IjExZjg0ODBkMDQ2YTk0MjVkOThlYjEzMWEwZDZjNTk5In0.xmr8sf8rAywB-6x75gtpJA3TL1hrDpooYHLnf-KldsU"}
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': "Bearer :eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE0LCJpc3MiOiJodHRwOlwvXC81NC45My44MS4xNjlcL2FwaVwvdjFcL2F1dGhcL3NpZ25pblwvZmIiLCJpYXQiOjE0ODEyNzIyNTgsImV4cCI6MTQ4MTI3NTg1OCwibmJmIjoxNDgxMjcyMjU4LCJqdGkiOiI0MTI1NzAyMTUzMjA4ZDA0ZTJhZWYxNTE0NGEyNzNjZiJ9.xpmewGTBdY7HlGoYII-v0gAe8yf8VhC6bga8uKi3RPk"}
 
         response2 = s.get(self.url_profile_view, headers=headers)
         print response2
@@ -41,7 +41,7 @@ class Test_004_My_Profile_Edit(unittest.TestCase):
         with open('USER_DATA.json') as data_file:
             data = json.load(data_file)
         s = requests.Session()
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': "Bearer :eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluXC9mYiIsImlhdCI6MTQ4MTE4MjQwNSwiZXhwIjoxNDgxMTg2MDA1LCJuYmYiOjE0ODExODI0MDUsImp0aSI6IjExZjg0ODBkMDQ2YTk0MjVkOThlYjEzMWEwZDZjNTk5In0.xmr8sf8rAywB-6x75gtpJA3TL1hrDpooYHLnf-KldsU"}
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': "Bearer :eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE0LCJpc3MiOiJodHRwOlwvXC81NC45My44MS4xNjlcL2FwaVwvdjFcL2F1dGhcL3NpZ25pblwvZmIiLCJpYXQiOjE0ODEyNzIyNTgsImV4cCI6MTQ4MTI3NTg1OCwibmJmIjoxNDgxMjcyMjU4LCJqdGkiOiI0MTI1NzAyMTUzMjA4ZDA0ZTJhZWYxNTE0NGEyNzNjZiJ9.xpmewGTBdY7HlGoYII-v0gAe8yf8VhC6bga8uKi3RPk"}
         userdata = json.dumps({"name": "VitaliyBizilia"})
 
         response2 = s.post(self.url_profile_edit, data=userdata, headers=headers)
