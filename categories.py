@@ -4,7 +4,23 @@ import unittest
 
 import time
 
-from test import host, DEFAULT_HEADER, SUCCESS, BADDATA
+DEFAULT_HEADER = 'application/json'
+
+SUCCESS = 200
+BADREQUEST = 400
+ADDED = 201
+UNAUTHORIZED = 401
+UPGRADE_REQUIRED = 426
+FORBIDDEN = 403
+NOTFOUND = 404
+BADDATA = 422
+
+TAN = 9999
+FIRSTNAME = "Oleg"
+LASTNAME = time.strftime("%d/%m/%Y"+"%H:%M:%S")+"@"+"test.com"
+EMAIL = 'biziliavv@gmail.com'
+PSW = "123456"
+host = '54.93.81.169/api/v1'
 
 class Test_004_All_categories(unittest.TestCase):
 
@@ -45,8 +61,8 @@ class Test_004_category_Show(unittest.TestCase):
         m = json.loads(categories.content)
 
         print m
-        print m['data'][75]
-        index = int(m['data'][75]['id'])
+        print m['data'][0]
+        index = int(m['data'][0]['id'])
         print index
         self.host = host
         self.command_category_show = 'categories/show'
@@ -70,7 +86,7 @@ class Test_004_category_Creation(unittest.TestCase):
         self.command_category_create = 'categories/create'
 
         self.url_category_create = 'http://{}/{}'.format(self.host, self.command_category_create)
-        userdata = json.dumps({"parent_id": 0, "is_last": "false", "title": "string", "description": "string"})
+        userdata = json.dumps({"parent_id": 1, "is_last": "false", "title": "string", "description": "string"})
 
         response2 = s.post(self.url_category_create, data=userdata, headers=headers)
 
@@ -93,8 +109,8 @@ class Test_004_category_Deleting(unittest.TestCase):
             m = json.loads(categories.content)
 
             print m
-            print m['data'][75]
-            index = int(m['data'][75]['id'])
+            print m['data'][0]
+            index = int(m['data'][0]['id'])
             print index
 
             self.host = host
@@ -111,3 +127,7 @@ class Test_004_category_Deleting(unittest.TestCase):
             response2 = s.delete(self.url_category_delete, headers=headers)
             print response2
             self.assertEqual(response2.status_code, SUCCESS)
+
+
+if __name__ == '__main__':
+    unittest.main()

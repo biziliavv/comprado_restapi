@@ -4,7 +4,23 @@ import unittest
 
 import time
 
-from test import host, DEFAULT_HEADER, SUCCESS, BADDATA
+DEFAULT_HEADER = 'application/json'
+
+SUCCESS = 200
+BADREQUEST = 400
+ADDED = 201
+UNAUTHORIZED = 401
+UPGRADE_REQUIRED = 426
+FORBIDDEN = 403
+NOTFOUND = 404
+BADDATA = 422
+
+TAN = 9999
+FIRSTNAME = "Oleg"
+LASTNAME = time.strftime("%d/%m/%Y"+"%H:%M:%S")+"@"+"test.com"
+EMAIL = 'biziliavv@gmail.com'
+PSW = "123456"
+host = '54.93.81.169/api/v1'
 
 class Test_004_All_offers(unittest.TestCase):
 
@@ -70,7 +86,7 @@ class Test_004_offer_Creation(unittest.TestCase):
         self.command_offer_create = 'offers/create'
 
         self.url_offer_create = 'http://{}/{}'.format(self.host, self.command_offer_create)
-        userdata = json.dumps({"id": 0, "title": "string", "description": "string", "business_id": 0, "category_id": 0, "SKU": "string","offer_quantity": 0, "offer_id_by_partner": "string", "delivery_cost": 0, "vat": 0})
+        userdata = json.dumps({"title": "string1", "description": "string", "business_id": 0, "category_id": 0, "SKU": "string","offer_quantity": 0, "offer_id_by_partner": "string", "delivery_cost": 0, "vat": 0})
 
         response2 = s.post(self.url_offer_create, data=userdata, headers=headers)
 
@@ -111,3 +127,6 @@ class Test_004_offer_Deleting(unittest.TestCase):
             response2 = s.delete(self.url_offer_delete, headers=headers)
             print response2
             self.assertEqual(response2.status_code, SUCCESS)
+
+if __name__ == '__main__':
+    unittest.main()

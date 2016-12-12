@@ -4,7 +4,25 @@ import unittest
 
 import time
 
-from test import host, DEFAULT_HEADER, SUCCESS, BADDATA
+
+
+DEFAULT_HEADER = 'application/json'
+
+SUCCESS = 200
+BADREQUEST = 400
+ADDED = 201
+UNAUTHORIZED = 401
+UPGRADE_REQUIRED = 426
+FORBIDDEN = 403
+NOTFOUND = 404
+BADDATA = 422
+
+TAN = 9999
+FIRSTNAME = "Oleg"
+LASTNAME = time.strftime("%d/%m/%Y"+"%H:%M:%S")+"@"+"test.com"
+EMAIL = 'biziliavv@gmail.com'
+PSW = "123456"
+host = '54.93.81.169/api/v1'
 
 class Test_004_All_businesses(unittest.TestCase):
 
@@ -45,8 +63,8 @@ class Test_004_business_Show(unittest.TestCase):
         m = json.loads(businesses.content)
 
         print m
-        print m['data'][2]
-        index = int(m['data'][2]['id'])
+        print m['data'][0]
+        index = int(m['data'][0]['id'])
         print index
         self.host = host
         self.command_business_show = 'businesses/show'
@@ -70,7 +88,7 @@ class Test_004_business_Creation(unittest.TestCase):
         self.command_business_create = 'businesses/create'
 
         self.url_business_create = 'http://{}/{}'.format(self.host, self.command_business_create)
-        userdata = json.dumps({"partner_id": 0,"business_id_by_partner": "string", "address": "string", "geo_latitude": "48.92279", "geo_longitude": "22.4519749", "name": "string", "description": "string"})
+        userdata = json.dumps({"partner_id": 0, "business_id_by_partner": "string", "address": "string", "geo_latitude": "48.92279", "geo_longitude": "22.4519749", "name": "string", "description": "string"})
 
         response2 = s.post(self.url_business_create, data=userdata, headers=headers)
 
@@ -93,8 +111,8 @@ class Test_004_business_Deleting(unittest.TestCase):
             m = json.loads(businesses.content)
 
             print m
-            print m['data'][1]
-            index = int(m['data'][1]['id'])
+            print m['data'][0]
+            index = int(m['data'][0]['id'])
             print index
 
             self.host = host
@@ -111,3 +129,7 @@ class Test_004_business_Deleting(unittest.TestCase):
             response2 = s.delete(self.url_business_delete, headers=headers)
             print response2
             self.assertEqual(response2.status_code, SUCCESS)
+
+
+if __name__ == '__main__':
+    unittest.main()

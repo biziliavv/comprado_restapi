@@ -6,7 +6,23 @@ import unittest
 import random
 import time
 
-from test import host, DEFAULT_HEADER, SUCCESS, BADDATA
+DEFAULT_HEADER = 'application/json'
+
+SUCCESS = 200
+BADREQUEST = 400
+ADDED = 201
+UNAUTHORIZED = 401
+UPGRADE_REQUIRED = 426
+FORBIDDEN = 403
+NOTFOUND = 404
+BADDATA = 422
+
+TAN = 9999
+FIRSTNAME = "Oleg"
+
+EMAIL = 'biziliavv@gmail.com'
+PSW = "123456"
+host = '54.93.81.169/api/v1'
 
 class Test_004_user_Creation(unittest.TestCase):
     def __init__(self, *a, **kw):
@@ -23,7 +39,7 @@ class Test_004_user_Creation(unittest.TestCase):
         self.url_user_create = 'http://{}/{}'.format(self.host, self.command_user_create)
         words = ["python", "jumble", "easy", "difficult", "answer", "xylophone"]
         newvalue = random.choice(words) + random.choice(words)
-        nameunique = "testuser" + random.choice(words)+ random.choice(words) + "@" + "test.com"
+        nameunique = "testuser" + random.choice(words)+ random.choice(words) + "@" + "test2.com"
         userdata = json.dumps({"full_name": newvalue, "email": nameunique})
 
         response2 = s.post(self.url_user_create, data=userdata, headers=headers)
@@ -121,3 +137,6 @@ class Test_004_user_Deleting(unittest.TestCase):
             response2 = s.delete(self.url_user_delete, headers=headers)
             print response2
             self.assertEqual(response2.status_code, SUCCESS)
+
+if __name__ == '__main__':
+    unittest.main()

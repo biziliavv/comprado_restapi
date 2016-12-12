@@ -4,7 +4,23 @@ import unittest
 
 import time
 
-from test import host, DEFAULT_HEADER, SUCCESS, BADDATA
+DEFAULT_HEADER = 'application/json'
+
+SUCCESS = 200
+BADREQUEST = 400
+ADDED = 201
+UNAUTHORIZED = 401
+UPGRADE_REQUIRED = 426
+FORBIDDEN = 403
+NOTFOUND = 404
+BADDATA = 422
+
+TAN = 9999
+FIRSTNAME = "Oleg"
+LASTNAME = time.strftime("%d/%m/%Y"+"%H:%M:%S")+"@"+"test.com"
+EMAIL = 'biziliavv@gmail.com'
+PSW = "123456"
+host = '54.93.81.169/api/v1'
 
 class Test_004_My_Profile_View(unittest.TestCase):
 
@@ -20,7 +36,7 @@ class Test_004_My_Profile_View(unittest.TestCase):
         with open('USER_DATA.json') as data_file:
             data = json.load(data_file)
         s = requests.Session()
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': "Bearer :eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE0LCJpc3MiOiJodHRwOlwvXC81NC45My44MS4xNjlcL2FwaVwvdjFcL2F1dGhcL3NpZ25pblwvZmIiLCJpYXQiOjE0ODEyNzIyNTgsImV4cCI6MTQ4MTI3NTg1OCwibmJmIjoxNDgxMjcyMjU4LCJqdGkiOiI0MTI1NzAyMTUzMjA4ZDA0ZTJhZWYxNTE0NGEyNzNjZiJ9.xpmewGTBdY7HlGoYII-v0gAe8yf8VhC6bga8uKi3RPk"}
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': "Bearer :eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluXC9mYiIsImlhdCI6MTQ4MTUyOTUwMywiZXhwIjoxNDgxNTMzMTAzLCJuYmYiOjE0ODE1Mjk1MDMsImp0aSI6IjcxZjc5ZDUyODcyYmMxZjY2NTg0OTk5Y2Q3NTUwYWU5In0.fQX-qs3jqY9rDrNF9grmKoRo6ok3OrQ8qQ4BTQ60iQ0"}
 
         response2 = s.get(self.url_profile_view, headers=headers)
         print response2
@@ -41,9 +57,14 @@ class Test_004_My_Profile_Edit(unittest.TestCase):
         with open('USER_DATA.json') as data_file:
             data = json.load(data_file)
         s = requests.Session()
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': "Bearer :eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE0LCJpc3MiOiJodHRwOlwvXC81NC45My44MS4xNjlcL2FwaVwvdjFcL2F1dGhcL3NpZ25pblwvZmIiLCJpYXQiOjE0ODEyNzIyNTgsImV4cCI6MTQ4MTI3NTg1OCwibmJmIjoxNDgxMjcyMjU4LCJqdGkiOiI0MTI1NzAyMTUzMjA4ZDA0ZTJhZWYxNTE0NGEyNzNjZiJ9.xpmewGTBdY7HlGoYII-v0gAe8yf8VhC6bga8uKi3RPk"}
-        userdata = json.dumps({"name": "VitaliyBizilia"})
 
-        response2 = s.post(self.url_profile_edit, data=userdata, headers=headers)
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': "Bearer :eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluXC9mYiIsImlhdCI6MTQ4MTUyOTUwMywiZXhwIjoxNDgxNTMzMTAzLCJuYmYiOjE0ODE1Mjk1MDMsImp0aSI6IjcxZjc5ZDUyODcyYmMxZjY2NTg0OTk5Y2Q3NTUwYWU5In0.fQX-qs3jqY9rDrNF9grmKoRo6ok3OrQ8qQ4BTQ60iQ0"}
+        userdata = json.dumps({"name": "TestVtuier"})
+
+        response2 = s.patch(self.url_profile_edit, data=userdata, headers=headers)
 
         self.assertEqual(response2.status_code, SUCCESS)
+
+
+if __name__ == '__main__':
+    unittest.main()
