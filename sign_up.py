@@ -1,7 +1,23 @@
 import json
 import requests
 import unittest
-from test import host, DEFAULT_HEADER, SUCCESS, BADDATA
+DEFAULT_HEADER = 'application/json'
+
+SUCCESS = 200
+BADREQUEST = 400
+ADDED = 201
+UNAUTHORIZED = 401
+UPGRADE_REQUIRED = 426
+FORBIDDEN = 403
+NOTFOUND = 404
+BADDATA = 422
+
+TAN = 9999
+FIRSTNAME = "Oleg"
+
+EMAIL = 'biziliavv@gmail.com'
+PSW = "123456"
+host = '54.93.81.169/api/v1'
 
 
 class Test_004_ServerRegister(unittest.TestCase):
@@ -31,3 +47,6 @@ class Test_004_ServerRegister(unittest.TestCase):
         userdata = json.dumps({"email": "tester@test.com", "full_name": "Full Name"})
         response2 = s.post(self.url_signup, data=userdata, headers=headers)
         self.assertEqual(response2.status_code, BADDATA)
+
+if __name__ == '__main__':
+    unittest.main()

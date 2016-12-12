@@ -1,7 +1,24 @@
 import json
 import requests
 import unittest
-from test import host, DEFAULT_HEADER, SUCCESS
+
+DEFAULT_HEADER = 'application/json'
+
+SUCCESS = 200
+BADREQUEST = 400
+ADDED = 201
+UNAUTHORIZED = 401
+UPGRADE_REQUIRED = 426
+FORBIDDEN = 403
+NOTFOUND = 404
+BADDATA = 422
+
+TAN = 9999
+FIRSTNAME = "Oleg"
+
+EMAIL = 'biziliavv@gmail.com'
+PSW = "123456"
+host = '54.93.81.169/api/v1'
 
 
 class Test_004_ServerLoginByFacebook(unittest.TestCase):
@@ -26,6 +43,10 @@ class Test_004_ServerLoginByFacebook(unittest.TestCase):
 
         s = requests.Session()
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
-        userdata = json.dumps({"access_token": "EAACEdEose0cBAK7coIDWjkV6kGzlWyNwTrBAuzOSCEx0lWUCTav3nDdsADHvOHRUMIttFbajv6ZCVDFMUOcgoRJ6CmDeK5heXMl7DkfYD4GzGZCOvsg7VsQe56qluNxS42v1QwDUFeK0vJSnkjh1xi9Vaz6Owq6OBsWAl9ngZDZD"})
+        userdata = json.dumps({"access_token": "EAACEdEose0cBAF9cZAZBxTpaZBPKCkBJowjr8oJerPb4HDFetjFKx98nZAnNZAqDWf1vWizQaOrbwkJuMpdvZCvW1OeiH4YTWEwNZB3ZCGXn2aHMhttJWg0jpHkMvZBJpg4UPZAUZBza6JGAJBuHgphhEBHxveapNliA4C9jOmtlJer8wZDZD"})
         response2 = s.post(self.url_signinbyfb, data=userdata, headers=headers)
+
         self.assertEqual(response2.status_code, SUCCESS)
+
+if __name__ == '__main__':
+    unittest.main()

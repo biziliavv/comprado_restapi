@@ -1,7 +1,23 @@
 import json
 import requests
 import unittest
-from test import host, DEFAULT_HEADER, SUCCESS, BADDATA,  BADREQUEST, UNAUTHORIZED
+DEFAULT_HEADER = 'application/json'
+
+SUCCESS = 200
+BADREQUEST = 400
+ADDED = 201
+UNAUTHORIZED = 401
+UPGRADE_REQUIRED = 426
+FORBIDDEN = 403
+NOTFOUND = 404
+BADDATA = 422
+
+TAN = 9999
+FIRSTNAME = "Oleg"
+
+EMAIL = 'biziliavv@gmail.com'
+PSW = "123456"
+host = '54.93.81.169/api/v1'
 
 
 class Test_004_ServerLogin(unittest.TestCase):
@@ -27,55 +43,10 @@ class Test_004_ServerLogin(unittest.TestCase):
         #         birthday = line["birthday"]
 
         s = requests.Session()
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
-        userdata = json.dumps({"email": "biziliavv@gmail.com", "password": "12345678"})
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluXC9mYiIsImlhdCI6MTQ4MTUyOTUwMywiZXhwIjoxNDgxNTMzMTAzLCJuYmYiOjE0ODE1Mjk1MDMsImp0aSI6IjcxZjc5ZDUyODcyYmMxZjY2NTg0OTk5Y2Q3NTUwYWU5In0.fQX-qs3jqY9rDrNF9grmKoRo6ok3OrQ8qQ4BTQ60iQ0"}
+        userdata = json.dumps({"email": "tester.vitalii@gmail.com", "password": "12345678"})
         response2 = s.post(self.url_signin, data=userdata, headers=headers)
         self.assertEqual(response2.status_code, SUCCESS)
 
-    def test_01_register_incorrect_email(self):
-        # with open('USER_DATA.json') as data_file:
-        #     data = json.load(data_file)
-        #     for line in data:
-        #         full_name= line["full_name"]
-        #         email= line["email"]
-        #         password = line["password"]
-        #         have_car = line["have_car"]
-        #         birthday = line["birthday"]
-
-        s = requests.Session()
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
-        userdata = json.dumps({"email": "focus@gmail.com", "password": "12345678"})
-        response2 = s.post(self.url_signin, data=userdata, headers=headers)
-        self.assertEqual(response2.status_code, UNAUTHORIZED)
-
-    def test_01_register_incorrect_password(self):
-        # with open('USER_DATA.json') as data_file:
-        #     data = json.load(data_file)
-        #     for line in data:
-        #         full_name= line["full_name"]
-        #         email= line["email"]
-        #         password = line["password"]
-        #         have_car = line["have_car"]
-        #         birthday = line["birthday"]
-
-        s = requests.Session()
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
-        userdata = json.dumps({"email": "biziliavv@gmail.com", "password": "262621"})
-        response2 = s.post(self.url_signin, data=userdata, headers=headers)
-        self.assertEqual(response2.status_code, UNAUTHORIZED)
-
-    def test_01_register_empty_fields(self):
-        # with open('USER_DATA.json') as data_file:
-        #     data = json.load(data_file)
-        #     for line in data:
-        #         full_name= line["full_name"]
-        #         email= line["email"]
-        #         password = line["password"]
-        #         have_car = line["have_car"]
-        #         birthday = line["birthday"]
-
-        s = requests.Session()
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
-        userdata = json.dumps({"email": "     ", "password": "     "})
-        response2 = s.post(self.url_signin, data=userdata, headers=headers)
-        self.assertEqual(response2.status_code, BADDATA)
+if __name__ == '__main__':
+    unittest.main()

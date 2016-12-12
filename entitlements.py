@@ -6,8 +6,25 @@ import unittest
 
 import time
 
-from test import host, DEFAULT_HEADER, SUCCESS, BADDATA
+
 import random
+DEFAULT_HEADER = 'application/json'
+
+SUCCESS = 200
+BADREQUEST = 400
+ADDED = 201
+UNAUTHORIZED = 401
+UPGRADE_REQUIRED = 426
+FORBIDDEN = 403
+NOTFOUND = 404
+BADDATA = 422
+
+TAN = 9999
+FIRSTNAME = "Oleg"
+LASTNAME = time.strftime("%d/%m/%Y"+"%H:%M:%S")+"@"+"test.com"
+EMAIL = 'biziliavv@gmail.com'
+PSW = "123456"
+host = '54.93.81.169/api/v1'
 
 class Test_004_ServerRoles(unittest.TestCase):
 
@@ -71,8 +88,8 @@ class Test_004_ServerRolesCreate(unittest.TestCase):
         m = json.loads(roles.content)
 
         print m
-        print m['data'][7]
-        index = int(m['data'][7]['id'])
+        print m['data'][2]
+        index = int(m['data'][2]['id'])
         print index
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
         self.host = host
@@ -100,7 +117,7 @@ class Test_004_ServerShowRole(unittest.TestCase):
         roles = s.get(self.url_roles, headers=headers)
         m = json.loads(roles.content)
 
-        index = int(m['data'][7]['id'])
+        index = int(m['data'][2]['id'])
         print index
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
         self.host = host
@@ -127,11 +144,11 @@ class Test_004_ServerUpdateRole(unittest.TestCase):
         roles = s.get(self.url_roles, headers=headers)
         m = json.loads(roles.content)
 
-        index = int(m['data'][7]['id'])
+        index = int(m['data'][2]['id'])
         print index
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
         words = ["python", "jumble", "easy", "difficult", "answer", "xylophone"]
-        newValue = random.choice(words) + "test"
+        newValue = random.choice(words) + random.choice(words)
         userdata = json.dumps({"name": newValue})
         self.host = host
         self.command_roles_update = 'roles/update'
@@ -140,5 +157,8 @@ class Test_004_ServerUpdateRole(unittest.TestCase):
 
         response3 = s.patch(self.url_roles_update, data=userdata, headers=headers)
         self.assertEqual(response3.status_code, SUCCESS)
+
+if __name__ == '__main__':
+    unittest.main()
 
 
