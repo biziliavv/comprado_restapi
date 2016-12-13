@@ -88,7 +88,7 @@ class Test_004_business_Creation(unittest.TestCase):
         self.command_business_create = 'businesses/create'
 
         self.url_business_create = 'http://{}/{}'.format(self.host, self.command_business_create)
-        userdata = json.dumps({"partner_id": 0, "business_id_by_partner": "string", "address": "string", "geo_latitude": "48.92279", "geo_longitude": "22.4519749", "name": "string", "description": "string"})
+        userdata = json.dumps({"partner_id": 1, "business_id_by_partner": "string", "address": "string", "geo_latitude": "48.92279", "geo_longitude": "22.4519749", "name": "string", "description": "string"})
 
         response2 = s.post(self.url_business_create, data=userdata, headers=headers)
 

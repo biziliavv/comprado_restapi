@@ -39,8 +39,8 @@ class Test_004_user_Creation(unittest.TestCase):
         self.url_user_create = 'http://{}/{}'.format(self.host, self.command_user_create)
         words = ["python", "jumble", "easy", "difficult", "answer", "xylophone"]
         newvalue = random.choice(words) + random.choice(words)
-        nameunique = "testuser" + random.choice(words)+ random.choice(words) + "@" + "test2.com"
-        userdata = json.dumps({"full_name": newvalue, "email": nameunique})
+        nameunique = "testuser" + random.choice(words)+ random.choice(words) + "@" + random.choice(words) + ".com"
+        userdata = json.dumps({"full_name": newvalue, "email": nameunique, "password": "12345678", "password_confirmation": "12345678"})
 
         response2 = s.post(self.url_user_create, data=userdata, headers=headers)
 
