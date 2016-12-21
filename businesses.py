@@ -118,7 +118,7 @@ class Test_004_business_Deleting(unittest.TestCase):
             self.host = host
             self.command_business_update = 'businesses/update'
             self.url_business_update = 'http://{}/{}/{}'.format(self.host, self.command_business_update, index)
-            userdata = json.dumps({"partner_id": 1, "business_id_by_partner": "new", "address": "newaddress"})
+            userdata = json.dumps({"partner_id": 90, "business_id_by_partner": "new", "address": "newaddress"})
             response2 = s.patch(self.url_business_update, data=userdata, headers=headers)
             print response2
             self.assertEqual(response2.status_code, SUCCESS)

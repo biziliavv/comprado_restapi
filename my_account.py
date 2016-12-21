@@ -1,6 +1,7 @@
 import json
 import requests
 import unittest
+import random
 
 import time
 
@@ -22,6 +23,11 @@ EMAIL = 'biziliavv@gmail.com'
 PSW = "123456"
 host = '54.93.81.169/api/v1'
 token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluXC9mYiIsImlhdCI6MTQ4MTYxNDA3NCwiZXhwIjoxNDgxNjE3Njc0LCJuYmYiOjE0ODE2MTQwNzQsImp0aSI6IjAxNTA2MzUyNzlhMzY4YzIyNjA2YTNkODA2MzI1MjYzIn0.-HpkRI0f4d467iepzIhy3-oE0zcuyoRgj0BZpdQPkak"
+
+
+
+
+
 class Test_004_My_Profile_View(unittest.TestCase):
 
     def __init__(self, *a, **kw):
@@ -36,7 +42,22 @@ class Test_004_My_Profile_View(unittest.TestCase):
         with open('USER_DATA.json') as data_file:
             data = json.load(data_file)
         s = requests.Session()
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
+        s = requests.Session()
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
+        self.host = host
+        self.command_signup = 'auth/signup'
+
+        self.url_signup = 'http://{}/{}'.format(self.host, self.command_signup)
+        words = ["python", "jumble", "easy", "difficult", "answer", "xylophone"]
+
+        newValue = random.choice(words)
+
+        userdata = json.dumps({"email": "rfedsfsdffeewfweffrefredfernew@test.com", "full_name": "FullName"})
+        response2 = s.post(self.url_signup, data=userdata, headers=headers)
+
+        res = response2.headers
+        self.lost = res['Authorization']
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': self.lost}
 
         response2 = s.get(self.url_profile_view, headers=headers)
         print response2
@@ -46,8 +67,9 @@ class Test_004_My_Profile_View(unittest.TestCase):
         with open('USER_DATA.json') as data_file:
             data = json.load(data_file)
         s = requests.Session()
+
         token = ""
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': self.lost}
 
         response2 = s.get(self.url_profile_view, headers=headers)
         print response2
@@ -79,8 +101,22 @@ class Test_004_My_Profile_Edit(unittest.TestCase):
         with open('USER_DATA.json') as data_file:
             data = json.load(data_file)
         s = requests.Session()
+        s = requests.Session()
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
+        self.host = host
+        self.command_signup = 'auth/signup'
 
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
+        self.url_signup = 'http://{}/{}'.format(self.host, self.command_signup)
+        words = ["python", "jumble", "easy", "difficult", "answer", "xylophone"]
+
+        newValue = random.choice(words)
+
+        userdata = json.dumps({"email": "rfedsfsdffeewfweffrefredfernew@test.com", "full_name": "FullName"})
+        response2 = s.post(self.url_signup, data=userdata, headers=headers)
+
+        res = response2.headers
+        self.lost = res['Authorization']
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': self.lost}
         userdata = json.dumps({"name": "TestVtuier"})
 
         response2 = s.patch(self.url_profile_edit, data=userdata, headers=headers)
