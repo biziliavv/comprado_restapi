@@ -83,10 +83,10 @@ class Test_004_offer_Creation(unittest.TestCase):
         s = requests.Session()
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
         self.host = host
-        self.command_offer_create = 'offers/create'
+        self.command_offer_create = 'management/offers/create'
 
         self.url_offer_create = 'http://{}/{}'.format(self.host, self.command_offer_create)
-        userdata = json.dumps({"title": "string1", "description": "string", "business_id": 0, "category_id": 0, "SKU": "string","offer_quantity": 0, "offer_id_by_partner": "string", "delivery_cost": 0, "vat": 0})
+        userdata = json.dumps({"title": "string1", "description": "string", "business_id": 5, "category_id": 5, "SKU": "string","offer_quantity": 0, "offer_id_by_partner": "string", "delivery_cost": 0, "vat": 0})
 
         response2 = s.post(self.url_offer_create, data=userdata, headers=headers)
 
@@ -114,7 +114,7 @@ class Test_004_offer_Deleting(unittest.TestCase):
             print index
 
             self.host = host
-            self.command_offer_update = 'offers/update'
+            self.command_offer_update = 'management/offers/update'
             self.url_offer_update = 'http://{}/{}/{}'.format(self.host, self.command_offer_update, index)
             userdata = json.dumps({"title": "newtitle", "category_id": "1"})
             response2 = s.patch(self.url_offer_update, data=userdata, headers=headers)
@@ -122,11 +122,33 @@ class Test_004_offer_Deleting(unittest.TestCase):
             self.assertEqual(response2.status_code, SUCCESS)
 
             self.host = host
-            self.command_offer_delete = 'offers/delete'
+            self.command_offer_delete = 'management/offers/delete'
             self.url_offer_delete = 'http://{}/{}/{}'.format(self.host, self.command_offer_delete, index)
             response2 = s.delete(self.url_offer_delete, headers=headers)
             print response2
             self.assertEqual(response2.status_code, SUCCESS)
+
+
+class Test_004_bestOffers(unittest.TestCase):
+    def __init__(self, *a, **kw):
+        super(Test_004_bestOffers, self).__init__(*a, **kw)
+
+    def test_01_best_offers_showed_correctly(self):
+        with open('USER_DATA.json') as data_file:
+            data = json.load(data_file)
+        s = requests.Session()
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
+        self.host = host
+        self.command_best_offers = 'offers/best'
+        self.isocode = 'isocode1'
+        self.isocode_value = 'en'
+        self.category_ids_title = 'category_ids'
+        self.category_ids_numbers = '85%2C86%2C87'
+        self.url_best_offers = 'http://{}/{}?{}={}&{}={}'.format(self.host, self.command_best_offers,
+                                                                  self.isocode, self.isocode_value, self.category_ids_title, self.category_ids_numbers)
+        response2 = s.get(self.url_best_offers, headers=headers)
+        print response2
+        self.assertEqual(response2.status_code, SUCCESS)
 
 if __name__ == '__main__':
     unittest.main()

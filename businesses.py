@@ -88,7 +88,7 @@ class Test_004_business_Creation(unittest.TestCase):
         self.command_business_create = 'businesses/create'
 
         self.url_business_create = 'http://{}/{}'.format(self.host, self.command_business_create)
-        userdata = json.dumps({"partner_id": 0, "business_id_by_partner": "string", "address": "string", "geo_latitude": "48.92279", "geo_longitude": "22.4519749", "name": "string", "description": "string"})
+        userdata = json.dumps({"partner_id": 1, "business_id_by_partner": "string", "address": "string", "geo_latitude": "48.92279", "geo_longitude": "22.4519749", "name": "string", "description": "string"})
 
         response2 = s.post(self.url_business_create, data=userdata, headers=headers)
 
@@ -118,7 +118,7 @@ class Test_004_business_Deleting(unittest.TestCase):
             self.host = host
             self.command_business_update = 'businesses/update'
             self.url_business_update = 'http://{}/{}/{}'.format(self.host, self.command_business_update, index)
-            userdata = json.dumps({"partner_id": 1, "business_id_by_partner": "new", "address": "newaddress"})
+            userdata = json.dumps({"partner_id": 90, "business_id_by_partner": "new", "address": "newaddress"})
             response2 = s.patch(self.url_business_update, data=userdata, headers=headers)
             print response2
             self.assertEqual(response2.status_code, SUCCESS)

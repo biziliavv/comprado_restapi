@@ -148,7 +148,8 @@ class Test_004_ServerUpdateRole(unittest.TestCase):
         print index
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
         words = ["python", "jumble", "easy", "difficult", "answer", "xylophone"]
-        newValue = random.choice(words) + random.choice(words)
+
+        newValue = random.choice(words)+ random.choice(words)
         userdata = json.dumps({"name": newValue})
         self.host = host
         self.command_roles_update = 'roles/update'

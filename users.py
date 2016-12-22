@@ -39,12 +39,61 @@ class Test_004_user_Creation(unittest.TestCase):
         self.url_user_create = 'http://{}/{}'.format(self.host, self.command_user_create)
         words = ["python", "jumble", "easy", "difficult", "answer", "xylophone"]
         newvalue = random.choice(words) + random.choice(words)
-        nameunique = "testuser" + random.choice(words)+ random.choice(words) + "@" + "test2.com"
-        userdata = json.dumps({"full_name": newvalue, "email": nameunique})
+        nameunique = "testuser" + random.choice(words)+ random.choice(words) + "@" + random.choice(words) + ".com"
+        userdata = json.dumps({"full_name": newvalue, "email": nameunique, "password": "12345678", "password_confirmation": "12345678", "birthday": "1990-20-06"})
 
         response2 = s.post(self.url_user_create, data=userdata, headers=headers)
 
+        print response2.content
+        res = json.loads(response2.content)
+        index = res["id"]
+        self.host = host
+        self.command_user_delete = 'users/delete'
+        self.url_user_delete = 'http://{}/{}/{}'.format(self.host, self.command_user_delete, index)
+        response2 = s.delete(self.url_user_delete, headers=headers)
+
         self.assertEqual(response2.status_code, SUCCESS)
+
+
+        self.assertEqual(response2.status_code, SUCCESS)
+
+    def test_02_user_not_created_empty_values(self):
+        with open('USER_DATA.json') as data_file:
+            data = json.load(data_file)
+        s = requests.Session()
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
+        self.host = host
+        self.command_user_create = 'users/create'
+
+        self.url_user_create = 'http://{}/{}'.format(self.host, self.command_user_create)
+        words = ["python", "jumble", "easy", "difficult", "answer", "xylophone"]
+        newvalue = random.choice(words) + random.choice(words)
+        nameunique = "testuser" + random.choice(words)+ random.choice(words) + "@" + random.choice(words) + ".com"
+        userdata = json.dumps({"full_name": "", "email": "", "password": "", "password_confirmation": "", "birthday": ""})
+
+        response2 = s.post(self.url_user_create, data=userdata, headers=headers)
+
+        self.assertEqual(response2.status_code, BADDATA)
+
+    def test_03_user_not_created_wrong_email_format(self):
+        with open('USER_DATA.json') as data_file:
+            data = json.load(data_file)
+        s = requests.Session()
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
+        self.host = host
+        self.command_user_create = 'users/create'
+
+        self.url_user_create = 'http://{}/{}'.format(self.host, self.command_user_create)
+        words = ["python", "jumble", "easy", "difficult", "answer", "xylophone"]
+        newvalue = random.choice(words) + random.choice(words)
+        nameunique = "testuser" + random.choice(words)+ random.choice(words) + "@" + random.choice(words) + ".com"
+        userdata = json.dumps({"full_name": newvalue, "email": "test", "password": "12345678", "password_confirmation": "12345678", "birthday": "1990-20-06"})
+
+        response2 = s.post(self.url_user_create, data=userdata, headers=headers)
+
+
+
+        self.assertEqual(response2.status_code, BADDATA)
 
 class Test_004_All_users(unittest.TestCase):
 
@@ -99,26 +148,26 @@ class Test_004_user_Show(unittest.TestCase):
 
 
 
-class Test_004_user_Deleting(unittest.TestCase):
-        def __init__(self, *a, **kw):
-                super(Test_004_user_Deleting, self).__init__(*a, **kw)
-
-        def test_01_user_deleted_correctly(self):
-            with open('USER_DATA.json') as data_file:
-                data = json.load(data_file)
-            s = requests.Session()
-            headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
-            self.host = host
-            self.command_all_users = 'users'
-
-            self.url_all_users = 'http://{}/{}'.format(self.host, self.command_all_users)
-            users = s.get(self.url_all_users, headers=headers)
-            m = json.loads(users.content)
-
-            print m
-            print m['data'][1]
-            index = int(m['data'][1]['id'])
-            print index
+# class Test_004_user_Deleting(unittest.TestCase):
+#         def __init__(self, *a, **kw):
+#                 super(Test_004_user_Deleting, self).__init__(*a, **kw)
+#
+#         def test_01_user_deleted_correctly(self):
+#             with open('USER_DATA.json') as data_file:
+#                 data = json.load(data_file)
+#             s = requests.Session()
+#             headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
+#             self.host = host
+#             self.command_all_users = 'users'
+#
+#             self.url_all_users = 'http://{}/{}'.format(self.host, self.command_all_users)
+#             users = s.get(self.url_all_users, headers=headers)
+#             m = json.loads(users.content)
+#
+#             print m
+#             print m['data'][1]
+#             index = int(m['data'][1]['id'])
+#             print index
 
 #            self.host = host
 #            self.command_user_update = 'users/update'
@@ -131,12 +180,12 @@ class Test_004_user_Deleting(unittest.TestCase):
 #            print response2
 #            self.assertEqual(response2.status_code, SUCCESS)
 
-            self.host = host
-            self.command_user_delete = 'users/delete'
-            self.url_user_delete = 'http://{}/{}/{}'.format(self.host, self.command_user_delete, index)
-            response2 = s.delete(self.url_user_delete, headers=headers)
-            print response2
-            self.assertEqual(response2.status_code, SUCCESS)
+#            self.host = host
+#            self.command_user_delete = 'users/delete'
+#           self.url_user_delete = 'http://{}/{}/{}'.format(self.host, self.command_user_delete, index)
+#            response2 = s.delete(self.url_user_delete, headers=headers)
+#            print response2
+#            self.assertEqual(response2.status_code, SUCCESS)
 
 if __name__ == '__main__':
     unittest.main()
