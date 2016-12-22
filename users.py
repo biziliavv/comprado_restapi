@@ -5,6 +5,7 @@ import requests
 import unittest
 import random
 import time
+email_value = time.strftime("%d%m%Y"+"%H%M%S")+"@"+"test.com"
 
 DEFAULT_HEADER = 'application/json'
 
@@ -34,13 +35,13 @@ class Test_004_user_Creation(unittest.TestCase):
         s = requests.Session()
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
         self.host = host
-        self.command_user_create = 'users/create'
+        self.command_user_create = 'management/users/create'
 
         self.url_user_create = 'http://{}/{}'.format(self.host, self.command_user_create)
         words = ["python", "jumble", "easy", "difficult", "answer", "xylophone"]
         newvalue = random.choice(words) + random.choice(words)
         nameunique = "testuser" + random.choice(words)+ random.choice(words) + "@" + random.choice(words) + ".com"
-        userdata = json.dumps({"full_name": newvalue, "email": nameunique, "password": "12345678", "password_confirmation": "12345678", "birthday": "1990-20-06"})
+        userdata = json.dumps({"full_name": newvalue, "email": email_value, "password": "12345678", "password_confirmation": "12345678", "birthday": "1990-20-06"})
 
         response2 = s.post(self.url_user_create, data=userdata, headers=headers)
 
@@ -48,7 +49,7 @@ class Test_004_user_Creation(unittest.TestCase):
         res = json.loads(response2.content)
         index = res["id"]
         self.host = host
-        self.command_user_delete = 'users/delete'
+        self.command_user_delete = 'management/users/delete'
         self.url_user_delete = 'http://{}/{}/{}'.format(self.host, self.command_user_delete, index)
         response2 = s.delete(self.url_user_delete, headers=headers)
 
@@ -63,7 +64,7 @@ class Test_004_user_Creation(unittest.TestCase):
         s = requests.Session()
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
         self.host = host
-        self.command_user_create = 'users/create'
+        self.command_user_create = 'management/users/create'
 
         self.url_user_create = 'http://{}/{}'.format(self.host, self.command_user_create)
         words = ["python", "jumble", "easy", "difficult", "answer", "xylophone"]
@@ -81,7 +82,7 @@ class Test_004_user_Creation(unittest.TestCase):
         s = requests.Session()
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
         self.host = host
-        self.command_user_create = 'users/create'
+        self.command_user_create = 'management/users/create'
 
         self.url_user_create = 'http://{}/{}'.format(self.host, self.command_user_create)
         words = ["python", "jumble", "easy", "difficult", "answer", "xylophone"]
@@ -111,7 +112,7 @@ class Test_004_All_users(unittest.TestCase):
         s = requests.Session()
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
         response2 = s.get(self.url_all_users, headers=headers)
-        print response2
+        print response2.content
         self.assertEqual(response2.status_code, SUCCESS)
 
 class Test_004_user_Show(unittest.TestCase):
