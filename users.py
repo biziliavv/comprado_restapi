@@ -171,7 +171,7 @@ class Test_004_user_Show(unittest.TestCase):
 #             print index
 
 #            self.host = host
-#            self.command_user_update = 'users/update'
+#            self.command_user_update = 'management/users/update'
 #            self.url_user_update = 'http://{}/{}/{}'.format(self.host, self.command_user_update, index)
 #            words = ["python", "jumble", "easy", "difficult", "answer", "xylophone"]
 #            newvalue = random.choice(words) + random.choice(words)
@@ -182,7 +182,7 @@ class Test_004_user_Show(unittest.TestCase):
 #            self.assertEqual(response2.status_code, SUCCESS)
 
 #            self.host = host
-#            self.command_user_delete = 'users/delete'
+#            self.command_user_delete = 'management/users/delete'
 #           self.url_user_delete = 'http://{}/{}/{}'.format(self.host, self.command_user_delete, index)
 #            response2 = s.delete(self.url_user_delete, headers=headers)
 #            print response2

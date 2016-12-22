@@ -31,12 +31,21 @@ class Test_004_ServerRoles(unittest.TestCase):
     def __init__(self, *a, **kw):
         super(Test_004_ServerRoles, self).__init__(*a, **kw)
         self.host = host
-        self.command_roles = 'roles'
+        self.command_roles = 'management/roles'
 
         self.url_all_roles = 'http://{}/{}'.format(self.host, self.command_roles)
 
 
     def test_01_all_roles_showed_successfully(self):
+        with open('USER_DATA.json') as data_file:
+            data = json.load(data_file)
+        s = requests.Session()
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
+        response2 = s.get(self.url_all_roles, headers=headers)
+        self.assertEqual(response2.status_code, SUCCESS)
+
+
+    def test_01_all_roles_showed_unsuccessfully(self):
         with open('USER_DATA.json') as data_file:
             data = json.load(data_file)
         s = requests.Session()
@@ -64,7 +73,7 @@ class Test_004_ServerRolesCreate(unittest.TestCase):
     def __init__(self, *a, **kw):
         super(Test_004_ServerRolesCreate, self).__init__(*a, **kw)
         self.host = host
-        self.command_roles_create = 'roles/create'
+        self.command_roles_create = 'management/roles/create'
 
         self.url_roles_create = 'http://{}/{}'.format(self.host, self.command_roles_create)
 
@@ -93,7 +102,7 @@ class Test_004_ServerRolesCreate(unittest.TestCase):
         print index
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
         self.host = host
-        self.command_roles_delete = 'roles/delete'
+        self.command_roles_delete = 'management/roles/delete'
 
         self.url_roles_delete = 'http://{}/{}/{}'.format(self.host, self.command_roles_delete, index)
         response3 = s.delete(self.url_roles_delete, headers=headers)
@@ -103,7 +112,7 @@ class Test_004_ServerShowRole(unittest.TestCase):
     def __init__(self, *a, **kw):
         super(Test_004_ServerShowRole, self).__init__(*a, **kw)
         self.host = host
-        self.command_role_show = 'roles/show'
+        self.command_role_show = 'management/roles/show'
 
         self.url_role_show = 'http://{}/{}'.format(self.host, self.command_role_show)
 
@@ -121,7 +130,7 @@ class Test_004_ServerShowRole(unittest.TestCase):
         print index
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
         self.host = host
-        self.command_roles_show = 'roles/show'
+        self.command_roles_show = 'management/roles/show'
 
         self.url_roles_show = 'http://{}/{}/{}'.format(self.host, self.command_roles_show, index)
         response3 = s.get(self.url_roles_show, headers=headers)
@@ -131,7 +140,7 @@ class Test_004_ServerUpdateRole(unittest.TestCase):
     def __init__(self, *a, **kw):
         super(Test_004_ServerUpdateRole, self).__init__(*a, **kw)
         self.host = host
-        self.command_roles_update = 'roles/update'
+        self.command_roles_update = 'management/roles/update'
 
 
     def test_01_roles_show_successfully(self):
@@ -152,7 +161,7 @@ class Test_004_ServerUpdateRole(unittest.TestCase):
         newValue = random.choice(words)+ random.choice(words)
         userdata = json.dumps({"name": newValue})
         self.host = host
-        self.command_roles_update = 'roles/update'
+        self.command_roles_update = 'management/roles/update'
 
         self.url_roles_update = 'http://{}/{}/{}'.format(self.host, self.command_roles_update, index)
 

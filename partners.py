@@ -27,7 +27,7 @@ class Test_004_All_Partners(unittest.TestCase):
     def __init__(self, *a, **kw):
         super(Test_004_All_Partners, self).__init__(*a, **kw)
         self.host = host
-        self.command_all_partners = 'partners'
+        self.command_all_partners = 'management/partners'
 
         self.url_all_partners = 'http://{}/{}'.format(self.host, self.command_all_partners)
 
@@ -65,7 +65,7 @@ class Test_004_Partner_Show(unittest.TestCase):
         index = int(m['data'][1]['id'])
         print index
         self.host = host
-        self.command_partner_show = 'partners/show'
+        self.command_partner_show = 'management/partners/show'
 
         self.url_partner_show = 'http://{}/{}/{}'.format(self.host, self.command_partner_show, index)
         response2 = s.get(self.url_partner_show, headers=headers)
@@ -83,7 +83,7 @@ class Test_004_Partner_Show(unittest.TestCase):
 #         s = requests.Session()
 #         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
 #         self.host = host
-#         self.command_partner_create = 'partners/create'
+#         self.command_partner_create = 'management/partners/create'
 #
 #         self.url_partner_create = 'http://{}/{}'.format(self.host, self.command_partner_create)
 #         words = ["python", "jumble", "easy", "difficult", "answer", "xylophone"]
@@ -117,7 +117,7 @@ class Test_004_Partner_Show(unittest.TestCase):
 #             print index
 #
 #             self.host = host
-#             self.command_partner_update = 'partners/update'
+#             self.command_partner_update = 'management/partners/update'
 #             self.url_partner_update = 'http://{}/{}/{}'.format(self.host, self.command_partner_update, index)
 #             userdata = json.dumps({"name": "partnerTest"})
 #             response2 = s.patch(self.url_partner_update, data=userdata, headers=headers)
@@ -125,7 +125,7 @@ class Test_004_Partner_Show(unittest.TestCase):
 #             self.assertEqual(response2.status_code, SUCCESS)
 #
 #             self.host = host
-#             self.command_partner_delete = 'partners/delete'
+#             self.command_partner_delete = 'management/partners/delete'
 #             self.url_partner_delete = 'http://{}/{}/{}'.format(self.host, self.command_partner_delete, index)
 #             response2 = s.delete(self.url_partner_delete, headers=headers)
 #             print response2

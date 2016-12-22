@@ -85,7 +85,7 @@ class Test_004_business_Creation(unittest.TestCase):
         s = requests.Session()
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
         self.host = host
-        self.command_business_create = 'businesses/create'
+        self.command_business_create = 'management/businesses/create'
 
         self.url_business_create = 'http://{}/{}'.format(self.host, self.command_business_create)
         userdata = json.dumps({"partner_id": 1, "business_id_by_partner": "string", "address": "string", "geo_latitude": "48.92279", "geo_longitude": "22.4519749", "name": "string", "description": "string"})
@@ -116,7 +116,7 @@ class Test_004_business_Deleting(unittest.TestCase):
             print index
 
             self.host = host
-            self.command_business_update = 'businesses/update'
+            self.command_business_update = 'management/businesses/update'
             self.url_business_update = 'http://{}/{}/{}'.format(self.host, self.command_business_update, index)
             userdata = json.dumps({"partner_id": 90, "business_id_by_partner": "new", "address": "newaddress"})
             response2 = s.patch(self.url_business_update, data=userdata, headers=headers)
@@ -124,7 +124,7 @@ class Test_004_business_Deleting(unittest.TestCase):
             self.assertEqual(response2.status_code, SUCCESS)
 
             self.host = host
-            self.command_business_delete = 'businesses/delete'
+            self.command_business_delete = 'management/businesses/delete'
             self.url_business_delete = 'http://{}/{}/{}'.format(self.host, self.command_business_delete, index)
             response2 = s.delete(self.url_business_delete, headers=headers)
             print response2
