@@ -30,6 +30,7 @@ class Test_004_All_categories(unittest.TestCase):
         self.host = host
         self.command_all_categories = 'categories'
 
+
         self.url_all_categories = 'http://{}/{}'.format(self.host, self.command_all_categories)
 
 
