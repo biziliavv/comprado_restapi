@@ -34,7 +34,7 @@ class Test_004_user_Creation(unittest.TestCase):
         s = requests.Session()
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
         self.host = host
-        self.command_user_create = 'users/create'
+        self.command_user_create = 'management/users/create'
 
         self.url_user_create = 'http://{}/{}'.format(self.host, self.command_user_create)
         words = ["python", "jumble", "easy", "difficult", "answer", "xylophone"]
@@ -48,7 +48,7 @@ class Test_004_user_Creation(unittest.TestCase):
         res = json.loads(response2.content)
         index = res["id"]
         self.host = host
-        self.command_user_delete = 'users/delete'
+        self.command_user_delete = 'management/users/delete'
         self.url_user_delete = 'http://{}/{}/{}'.format(self.host, self.command_user_delete, index)
         response2 = s.delete(self.url_user_delete, headers=headers)
 
@@ -81,7 +81,7 @@ class Test_004_user_Creation(unittest.TestCase):
         s = requests.Session()
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
         self.host = host
-        self.command_user_create = 'users/create'
+        self.command_user_create = 'management/users/create'
 
         self.url_user_create = 'http://{}/{}'.format(self.host, self.command_user_create)
         words = ["python", "jumble", "easy", "difficult", "answer", "xylophone"]
@@ -170,7 +170,7 @@ class Test_004_user_Show(unittest.TestCase):
 #             print index
 
 #            self.host = host
-#            self.command_user_update = 'users/update'
+#            self.command_user_update = 'management/users/update'
 #            self.url_user_update = 'http://{}/{}/{}'.format(self.host, self.command_user_update, index)
 #            words = ["python", "jumble", "easy", "difficult", "answer", "xylophone"]
 #            newvalue = random.choice(words) + random.choice(words)
@@ -181,7 +181,7 @@ class Test_004_user_Show(unittest.TestCase):
 #            self.assertEqual(response2.status_code, SUCCESS)
 
 #            self.host = host
-#            self.command_user_delete = 'users/delete'
+#            self.command_user_delete = 'management/users/delete'
 #           self.url_user_delete = 'http://{}/{}/{}'.format(self.host, self.command_user_delete, index)
 #            response2 = s.delete(self.url_user_delete, headers=headers)
 #            print response2

@@ -118,7 +118,7 @@ class Test_004_category_Creation(unittest.TestCase):
         s = requests.Session()
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
         self.host = host
-        self.command_category_create = 'categories/create'
+        self.command_category_create = 'management/categories/create'
 
 
         self.url_category_create = 'http://{}/{}'.format(self.host, self.command_category_create)
@@ -150,7 +150,7 @@ class Test_004_category_Deleting(unittest.TestCase):
             print index
 
             self.host = host
-            self.command_category_update = 'categories/update'
+            self.command_category_update = 'management/categories/update'
             self.isocode = 'isocode1'
             self.isocode_value = 'en'
             self.url_category_update = 'http://{}/{}/{}?{}={}'.format(self.host, self.command_category_update, index, self.isocode, self.isocode_value)
@@ -160,7 +160,7 @@ class Test_004_category_Deleting(unittest.TestCase):
             self.assertEqual(response2.status_code, SUCCESS)
 
             self.host = host
-            self.command_category_delete = 'categories/delete'
+            self.command_category_delete = 'management/categories/delete'
             index
             self.url_category_delete = 'http://{}/{}/{}'.format(self.host, self.command_category_delete, index)
             response2 = s.delete(self.url_category_delete, headers=headers)
@@ -185,7 +185,7 @@ class Test_004_category_Deleting(unittest.TestCase):
             print index
 
             self.host = host
-            self.command_category_update = 'categories/update'
+            self.command_category_update = 'management/categories/update'
             self.isocode = 'isocode1'
             self.isocode_value = 'en'
             self.url_category_update = 'http://{}/{}/{}?{}={}'.format(self.host, self.command_category_update, index,
@@ -196,7 +196,7 @@ class Test_004_category_Deleting(unittest.TestCase):
             self.assertEqual(response2.status_code, SUCCESS)
 
             self.host = host
-            self.command_category_delete = 'categories/delete'
+            self.command_category_delete = 'management/categories/delete'
             index = 900
             self.url_category_delete = 'http://{}/{}/{}'.format(self.host, self.command_category_delete, index)
             response2 = s.delete(self.url_category_delete, headers=headers)
@@ -221,7 +221,7 @@ class Test_004_category_Deleting(unittest.TestCase):
             print index
 
             self.host = host
-            self.command_category_update = 'categories/update'
+            self.command_category_update = 'management/categories/update'
             self.isocode = 'isocode1'
             self.isocode_value = 'en'
             self.url_category_update = 'http://{}/{}/{}?{}={}'.format(self.host, self.command_category_update, index, self.isocode, self.isocode_value)
@@ -231,7 +231,7 @@ class Test_004_category_Deleting(unittest.TestCase):
             self.assertEqual(response2.status_code, SUCCESS)
 
             self.host = host
-            self.command_category_delete = 'categories/delete'
+            self.command_category_delete = 'management/categories/delete'
             index = 'b'
             self.url_category_delete = 'http://{}/{}/{}'.format(self.host, self.command_category_delete, index)
             response2 = s.delete(self.url_category_delete, headers=headers)
