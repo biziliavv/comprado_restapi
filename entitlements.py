@@ -8,6 +8,9 @@ import time
 
 
 import random
+
+from authorization import test_authorization
+
 DEFAULT_HEADER = 'application/json'
 
 SUCCESS = 200
@@ -40,7 +43,11 @@ class Test_004_ServerRoles(unittest.TestCase):
         with open('USER_DATA.json') as data_file:
             data = json.load(data_file)
         s = requests.Session()
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
+        time.sleep(3)
+        token, index = test_authorization()
+        time.sleep(3)
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
+        time.sleep(3)
         response2 = s.get(self.url_all_roles, headers=headers)
         self.assertEqual(response2.status_code, SUCCESS)
 
@@ -49,7 +56,10 @@ class Test_004_ServerRoles(unittest.TestCase):
         with open('USER_DATA.json') as data_file:
             data = json.load(data_file)
         s = requests.Session()
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
+        time.sleep(3)
+        token, index = test_authorization()
+        time.sleep(3)
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
         response2 = s.get(self.url_all_roles, headers=headers)
         self.assertEqual(response2.status_code, SUCCESS)
 
@@ -57,7 +67,7 @@ class Test_004_ServerActions(unittest.TestCase):
     def __init__(self, *a, **kw):
         super(Test_004_ServerActions, self).__init__(*a, **kw)
         self.host = host
-        self.command_actions = 'actions'
+        self.command_actions = 'management/actions'
 
         self.url_all_actions = 'http://{}/{}'.format(self.host, self.command_actions)
 
@@ -65,7 +75,10 @@ class Test_004_ServerActions(unittest.TestCase):
         with open('USER_DATA.json') as data_file:
             data = json.load(data_file)
         s = requests.Session()
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
+        time.sleep(3)
+        token, index  = test_authorization()
+        time.sleep(3)
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
         response2 = s.get(self.url_all_actions, headers=headers)
         self.assertEqual(response2.status_code, SUCCESS)
 
@@ -84,23 +97,24 @@ class Test_004_ServerRolesCreate(unittest.TestCase):
         words = ["python", "jumble", "easy", "difficult", "answer", "xylophone"]
         newValue= random.choice(words)+random.choice(words)
 
-
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
+        time.sleep(3)
+        token, index = test_authorization()
+        time.sleep(3)
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
         userdata = json.dumps({"name": newValue})
         response2 = s.post(self.url_roles_create, data=userdata, headers=headers)
+        res = json.loads(response2.content)
+        index = res['id']
         self.assertEqual(response2.status_code, SUCCESS)
         self.host = host
-        self.command_roles = 'roles'
+        self.command_roles = 'management/roles'
 
         self.url_roles = 'http://{}/{}'.format(self.host, self.command_roles)
         roles = s.get(self.url_roles, headers=headers)
-        m = json.loads(roles.content)
 
-        print m
-        print m['data'][2]
-        index = int(m['data'][2]['id'])
+
         print index
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
+
         self.host = host
         self.command_roles_delete = 'management/roles/delete'
 
@@ -117,7 +131,10 @@ class Test_004_ServerShowRole(unittest.TestCase):
         self.url_role_show = 'http://{}/{}'.format(self.host, self.command_role_show)
 
     def test_01_roles_show_successfully(self):
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
+        time.sleep(3)
+        token, index = test_authorization()
+        time.sleep(3)
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
         s = requests.Session()
         self.host = host
         self.command_roles = 'roles'
@@ -126,9 +143,9 @@ class Test_004_ServerShowRole(unittest.TestCase):
         roles = s.get(self.url_roles, headers=headers)
         m = json.loads(roles.content)
 
-        index = int(m['data'][2]['id'])
+        index = 5
         print index
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
+
         self.host = host
         self.command_roles_show = 'management/roles/show'
 
@@ -144,10 +161,14 @@ class Test_004_ServerUpdateRole(unittest.TestCase):
 
 
     def test_01_roles_show_successfully(self):
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
+        time.sleep(3)
+        token, index = test_authorization()
+        time.sleep(3)
+
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
         s = requests.Session()
         self.host = host
-        self.command_roles = 'roles'
+        self.command_roles = 'management/roles'
 
         self.url_roles = 'http://{}/{}'.format(self.host, self.command_roles)
         roles = s.get(self.url_roles, headers=headers)
@@ -155,7 +176,24 @@ class Test_004_ServerUpdateRole(unittest.TestCase):
 
         index = int(m['data'][2]['id'])
         print index
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
+        words = ["python", "jumble", "easy", "difficult", "answer", "xylophone"]
+        newValue = random.choice(words) + random.choice(words)
+
+        time.sleep(3)
+        token, index = test_authorization()
+        time.sleep(3)
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
+        userdata = json.dumps({"name": newValue})
+        self.host = host
+        self.command_roles_create = 'management/roles/create'
+
+        self.url_roles_create = 'http://{}/{}'.format(self.host, self.command_roles_create)
+
+        response2 = s.post(self.url_roles_create, data=userdata, headers=headers)
+        res = json.loads(response2.content)
+        index = res['id']
+        self.assertEqual(response2.status_code, SUCCESS)
+
         words = ["python", "jumble", "easy", "difficult", "answer", "xylophone"]
 
         newValue = random.choice(words)+ random.choice(words)

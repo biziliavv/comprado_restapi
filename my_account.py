@@ -2,6 +2,9 @@ import json
 import requests
 import unittest
 import random
+from authorization import test_authorization
+
+
 
 import time
 
@@ -42,46 +45,19 @@ class Test_004_My_Profile_View(unittest.TestCase):
         with open('USER_DATA.json') as data_file:
             data = json.load(data_file)
         s = requests.Session()
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
-        self.host = host
-        self.command_signup = 'auth/signup'
 
-        self.url_signup = 'http://{}/{}'.format(self.host, self.command_signup)
-        words = ["python", "jumble", "easy", "difficult", "answer", "xylophone"]
 
-        newValue = random.choice(words)
-        email_value = time.strftime("%d%m%Y" + "%H%M%S") + "@" + "test.com"
-        self.host = host
-        self.command_user_create = 'management/users/create'
 
-        self.url_user_create = 'http://{}/{}'.format(self.host, self.command_user_create)
-        words = ["python", "jumble", "easy", "difficult", "answer", "xylophone"]
-        newvalue = random.choice(words) + random.choice(words)
-        nameunique = "testuser" + random.choice(words) + random.choice(words) + "@" + random.choice(words) + ".com"
-        userdata = json.dumps(
-            {"full_name": email_value, "email": email_value, "password": "12345678", "password_confirmation": "12345678",
-             "birthday": "1990-06-12"})
-
-        response2 = s.post(self.url_user_create, data=userdata, headers=headers)
-
-        cont = response2.content
-        res = response2.headers
-        print res
-        lost = res['Authorization']
-        identificator  = cont['id']
-
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': lost}
+        time.sleep(5)
+        token, index = test_authorization()
+        time.sleep(5)
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
 
         response2 = s.get(self.url_profile_view, headers=headers)
         print response2
         self.assertEqual(response2.status_code, SUCCESS)
 
-        self.host = host
-        self.command_user_delete = 'management/users/delete'
-        self.url_user_delete = 'http://{}/{}/{}'.format(self.host, self.command_user_delete, identificator)
-        response2 = s.delete(self.url_user_delete, headers=headers)
-        print response2
-        self.assertEqual(response2.status_code, SUCCESS)
+
 
 
 
@@ -123,22 +99,10 @@ class Test_004_My_Profile_Edit(unittest.TestCase):
         with open('USER_DATA.json') as data_file:
             data = json.load(data_file)
         s = requests.Session()
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
-        self.host = host
-        self.command_signup = 'auth/signup'
-
-        self.url_signup = 'http://{}/{}'.format(self.host, self.command_signup)
-        words = ["python", "jumble", "easy", "difficult", "answer", "xylophone"]
-
-        newValue = random.choice(words)
-        email_value = time.strftime("%d%m%Y" + "%H%M%S") + "@" + "test.com"
-        print email_value
-        userdata = json.dumps({"email": email_value, "full_name": "FullName"})
-        response2 = s.post(self.url_signup, data=userdata, headers=headers)
-
-        res = response2.headers
-        lost = res['Authorization']
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': lost}
+        time.sleep(5)
+        token, index = test_authorization()
+        time.sleep(5)
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
         userdata = json.dumps({"name": "TestVtuier"})
 
         response2 = s.patch(self.url_profile_edit, data=userdata, headers=headers)

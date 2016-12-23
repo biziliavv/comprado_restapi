@@ -3,6 +3,7 @@ import requests
 import unittest
 import random
 import time
+from authorization import test_authorization
 
 DEFAULT_HEADER = 'application/json'
 
@@ -36,7 +37,10 @@ class Test_004_All_Partners(unittest.TestCase):
         with open('USER_DATA.json') as data_file:
             data = json.load(data_file)
         s = requests.Session()
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
+        time.sleep(3)
+        token, index = test_authorization()
+        time.sleep(3)
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
         response2 = s.get(self.url_all_partners, headers=headers)
         print response2
         self.assertEqual(response2.status_code, SUCCESS)
@@ -52,17 +56,17 @@ class Test_004_Partner_Show(unittest.TestCase):
         with open('USER_DATA.json') as data_file:
             data = json.load(data_file)
         s = requests.Session()
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
+        time.sleep(3)
+        token, index = test_authorization()
+        time.sleep(3)
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
         self.host = host
-        self.command_all_partners = 'partners'
+        self.command_all_partners = 'manageement/partners'
 
         self.url_all_partners = 'http://{}/{}'.format(self.host, self.command_all_partners)
         partners = s.get(self.url_all_partners, headers=headers)
-        m = json.loads(partners.content)
 
-        print m
-        print m['data'][1]
-        index = int(m['data'][1]['id'])
+        index = 6
         print index
         self.host = host
         self.command_partner_show = 'management/partners/show'
@@ -95,41 +99,28 @@ class Test_004_Partner_Show(unittest.TestCase):
 #
 #         self.assertEqual(response2.status_code, SUCCESS)
 #
-# class Test_004_Partner_Deleting(unittest.TestCase):
-#         def __init__(self, *a, **kw):
-#                 super(Test_004_Partner_Deleting, self).__init__(*a, **kw)
-#
-#         def test_01_partner_deleted_correctly(self):
-#             with open('USER_DATA.json') as data_file:
-#                 data = json.load(data_file)
-#             s = requests.Session()
-#             headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
-#             self.host = host
-#             self.command_all_partners = 'partners'
-#
-#             self.url_all_partners = 'http://{}/{}'.format(self.host, self.command_all_partners)
-#             partners = s.get(self.url_all_partners, headers=headers)
-#             m = json.loads(partners.content)
-#
-#             print m
-#             print m['data'][2]
-#             index = int(m['data'][2]['id'])
-#             print index
-#
-#             self.host = host
-#             self.command_partner_update = 'management/partners/update'
-#             self.url_partner_update = 'http://{}/{}/{}'.format(self.host, self.command_partner_update, index)
-#             userdata = json.dumps({"name": "partnerTest"})
-#             response2 = s.patch(self.url_partner_update, data=userdata, headers=headers)
-#             print response2
-#             self.assertEqual(response2.status_code, SUCCESS)
-#
-#             self.host = host
-#             self.command_partner_delete = 'management/partners/delete'
-#             self.url_partner_delete = 'http://{}/{}/{}'.format(self.host, self.command_partner_delete, index)
-#             response2 = s.delete(self.url_partner_delete, headers=headers)
-#             print response2
-#             self.assertEqual(response2.status_code, SUCCESS)
+class Test_004_Partner_Updating(unittest.TestCase):
+        def __init__(self, *a, **kw):
+                super(Test_004_Partner_Updating, self).__init__(*a, **kw)
+
+        def test_01_partner_updated_correctly(self):
+            with open('USER_DATA.json') as data_file:
+                data = json.load(data_file)
+            s = requests.Session()
+            time.sleep(3)
+            token, index = test_authorization()
+            time.sleep(3)
+            headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
+            index = 6
+            self.host = host
+            self.command_partner_update = 'management/partners/update'
+            self.url_partner_update = 'http://{}/{}/{}'.format(self.host, self.command_partner_update, index)
+            userdata = json.dumps({"sync_period": "daily"})
+            response2 = s.patch(self.url_partner_update, data=userdata, headers=headers)
+            print response2
+            self.assertEqual(response2.status_code, SUCCESS)
+
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,7 +1,7 @@
 import json
 import requests
 import unittest
-
+from authorization import test_authorization
 import time
 
 DEFAULT_HEADER = 'application/json'
@@ -81,12 +81,15 @@ class Test_004_offer_Creation(unittest.TestCase):
         with open('USER_DATA.json') as data_file:
             data = json.load(data_file)
         s = requests.Session()
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
+        time.sleep(3)
+        token, index = test_authorization()
+        time.sleep(3)
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
         self.host = host
         self.command_offer_create = 'management/offers/create'
 
         self.url_offer_create = 'http://{}/{}'.format(self.host, self.command_offer_create)
-        userdata = json.dumps({"title": "string1", "description": "string", "business_id": 5, "category_id": 5, "SKU": "string","offer_quantity": 0, "offer_id_by_partner": "string", "delivery_cost": 0, "vat": 0})
+        userdata = json.dumps({"title": "string1", "description": "string", "business_id": 4, "category_id": 5, "SKU": "string","offer_quantity": 0, "offer_id_by_partner": "string", "delivery_cost": 0, "vat": 0})
 
         response2 = s.post(self.url_offer_create, data=userdata, headers=headers)
 
@@ -100,23 +103,30 @@ class Test_004_offer_Deleting(unittest.TestCase):
             with open('USER_DATA.json') as data_file:
                 data = json.load(data_file)
             s = requests.Session()
-            headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
+            time.sleep(3)
+            token, index = test_authorization()
+            time.sleep(3)
+            headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
             self.host = host
-            self.command_all_offers = 'offers'
+            self.command_offer_create = 'management/offers/create'
 
-            self.url_all_offers = 'http://{}/{}'.format(self.host, self.command_all_offers)
-            offers = s.get(self.url_all_offers, headers=headers)
-            m = json.loads(offers.content)
+            self.url_offer_create = 'http://{}/{}'.format(self.host, self.command_offer_create)
 
-            print m
-            print m['data'][1]
-            index = int(m['data'][1]['id'])
-            print index
+            userdata = json.dumps({"title": "string1", "description": "string", "business_id": 4, "category_id": 5, "SKU": "string", "offer_quantity": 0, "offer_id_by_partner": "string", "delivery_cost": 0, "vat": 0})
 
+            response2 = s.post(self.url_offer_create, data=userdata, headers=headers)
+            res = json.loads(response2.content)
+            index = res['id']
+
+
+
+
+            self.assertEqual(response2.status_code, SUCCESS)
             self.host = host
             self.command_offer_update = 'management/offers/update'
             self.url_offer_update = 'http://{}/{}/{}'.format(self.host, self.command_offer_update, index)
-            userdata = json.dumps({"title": "newtitle", "category_id": "1"})
+            userdata = json.dumps({"title": "stringebfherfberfeferferfrf"})
+
             response2 = s.patch(self.url_offer_update, data=userdata, headers=headers)
             print response2
             self.assertEqual(response2.status_code, SUCCESS)
@@ -124,6 +134,7 @@ class Test_004_offer_Deleting(unittest.TestCase):
             self.host = host
             self.command_offer_delete = 'management/offers/delete'
             self.url_offer_delete = 'http://{}/{}/{}'.format(self.host, self.command_offer_delete, index)
+
             response2 = s.delete(self.url_offer_delete, headers=headers)
             print response2
             self.assertEqual(response2.status_code, SUCCESS)

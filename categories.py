@@ -3,6 +3,7 @@ import requests
 import unittest
 
 import time
+from authorization import test_authorization
 
 DEFAULT_HEADER = 'application/json'
 
@@ -15,6 +16,7 @@ FORBIDDEN = 403
 NOTFOUND = 404
 BADDATA = 422
 WRONGID = 500
+
 
 TAN = 9999
 FIRSTNAME = "Oleg"
@@ -117,7 +119,10 @@ class Test_004_category_Creation(unittest.TestCase):
         with open('USER_DATA.json') as data_file:
             data = json.load(data_file)
         s = requests.Session()
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
+        time.sleep(5)
+        token, index = test_authorization()
+        time.sleep(5)
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
         self.host = host
         self.command_category_create = 'management/categories/create'
 
@@ -137,24 +142,26 @@ class Test_004_category_Deleting(unittest.TestCase):
             with open('USER_DATA.json') as data_file:
                 data = json.load(data_file)
             s = requests.Session()
-            headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
+            time.sleep(5)
+            token, index = test_authorization()
+            time.sleep(5)
+            headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
             self.host = host
-            self.command_all_categories = 'categories'
+            self.command_category_create = 'management/categories/create'
 
-            self.url_all_categories = 'http://{}/{}'.format(self.host, self.command_all_categories)
-            categories = s.get(self.url_all_categories, headers=headers)
-            m = json.loads(categories.content)
+            self.url_category_create = 'http://{}/{}'.format(self.host, self.command_category_create)
+            userdata = json.dumps({"parent_id": 2, "is_last": "false", "title": "string", "description": "string"})
 
-            print m
-            print m['data'][0]
-            index = int(m['data'][0]['id'])
-            print index
+            response2 = s.post(self.url_category_create, data=userdata, headers=headers)
+            cont = json.loads(response2.content)
+            identifier = cont['id']
+            self.assertEqual(response2.status_code, SUCCESS)
 
             self.host = host
             self.command_category_update = 'management/categories/update'
             self.isocode = 'isocode1'
             self.isocode_value = 'en'
-            self.url_category_update = 'http://{}/{}/{}?{}={}'.format(self.host, self.command_category_update, index, self.isocode, self.isocode_value)
+            self.url_category_update = 'http://{}/{}/{}?{}={}'.format(self.host, self.command_category_update, identifier, self.isocode, self.isocode_value)
             userdata = json.dumps({"title": "categoryTest"})
             response2 = s.patch(self.url_category_update, data=userdata, headers=headers)
             print response2
@@ -162,8 +169,8 @@ class Test_004_category_Deleting(unittest.TestCase):
 
             self.host = host
             self.command_category_delete = 'management/categories/delete'
-            index
-            self.url_category_delete = 'http://{}/{}/{}'.format(self.host, self.command_category_delete, index)
+
+            self.url_category_delete = 'http://{}/{}/{}'.format(self.host, self.command_category_delete, identifier)
             response2 = s.delete(self.url_category_delete, headers=headers)
             print response2
             self.assertEqual(response2.status_code, SUCCESS)
@@ -172,64 +179,11 @@ class Test_004_category_Deleting(unittest.TestCase):
             with open('USER_DATA.json') as data_file:
                 data = json.load(data_file)
             s = requests.Session()
-            headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
-            self.host = host
-            self.command_all_categories = 'categories'
+            time.sleep(5)
+            token, index = test_authorization()
+            time.sleep(5)
+            headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
 
-            self.url_all_categories = 'http://{}/{}'.format(self.host, self.command_all_categories)
-            categories = s.get(self.url_all_categories, headers=headers)
-            m = json.loads(categories.content)
-
-            print m
-            print m['data'][0]
-            index = int(m['data'][0]['id'])
-            print index
-
-            self.host = host
-            self.command_category_update = 'management/categories/update'
-            self.isocode = 'isocode1'
-            self.isocode_value = 'en'
-            self.url_category_update = 'http://{}/{}/{}?{}={}'.format(self.host, self.command_category_update, index,
-                                                                      self.isocode, self.isocode_value)
-            userdata = json.dumps({"title": "categoryTest"})
-            response2 = s.patch(self.url_category_update, data=userdata, headers=headers)
-            print response2
-            self.assertEqual(response2.status_code, SUCCESS)
-
-            self.host = host
-            self.command_category_delete = 'management/categories/delete'
-            index = 900
-            self.url_category_delete = 'http://{}/{}/{}'.format(self.host, self.command_category_delete, index)
-            response2 = s.delete(self.url_category_delete, headers=headers)
-            print response2
-            self.assertEqual(response2.status_code, BADDATA)
-
-        def test_01_category_cant_be_deleted_because_id_doesnt_exist(self):
-            with open('USER_DATA.json') as data_file:
-                data = json.load(data_file)
-            s = requests.Session()
-            headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
-            self.host = host
-            self.command_all_categories = 'categories'
-
-            self.url_all_categories = 'http://{}/{}'.format(self.host, self.command_all_categories)
-            categories = s.get(self.url_all_categories, headers=headers)
-            m = json.loads(categories.content)
-
-            print m
-            print m['data'][0]
-            index = int(m['data'][0]['id'])
-            print index
-
-            self.host = host
-            self.command_category_update = 'management/categories/update'
-            self.isocode = 'isocode1'
-            self.isocode_value = 'en'
-            self.url_category_update = 'http://{}/{}/{}?{}={}'.format(self.host, self.command_category_update, index, self.isocode, self.isocode_value)
-            userdata = json.dumps({"title": "categoryTest"})
-            response2 = s.patch(self.url_category_update, data=userdata, headers=headers)
-            print response2
-            self.assertEqual(response2.status_code, SUCCESS)
 
             self.host = host
             self.command_category_delete = 'management/categories/delete'
@@ -238,6 +192,24 @@ class Test_004_category_Deleting(unittest.TestCase):
             response2 = s.delete(self.url_category_delete, headers=headers)
             print response2
             self.assertEqual(response2.status_code, WRONGID)
+
+        def test_01_category_cant_be_deleted_because_id_doesnt_exist(self):
+            with open('USER_DATA.json') as data_file:
+                data = json.load(data_file)
+            s = requests.Session()
+            time.sleep(5)
+            token, index = test_authorization()
+            time.sleep(5)
+            headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
+
+
+            self.host = host
+            self.command_category_delete = 'management/categories/delete'
+            index = 900
+            self.url_category_delete = 'http://{}/{}/{}'.format(self.host, self.command_category_delete, index)
+            response2 = s.delete(self.url_category_delete, headers=headers)
+            print response2
+            self.assertEqual(response2.status_code, BADDATA)
 
 
 if __name__ == '__main__':

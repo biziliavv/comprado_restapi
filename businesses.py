@@ -3,8 +3,7 @@ import requests
 import unittest
 
 import time
-
-
+from authorization import test_authorization
 
 DEFAULT_HEADER = 'application/json'
 
@@ -24,6 +23,8 @@ EMAIL = 'biziliavv@gmail.com'
 PSW = "123456"
 host = '54.93.81.169/api/v1'
 
+
+
 class Test_004_All_businesses(unittest.TestCase):
 
     def __init__(self, *a, **kw):
@@ -38,6 +39,7 @@ class Test_004_All_businesses(unittest.TestCase):
         with open('USER_DATA.json') as data_file:
             data = json.load(data_file)
         s = requests.Session()
+
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
         response2 = s.get(self.url_all_businesses, headers=headers)
         print response2
@@ -83,7 +85,10 @@ class Test_004_business_Creation(unittest.TestCase):
         with open('USER_DATA.json') as data_file:
             data = json.load(data_file)
         s = requests.Session()
-        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
+        time.sleep(5)
+        token, index = test_authorization()
+        time.sleep(5)
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
         self.host = host
         self.command_business_create = 'management/businesses/create'
 
@@ -93,6 +98,20 @@ class Test_004_business_Creation(unittest.TestCase):
         response2 = s.post(self.url_business_create, data=userdata, headers=headers)
 
         self.assertEqual(response2.status_code, SUCCESS)
+    def test_01_business_not_created_because_empty_userdata(self):
+        with open('USER_DATA.json') as data_file:
+            data = json.load(data_file)
+        s = requests.Session()
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
+        self.host = host
+        self.command_business_create = 'management/businesses/create'
+
+        self.url_business_create = 'http://{}/{}'.format(self.host, self.command_business_create)
+        userdata = json.dumps({})
+
+        response2 = s.post(self.url_business_create, data=userdata, headers=headers)
+
+        self.assertEqual(response2.status_code, UNAUTHORIZED)
 
 class Test_004_business_Deleting(unittest.TestCase):
         def __init__(self, *a, **kw):
@@ -102,30 +121,36 @@ class Test_004_business_Deleting(unittest.TestCase):
             with open('USER_DATA.json') as data_file:
                 data = json.load(data_file)
             s = requests.Session()
-            headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
+            time.sleep(5)
+            token, index = test_authorization()
+            time.sleep(5)
+            headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
             self.host = host
-            self.command_all_businesses = 'businesses'
+            self.command_business_create = 'management/businesses/create'
 
-            self.url_all_businesses = 'http://{}/{}'.format(self.host, self.command_all_businesses)
-            businesses = s.get(self.url_all_businesses, headers=headers)
-            m = json.loads(businesses.content)
+            self.url_business_create = 'http://{}/{}'.format(self.host, self.command_business_create)
+            userdata = json.dumps(
+                {"partner_id": 1, "business_id_by_partner": "string", "address": "string", "geo_latitude": "48.92279",
+                 "geo_longitude": "22.4519749", "name": "string", "description": "string"})
 
-            print m
-            print m['data'][0]
-            index = int(m['data'][0]['id'])
-            print index
+            response2 = s.post(self.url_business_create, data=userdata, headers=headers)
+            cont = json.loads(response2.content)
+            print cont
+            identifier = cont['id']
+            self.assertEqual(response2.status_code, SUCCESS)
+
 
             self.host = host
             self.command_business_update = 'management/businesses/update'
-            self.url_business_update = 'http://{}/{}/{}'.format(self.host, self.command_business_update, index)
-            userdata = json.dumps({"partner_id": 90, "business_id_by_partner": "new", "address": "newaddress"})
+            self.url_business_update = 'http://{}/{}/{}'.format(self.host, self.command_business_update, identifier)
+            userdata = json.dumps({"title": "newTitle"})
             response2 = s.patch(self.url_business_update, data=userdata, headers=headers)
             print response2
             self.assertEqual(response2.status_code, SUCCESS)
 
             self.host = host
             self.command_business_delete = 'management/businesses/delete'
-            self.url_business_delete = 'http://{}/{}/{}'.format(self.host, self.command_business_delete, index)
+            self.url_business_delete = 'http://{}/{}/{}'.format(self.host, self.command_business_delete, identifier)
             response2 = s.delete(self.url_business_delete, headers=headers)
             print response2
             self.assertEqual(response2.status_code, SUCCESS)
