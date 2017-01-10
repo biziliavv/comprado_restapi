@@ -18,6 +18,7 @@ UPGRADE_REQUIRED = 426
 FORBIDDEN = 403
 NOTFOUND = 404
 BADDATA = 422
+EXPIRED_TOKEN = 419
 
 TAN = 9999
 FIRSTNAME = "Oleg"
@@ -83,6 +84,18 @@ class Test_004_My_Profile_View(unittest.TestCase):
         response2 = s.get(self.url_profile_view, headers=headers)
         print response2
         self.assertEqual(response2.status_code, UNAUTHORIZED)
+
+    def test_04_user_profile_not_opened_because_expired_token(self):
+        with open('USER_DATA.json') as data_file:
+            data = json.load(data_file)
+        s = requests.Session()
+        token = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjE0MiwiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWdudXAiLCJpYXQiOjE0ODM0NTQ0NzcsImV4cCI6MTQ4MzQ1ODA3NywibmJmIjoxNDgzNDU0NDc3LCJqdGkiOiJkZTAwMWQ5YmUxMGNhYjA1M2QzODE1YjhhNTMyNmYwMyJ9.Zrv6bt85tvKXvMLiB57poGbQvCJ7K1ghF0pjrG-EyfU"
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
+
+        response2 = s.get(self.url_profile_view, headers=headers)
+        print response2
+        self.assertEqual(response2.status_code, EXPIRED_TOKEN)
+
 
 
 class Test_004_My_Profile_Edit(unittest.TestCase):

@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Test Report</title>
+    <link href="assets/style.css" rel="stylesheet" type="text/css"/></head>
+  <body onLoad="init()">
+    <script>/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this file,
+ * You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+
+function toArray(iter) {
+    if (iter === null) {
+        return null;
+    }
+    return Array.prototype.slice.call(iter);
+}
+
+function find(selector, elem) {
+    if (!elem) {
+        elem = document;
+    }
+    return elem.querySelector(selector);
+}
+
+function find_all(selector, elem) {
+    if (!elem) {
+        elem = document;
+    }
+    return toArray(elem.querySelectorAll(selector));
+}
+
+function sort_column(elem) {
+    toggle_sort_states(elem);
+    var colIndex = toArray(elem.parentNode.childNodes).indexOf(elem);
+    var key;
+    if (elem.classList.contains('numeric')) {
+        key = key_num;
+    } else if (elem.classList.contains('result')) {
+        key = key_result;
+    } else {
+        key = key_alpha;
+    }
+    sort_table(elem, key(colIndex));
+}
+
+function show_all_extras() {
+    find_all('.col-result').forEach(show_extras);
+}
+
+function hide_all_extras() {
+    find_all('.col-result').forEach(hide_extras);
+}
+
+function show_extras(colresult_elem) {
+    var extras = colresult_elem.parentNode.nextElementSibling;
+    var expandcollapse = colresult_elem.firstElementChild;
+    extras.classList.remove("collapsed");
+    expandcollapse.classList.remove("expander");
+    expandcollapse.classList.add("collapser");
+}
+
+function hide_extras(colresult_elem) {
+    var extras = colresult_elem.parentNode.nextElementSibling;
+    var expandcollapse = colresult_elem.firstElementChild;
+    extras.classList.add("collapsed");
+    expandcollapse.classList.remove("collapser");
+    expandcollapse.classList.add("expander");
+}
+
+function show_filters() {
+    var filter_items = document.getElementsByClassName('filter');
+    for (var i = 0; i < filter_items.length; i++)
+        filter_items[i].hidden = false;
+}
+
+function add_collapse() {
+    // Add links for show/hide all
+    var resulttable = find('table#results-table');
+    var showhideall = document.createElement("p");
+    showhideall.innerHTML = '<a href="javascript:show_all_extras()">Show all details</a> / ' +
+                            '<a href="javascript:hide_all_extras()">Hide all details</a>';
+    resulttable.parentElement.insertBefore(showhideall, resulttable);
+
+    // Add show/hide link to each result
+    find_all('.col-result').forEach(function(elem) {
+        var extras = elem.parentNode.nextElementSibling;
+        var expandcollapse = document.createElement("span");
+        if (elem.innerHTML === 'Passed') {
+            extras.classList.add("collapsed");
+            expandcollapse.classList.add("expander");
+        } else {
+            expandcollapse.classList.add("collapser");
+        }
+        elem.appendChild(expandcollapse);
+
+        elem.addEventListener("click", function(event) {
+            if (event.currentTarget.parentNode.nextElementSibling.classList.contains("collapsed")) {
+                show_extras(event.currentTarget);
+            } else {
+                hide_extras(event.currentTarget);
+            }
+        });
+    })
+}
+
+function init () {
+    reset_sort_headers();
+
+    add_collapse();
+
+    show_filters();
+
+    toggle_sort_states(find('.initial-sort'));
+
+    find_all('.sortable').forEach(function(elem) {
+        elem.addEventListener("click",
+                              function(event) {
+                                  sort_column(elem);
+                              }, false)
+    });
+
+};
+
+function sort_table(clicked, key_func) {
+    var rows = find_all('.results-table-row');
+    var reversed = !clicked.classList.contains('asc');
+    var sorted_rows = sort(rows, key_func, reversed);
+    /* Whole table is removed here because browsers acts much slower
+     * when appending existing elements.
+     */
+    var thead = document.getElementById("results-table-head");
+    document.getElementById('results-table').remove();
+    var parent = document.createElement("table");
+    parent.id = "results-table";
+    parent.appendChild(thead);
+    sorted_rows.forEach(function(elem) {
+        parent.appendChild(elem);
+    });
+    document.getElementsByTagName("BODY")[0].appendChild(parent);
+}
+
+function sort(items, key_func, reversed) {
+    var sort_array = items.map(function(item, i) {
+        return [key_func(item), i];
+    });
+    var multiplier = reversed ? -1 : 1;
+
+    sort_array.sort(function(a, b) {
+        var key_a = a[0];
+        var key_b = b[0];
+        return multiplier * (key_a >= key_b ? 1 : -1);
+    });
+
+    return sort_array.map(function(item) {
+        var index = item[1];
+        return items[index];
+    });
+}
+
+function key_alpha(col_index) {
+    return function(elem) {
+        return elem.childNodes[1].childNodes[col_index].firstChild.data.toLowerCase();
+    };
+}
+
+function key_num(col_index) {
+    return function(elem) {
+        return parseFloat(elem.childNodes[1].childNodes[col_index].firstChild.data);
+    };
+}
+
+function key_result(col_index) {
+    return function(elem) {
+        var strings = ['Error', 'Failed', 'Rerun', 'XFailed', 'XPassed',
+                       'Skipped', 'Passed'];
+        return strings.indexOf(elem.childNodes[1].childNodes[col_index].firstChild.data);
+    };
+}
+
+function reset_sort_headers() {
+    find_all('.sort-icon').forEach(function(elem) {
+        elem.parentNode.removeChild(elem);
+    });
+    find_all('.sortable').forEach(function(elem) {
+        var icon = document.createElement("div");
+        icon.className = "sort-icon";
+        icon.textContent = "vvv";
+        elem.insertBefore(icon, elem.firstChild);
+        elem.classList.remove("desc", "active");
+        elem.classList.add("asc", "inactive");
+    });
+}
+
+function toggle_sort_states(elem) {
+    //if active, toggle between asc and desc
+    if (elem.classList.contains('active')) {
+        elem.classList.toggle('asc');
+        elem.classList.toggle('desc');
+    }
+
+    //if inactive, reset all other functions and add ascending active
+    if (elem.classList.contains('inactive')) {
+        reset_sort_headers();
+        elem.classList.remove('inactive');
+        elem.classList.add('active');
+    }
+}
+
+function is_all_rows_hidden(value) {
+  return value.hidden == false;
+}
+
+function filter_table(elem) {
+    var outcome_att = "data-test-result";
+    var outcome = elem.getAttribute(outcome_att);
+    class_outcome = outcome + " results-table-row";
+    var outcome_rows = document.getElementsByClassName(class_outcome);
+
+    for(var i = 0; i < outcome_rows.length; i++){
+        outcome_rows[i].hidden = !elem.checked;
+    }
+
+    var rows = find_all('.results-table-row').filter(is_all_rows_hidden);
+    var all_rows_hidden = rows.length == 0 ? true : false;
+    var not_found_message = document.getElementById("not-found-message");
+    not_found_message.hidden = !all_rows_hidden;
+}
+</script>
+    <p>Report generated on 10-Jan-2017 at 13:37:33 by<a href="https://pypi.python.org/pypi/pytest-html"> pytest-html</a> v1.12.0</p>
+    <h2>Environment</h2>
+    <table id="environment">
+      <tr>
+        <td>Platform</td>
+        <td>Darwin-15.6.0-x86_64-i386-64bit</td></tr>
+      <tr>
+        <td>Python</td>
+        <td>2.7.12</td></tr></table>
+    <h2>Summary</h2>
+    <p>61 tests ran in 221.36 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">61 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
+    <h2>Results</h2>
+    <table id="results-table">
+      <thead id="results-table-head">
+        <tr>
+          <th class="sortable result initial-sort" col="result">Result</th>
+          <th class="sortable" col="name">Test</th>
+          <th class="sortable numeric" col="duration">Duration</th>
+          <th>Links</th></tr>
+        <tr hidden="true" id="not-found-message">
+          <th colspan="5">No results found. Try to check the filters</th></tr></thead>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">authentication.py::Test_004_ServerRegister::test_01_register_successfully</td>
+          <td class="col-duration">1.29</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">authentication.py::Test_004_ServerRegister::test_02_register_empty_values</td>
+          <td class="col-duration">0.10</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">authentication.py::Test_004_ServerRegister::test_03_register_wrong_email_format</td>
+          <td class="col-duration">0.11</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">authentication.py::Test_004_ServerRegister::test_04_register_already_registered_email</td>
+          <td class="col-duration">0.11</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">authentication.py::Test_004_ServerLogin::test_01_signed_in_successfully</td>
+          <td class="col-duration">0.19</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">authentication.py::Test_004_ServerLoginByFacebook::test_01_register_successfully</td>
+          <td class="col-duration">0.28</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">authentication.py::Test_Recovery_Password::test_01_recovered_password_successfully</td>
+          <td class="col-duration">1.44</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">authentication.py::Test_Refresh_Token::test_01_refreshed_token_successfully</td>
+          <td class="col-duration">0.32</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:33:55 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgwMzUsImV4cCI6MTQ4NDA1MTYzNSwibmJmIjoxNDg0MDQ4MDM1LCJqdGkiOiI3ZWZkYTJiZjI4YmI5YmUwYzk1YmJiZDE1NTNjZDg4YSJ9.UaBGQYXFvC3hI7GBow8ONKzwiXufGHBqwMwLW9v7Axo'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgwMzUsImV4cCI6MTQ4NDA1MTYzNSwibmJmIjoxNDg0MDQ4MDM1LCJqdGkiOiI3ZWZkYTJiZjI4YmI5YmUwYzk1YmJiZDE1NTNjZDg4YSJ9.UaBGQYXFvC3hI7GBow8ONKzwiXufGHBqwMwLW9v7Axo
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">authentication.py::test_authorization</td>
+          <td class="col-duration">0.19</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:33:55 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgwMzYsImV4cCI6MTQ4NDA1MTYzNiwibmJmIjoxNDg0MDQ4MDM2LCJqdGkiOiJhM2JlYjFiMWQwN2RjYzM5Y2QzNTMzMzliZjJkNjY5YiJ9.274sDtFlEH9qAEjN289qSUYZiarCuQfU01-m3J1EByM'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgwMzYsImV4cCI6MTQ4NDA1MTYzNiwibmJmIjoxNDg0MDQ4MDM2LCJqdGkiOiJhM2JlYjFiMWQwN2RjYzM5Y2QzNTMzMzliZjJkNjY5YiJ9.274sDtFlEH9qAEjN289qSUYZiarCuQfU01-m3J1EByM
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">businesses.py::test_authorization</td>
+          <td class="col-duration">0.20</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:33:56 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgwMzYsImV4cCI6MTQ4NDA1MTYzNiwibmJmIjoxNDg0MDQ4MDM2LCJqdGkiOiJhM2JlYjFiMWQwN2RjYzM5Y2QzNTMzMzliZjJkNjY5YiJ9.274sDtFlEH9qAEjN289qSUYZiarCuQfU01-m3J1EByM'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgwMzYsImV4cCI6MTQ4NDA1MTYzNiwibmJmIjoxNDg0MDQ4MDM2LCJqdGkiOiJhM2JlYjFiMWQwN2RjYzM5Y2QzNTMzMzliZjJkNjY5YiJ9.274sDtFlEH9qAEjN289qSUYZiarCuQfU01-m3J1EByM
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">businesses.py::Test_004_All_businesses::test_01_all_businesses_opened</td>
+          <td class="col-duration">0.16</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">businesses.py::Test_004_business_Show::test_01_business_page_showed_correctly</td>
+          <td class="col-duration">0.25</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{u'meta': {u'pagination': {u'count': 10, u'links': {u'next': u'http://54.93.81.169/api/v1/businesses?page=2'}, u'current_page': 1, u'total_pages': 13, u'per_page': 10, u'total': 130}}, u'data': [{u'description': u'P\xe5 restaurang 1909 \xe4r s\xe4songsanpassande r\xe5varor en f\xf6ruts\xe4ttning f\xf6r matlagningen. D\xe4rf\xf6r anv\xe4nds bara det b\xe4sta r\xe5varorna, g\xe4rna n\xe4rproducerat fr\xe5n den rika jordbruksbygden i M\xe4lardalen. Utav dessa skapas genuin matlagning d\xe4r alla smaker f\xe5r komma till sin r\xe4tt i en okonstlat och kreativ presentation.\n \nV\xe4lkommen!', u'geo_longitude': u'17.719419315379', u'created_at': u'2017-01-09 14:38:02', u'updated_at': u'2017-01-09 14:38:09', u'business_id_by_partner': u'49823', u'phone': None, u'email': u'restaurangen@sigtunastadshotell.se', u'link': u'http://www.sigtunastadshotell.se', u'address': u'Stora Nygatan 3 Sigtuna', u'logo': None, u'partner_id': 3, u'id': 233, u'geo_latitude': u'59.614726119356', u'name': u'1909 Sigtuna StadsHotell'}, {u'description': u'I en varm och trevlig milj\xf6 med medelhavsk\xe4nsla, avnjuter du Agatons v\xe4llagade k\xf6tt och fiskr\xe4tter. P\xe5 menyn finns \xe4ven en m\xe4ngd pastar\xe4tter och goda pizzor som serveras direkt fr\xe5n pizzaugnen. V\xe4lj bland \xf6vriga italienska l\xe4ckerheter, som exempelvis: Zuppa di pomodori e chili con risoni, tomat- och chilisoppa med risoni, serveras med en parmesan- &amp; basilikacr\xe8me,  Pasta ai Frutti di Mare, f\xe4rsk pasta med bl\xe5musslor, scampi, calamari, vitl\xf6k, vitvin och tomats\xe5s samt goda efterr\xe4tter som Mousse di cioccolata con fragole e Grand Marnier, chokladmousse med Grand Marnier-doftande jordgubbar.', u'geo_longitude': u'18.07205', u'created_at': u'2017-01-09 14:38:02', u'updated_at': u'2017-01-09 14:38:13', u'business_id_by_partner': u'18718', u'phone': None, u'email': u'kontakt@restaurangagaton.se', u'link': u'http://www.restaurangagaton.se', u'address': u'V\xe4sterl\xe5nggatan 72 Stockholm', u'logo': None, u'partner_id': 3, u'id': 236, u'geo_latitude': u'59.32299', u'name': u'Agaton'}, {u'description': u'\xc4ntligen dags f\xf6r vikingatider! D\xf6rrarna st\xe5r \xf6ppna till Sveriges f\xf6rsta och enda restaurang med total inriktning p\xe5 det gastronomiska arvet fr\xe5n sena j\xe4rn\xe5ldern. I Drottning Kristinas gamla vink\xe4llare p\xe5 V\xe4sterl\xe5ngatan 68b i Gamla Stan \xe5terskapas numera andra tider!\n\nAifur Krog &amp; Bar \xe4r resultatet av ett snart 20-\xe5rigt samlande och l\xe4rande om historien, livet, maten och kulturen fr\xe5n \xe5ren 700- 1100 e Kr, den s.k. vikingatiden. Denna kunskap sammanslaget med duktig och kunnig personal, skapar den speciella atmosf\xe4ren p\xe5 Aifur Krog &amp; Bar som ger dig en garanterad annorlunda upplevelse!\n\nH\xe4r bjuds du p\xe5 allt ifr\xe5n mj\xf6dkokta musslor och \xe4lgytterfil\xe9 till saffranspannkaka. \nOch till dryck f\xe5r du avnjuta massor av mj\xf6d, men \xe4ven vin och \xf6l. \n\nAifur Krog &amp; Bar \xe4r d\xf6pt efter det legendariska vikingaskeppet Aifur som betyder Den alltid v\xe5ldsamma och syftar p\xe5 en legendarisk brusande fors i floden Dnjepr, p\xe5 vilken m\xe5nga vikingar seglade och rodde under sina resor \xd6sterut. \n\nVarmt v\xe4lkomna \xf6nskar Martin E-type Erikson med personal.', u'geo_longitude': u'18.071998', u'created_at': u'2017-01-09 14:38:02', u'updated_at': u'2017-01-09 14:38:14', u'business_id_by_partner': u'34955', u'phone': u'+46 8201055', u'email': u'info@aifur.se', u'link': u'http://www.aifur.se/', u'address': u'V\xe4sterl\xe5nggatan 68 B Stockholm', u'logo': None, u'partner_id': 3, u'id': 237, u'geo_latitude': u'59.3231569', u'name': u'Aifur Krog &amp; Bar'}, {u'description': u'Id\xe9n p\xe5 ett nytt koncept f\xf6r en sportbar f\xf6ddes 2007 efter ett bes\xf6k i Miami d\xe4r en middag p\xe5 det exklusiva stekhuset Houston\xb4s gett mersmak. Var det m\xf6jligt att kombinera den niv\xe5n p\xe5 mat med en sportbar? Och om s\xe5 var fallet, varf\xf6r hade ingen redan gjort det?\n\nUnder ett \xe5r v\xe4xte id\xe9n och i november 2008 checkar fyra v\xe4nner in p\xe5 flighten till New York med den tydliga m\xe5ls\xe4ttningen att tr\xe4nga djupt in i den amerikanska sport- och matkulturen. F\xf6rbi baseballkepsar och cajunkryddade ribs vidare in mot sj\xe4lvaste sj\xe4len i den amerikanska sportbarkulturen.', u'geo_longitude': u'21.689962', u'created_at': u'2017-01-09 14:38:02', u'updated_at': u'2017-01-09 14:38:16', u'business_id_by_partner': u'45527', u'phone': u'+46 92116300', u'email': u'boden@allstarbar.se', u'link': u'http://www.allstarbar.se/boden/', u'address': u'Kungsgatan 43 Boden', u'logo': None, u'partner_id': 3, u'id': 238, u'geo_latitude': u'65.8248672', u'name': u'Allstar Boden'}, {u'description': u'Allstars moderna steakhouse erbjuder det klassiska amerikanska k\xf6ket ? med en extra touch. Kedjan kallar det kort\noch gott: Junkfood de Luxe. Sj\xe4lvklart erbjuder Allstar p\xe5 stadens b\xe4sta burgare och maffiga stekar, men ocks\xe5\nfr\xe4scha sallader och sp\xe4nnande wokar. Restaurangens Allstars i k\xf6ket levererar helt enkelt mat med \xe4kta k\xf6ksm\xe4stargl\xe4dje.', u'geo_longitude': u'14.636417715344', u'created_at': u'2017-01-09 14:38:02', u'updated_at': u'2017-01-09 14:38:17', u'business_id_by_partner': u'47730', u'phone': u'+46 63101450', u'email': u'ostersund@allstarbar.se', u'link': u'http://www.allstarbar.se/ostersund/', u'address': u'Biblioteksgatan 11 \xd6stersund', u'logo': None, u'partner_id': 3, u'id': 239, u'geo_latitude': u'63.178134667455', u'name': u'Allstar \xd6stersund'}, {u'description': u'Id\xe9n p\xe5 ett nytt koncept f\xf6r en sportbar f\xf6ddes 2007 efter ett bes\xf6k i Miami d\xe4r en middag p\xe5 det exklusiva stekhuset Houston\xb4s gett mersmak. Var det m\xf6jligt att kombinera den niv\xe5n p\xe5 mat med en sportbar? Och om s\xe5 var fallet, varf\xf6r hade ingen redan gjort det?\n\nUnder ett \xe5r v\xe4xte id\xe9n och i november 2008 checkar fyra v\xe4nner in p\xe5 flighten till New York med den tydliga m\xe5ls\xe4ttningen att tr\xe4nga djupt in i den amerikanska sport- och matkulturen. F\xf6rbi baseballkepsar och cajunkryddade ribs vidare in mot sj\xe4lvaste sj\xe4len i den amerikanska sportbarkulturen.', u'geo_longitude': u'16.5489939', u'created_at': u'2017-01-09 14:38:02', u'updated_at': u'2017-01-09 14:38:20', u'business_id_by_partner': u'45522', u'phone': u'+46 21143030', u'email': u'vasteras@allstarbar.se', u'link': u'http://www.allstarbar.se/vasteras', u'address': u'STORA GATAN 7 V\xc4STER\xc5S', u'logo': None, u'partner_id': 3, u'id': 241, u'geo_latitude': u'59.6102089', u'name': u'Allstar V\xe4ster\xe5s'}, {u'description': u'Bistro med franska och svenska klassiker p\xe5 menyn. Stor, gener\xf6s bar och lounge med vardagsrumsk\xe4nsla.', u'geo_longitude': u'18.063968198147', u'created_at': u'2017-01-09 14:38:02', u'updated_at': u'2017-01-09 14:38:24', u'business_id_by_partner': u'49751', u'phone': u'+46 855001600', u'email': u'bokning@andrestaurant.se', u'link': u'http://www.andhotel.se/food.aspx', u'address': u'Apelbergsgatan 40 Stockholm', u'logo': None, u'partner_id': 3, u'id': 243, u'geo_latitude': u'59.336364916795', u'name': u'And restaurant'}, {u'description': u'Annikas K\xf6k &amp; Bar \xe4r en mysig kvarterskrog i S\xe4len. Bel\xe4gen vid skidanl\xe4ggningen i St\xf6ten kan du h\xe4r njuta av svensk husmanskost, d\xe4r det dessutom finns en egen buff\xe9 barnen kan hugga in p\xe5 under kv\xe4llarna. I baren finns det bland annat m\xe5nga sp\xe4nnande \xf6lsorter fr\xe5n hela v\xe4rlden f\xf6r dig att best\xe4lla. Annikas K\xf6k &amp; Bar \xe4r st\xe4llet f\xf6r dig som \xe4r ute efter en lugn stund med familjen under skidsemestern.  ', u'geo_longitude': u'12.9667771', u'created_at': u'2017-01-09 14:38:02', u'updated_at': u'2017-01-09 14:38:26', u'business_id_by_partner': u'53594', u'phone': u'+46 20 585000', u'email': u'boka@annikaskok.se', u'link': u'http://www.annikaskok.se/', u'address': u'Skidtorget S\xe4len', u'logo': None, u'partner_id': 3, u'id': 245, u'geo_latitude': u'61.1839882', u'name': u'Annikas K\xf6k &amp; bar'}, {u'description': u'Hos restaurang Antibarbarus finns tv\xe5 huvudinspirationer; street food och mat fr\xe5n hela v\xe4rlden. Med s\xe4songsanpassade menyer l\xe4ggs mycket fokus p\xe5 enkelhet och dess hantverk. Hela Antibarbarus verksamhet genomsyras av h\xe5llbarhetst\xe4nk, och de anv\xe4nder ekologiska r\xe5varor i den m\xe5n det g\xe5r. I cocktailbaren skapas sp\xe4nnande kaffedrinkar och drinkar, och \xf6len \xe4r hantverksbryggd fr\xe5n svenska mikrobryggerier. Restaurangen satsar dessutom p\xe5 ett helt ekologiskt vinsortiment d\xe4r biodynamiska naturviner st\xe5r i centrum.\n', u'geo_longitude': u'11.945680184131', u'created_at': u'2017-01-09 14:38:02', u'updated_at': u'2017-01-09 14:38:28', u'business_id_by_partner': u'52766', u'phone': u'+46 52315860', u'email': u'bokning@antibarbarus.se', u'link': u'http://www.antibarbarus.se', u'address': u'Gustaf Dal\xe9nsgatan 6 G\xf6teborg', u'logo': None, u'partner_id': 3, u'id': 246, u'geo_latitude': u'57.724522266032', u'name': u'Antibarbarus'}, {u'description': u'I Askimsterassen uppe p\xe5 h\xf6jden har man en fantastisk utsikt \xf6ver det vackra havet. Med tv\xe5 stora terrasser och en ljus lokal kan du njuta av god mat. Restaurangen \xe4r familje\xe4gd och de vill att deras g\xe4star ska k\xe4nna sig som hemma h\xe4r, och de har \xe4ven ett barnrum med pyssel f\xf6r de minsta n\xe4r de tr\xf6ttnat att sitta vid bordet. \n', u'geo_longitude': u'11.928517180951', u'created_at': u'2017-01-09 14:38:02', u'updated_at': u'2017-01-09 14:38:30', u'business_id_by_partner': u'51954', u'phone': u'+46 31425777', u'email': u'info@askimsterrassen.se', u'link': u'http://www.askimsterrassen.se/index.php', u'address': u'Lekullev\xe4gen 10 Askim', u'logo': None, u'partner_id': 3, u'id': 248, u'geo_latitude': u'57.628283411351', u'name': u'Askims Terrassen'}]}
+{u'description': u'P\xe5 restaurang 1909 \xe4r s\xe4songsanpassande r\xe5varor en f\xf6ruts\xe4ttning f\xf6r matlagningen. D\xe4rf\xf6r anv\xe4nds bara det b\xe4sta r\xe5varorna, g\xe4rna n\xe4rproducerat fr\xe5n den rika jordbruksbygden i M\xe4lardalen. Utav dessa skapas genuin matlagning d\xe4r alla smaker f\xe5r komma till sin r\xe4tt i en okonstlat och kreativ presentation.\n \nV\xe4lkommen!', u'geo_longitude': u'17.719419315379', u'created_at': u'2017-01-09 14:38:02', u'updated_at': u'2017-01-09 14:38:09', u'business_id_by_partner': u'49823', u'phone': None, u'email': u'restaurangen@sigtunastadshotell.se', u'link': u'http://www.sigtunastadshotell.se', u'address': u'Stora Nygatan 3 Sigtuna', u'logo': None, u'partner_id': 3, u'id': 233, u'geo_latitude': u'59.614726119356', u'name': u'1909 Sigtuna StadsHotell'}
+233
+&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">categories.py::test_authorization</td>
+          <td class="col-duration">0.20</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:33:56 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgwMzYsImV4cCI6MTQ4NDA1MTYzNiwibmJmIjoxNDg0MDQ4MDM2LCJqdGkiOiJhM2JlYjFiMWQwN2RjYzM5Y2QzNTMzMzliZjJkNjY5YiJ9.274sDtFlEH9qAEjN289qSUYZiarCuQfU01-m3J1EByM'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgwMzYsImV4cCI6MTQ4NDA1MTYzNiwibmJmIjoxNDg0MDQ4MDM2LCJqdGkiOiJhM2JlYjFiMWQwN2RjYzM5Y2QzNTMzMzliZjJkNjY5YiJ9.274sDtFlEH9qAEjN289qSUYZiarCuQfU01-m3J1EByM
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">categories.py::Test_004_All_categories::test_01_all_categories_opened</td>
+          <td class="col-duration">0.15</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">categories.py::Test_004_category_Show::test_01_category_page_short_version_showed_correctly</td>
+          <td class="col-duration">0.29</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{u'meta': {u'pagination': {u'count': 10, u'links': {u'next': u'http://54.93.81.169/api/v1/categories?page=2'}, u'current_page': 1, u'total_pages': 9, u'per_page': 10, u'total': 88}}, u'data': [{u'description': u' subcategorys for Comprado progect ', u'title': u'Scanners', u'created_at': u'2017-01-04', u'updated_at': u'2017-01-04', u'parent_id': 3, u'is_last': True, u'id': 106}, {u'description': u' subcategorys for Comprado progect ', u'title': u'Datortillbeh\xf6r', u'created_at': u'2017-01-05', u'updated_at': u'2017-01-05', u'parent_id': 3, u'is_last': True, u'id': 120}, {u'description': u' subcategorys for Comprado progect ', u'title': u'N\xe4tverksprodukter', u'created_at': u'2017-01-04', u'updated_at': u'2017-01-04', u'parent_id': 3, u'is_last': True, u'id': 110}, {u'description': u' subcategorys for Comprado progect ', u'title': u'Barn &amp; Baby', u'created_at': u'2016-12-29', u'updated_at': u'2016-12-29', u'parent_id': 3, u'is_last': True, u'id': 94}, {u'description': u' subcategorys for Comprado progect ', u'title': u'Bildelar &amp; Biltillbeh\xf6r', u'created_at': u'2017-01-10', u'updated_at': u'2017-01-10', u'parent_id': 3, u'is_last': True, u'id': 151}, {u'description': u' subcategorys for Comprado progect ', u'title': u'Datorh\xf6gtalare', u'created_at': u'2017-01-05', u'updated_at': u'2017-01-05', u'parent_id': 3, u'is_last': True, u'id': 122}, {u'description': u' subcategorys for Comprado progect ', u'title': u'H\xe5rf\xf6rl\xe4ngning borttagning', u'created_at': u'2016-12-10', u'updated_at': u'2016-12-10', u'parent_id': 24, u'is_last': True, u'id': 82}, {u'description': u' subcategorys for Comprado progect ', u'title': u'Permanent', u'created_at': u'2016-12-10', u'updated_at': u'2016-12-11', u'parent_id': 9, u'is_last': True, u'id': 25}, {u'description': u' subcategorys for Comprado progect ', u'title': u'H\xe5rupps\xe4ttning', u'created_at': u'2016-12-10', u'updated_at': u'2016-12-11', u'parent_id': 9, u'is_last': True, u'id': 26}, {u'description': u' subcategorys for Comprado progect ', u'title': u'Minnen', u'created_at': u'2017-01-06', u'updated_at': u'2017-01-06', u'parent_id': 3, u'is_last': True, u'id': 137}]}
+{u'description': u' subcategorys for Comprado progect ', u'title': u'Scanners', u'created_at': u'2017-01-04', u'updated_at': u'2017-01-04', u'parent_id': 3, u'is_last': True, u'id': 106}
+106
+&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">categories.py::Test_004_category_Show::test_01_category_page_showed_correctly</td>
+          <td class="col-duration">0.24</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{u'meta': {u'pagination': {u'count': 5, u'links': [], u'current_page': 1, u'total_pages': 1, u'per_page': 1000, u'total': 5}}, u'data': [{u'description': u'Frukost', u'title': u'Frukost', u'created_at': u'2016-12-11', u'updated_at': u'2016-12-11', u'parent_id': 2, u'is_last': True, u'id': 85}, {u'description': u'Lunch', u'title': u'Lunch', u'created_at': u'2016-12-11', u'updated_at': u'2016-12-11', u'parent_id': 2, u'is_last': True, u'id': 86}, {u'description': u'Brunch', u'title': u'Brunch', u'created_at': u'2016-12-11', u'updated_at': u'2016-12-11', u'parent_id': 2, u'is_last': True, u'id': 87}, {u'description': u'Middag', u'title': u'Middag', u'created_at': u'2016-12-11', u'updated_at': u'2016-12-11', u'parent_id': 2, u'is_last': True, u'id': 88}, {u'description': u'Afternoon tea', u'title': u'Afternoon tea', u'created_at': u'2016-12-11', u'updated_at': u'2016-12-11', u'parent_id': 2, u'is_last': True, u'id': 89}]}
+{u'description': u'Frukost', u'title': u'Frukost', u'created_at': u'2016-12-11', u'updated_at': u'2016-12-11', u'parent_id': 2, u'is_last': True, u'id': 85}
+85
+&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">my_account.py::test_authorization</td>
+          <td class="col-duration">0.20</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:33:57 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgwMzcsImV4cCI6MTQ4NDA1MTYzNywibmJmIjoxNDg0MDQ4MDM3LCJqdGkiOiI5OGM1Y2E3ZTEwZTRhNDBkZDMwOWRmYjk2OTZlM2RhZiJ9.dj2_1EpueQdq1Zb_gcvSvE7xVJEZ5do2JG8lFYr3MdA'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgwMzcsImV4cCI6MTQ4NDA1MTYzNywibmJmIjoxNDg0MDQ4MDM3LCJqdGkiOiI5OGM1Y2E3ZTEwZTRhNDBkZDMwOWRmYjk2OTZlM2RhZiJ9.dj2_1EpueQdq1Zb_gcvSvE7xVJEZ5do2JG8lFYr3MdA
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">my_account.py::Test_004_My_Profile_View::test_01_user_profile_opened</td>
+          <td class="col-duration">10.40</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:34:02 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgwNDMsImV4cCI6MTQ4NDA1MTY0MywibmJmIjoxNDg0MDQ4MDQzLCJqdGkiOiJmZmZhMTg5NzhjZTI4Mjg3NTRiOWUwYjdhYzUwMzI5OCJ9.9y2W6HK6CNNvcHapKPTQkZGbmgj5Qs5J7QRffP5wz1Y'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgwNDMsImV4cCI6MTQ4NDA1MTY0MywibmJmIjoxNDg0MDQ4MDQzLCJqdGkiOiJmZmZhMTg5NzhjZTI4Mjg3NTRiOWUwYjdhYzUwMzI5OCJ9.9y2W6HK6CNNvcHapKPTQkZGbmgj5Qs5J7QRffP5wz1Y
+&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">my_account.py::Test_004_My_Profile_View::test_02_user_profile_not_opened_because_empty_token</td>
+          <td class="col-duration">0.11</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>&lt;Response [401]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">my_account.py::Test_004_My_Profile_View::test_03_user_profile_not_opened_because_wrong_token</td>
+          <td class="col-duration">0.10</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>&lt;Response [401]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">my_account.py::Test_004_My_Profile_View::test_04_user_profile_not_opened_because_expired_token</td>
+          <td class="col-duration">0.11</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>&lt;Response [419]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">my_account.py::Test_004_My_Profile_Edit::test_01_user_profile_edited</td>
+          <td class="col-duration">10.38</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:34:13 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgwNTMsImV4cCI6MTQ4NDA1MTY1MywibmJmIjoxNDg0MDQ4MDUzLCJqdGkiOiI2ZmU5OTc3ZGFhZTBkYjdjNDA2MGNmOWM0Mzc3ZTAzOCJ9.rChr2gsAkK6EzjSKCvHpEV2eNjOT4q9vHZnBRxvQOsk'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgwNTMsImV4cCI6MTQ4NDA1MTY1MywibmJmIjoxNDg0MDQ4MDUzLCJqdGkiOiI2ZmU5OTc3ZGFhZTBkYjdjNDA2MGNmOWM0Mzc3ZTAzOCJ9.rChr2gsAkK6EzjSKCvHpEV2eNjOT4q9vHZnBRxvQOsk
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">offers.py::test_authorization</td>
+          <td class="col-duration">0.20</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:34:18 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgwNTksImV4cCI6MTQ4NDA1MTY1OSwibmJmIjoxNDg0MDQ4MDU5LCJqdGkiOiIzMjA4NWZjMmFmZWFiMjZlOWFmOWM3NWIxNzAxYjU3ZiJ9.LBxNfVAsDlaTDBvFRlAXevqgXaLMzGvg86P2-XOnnCg'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgwNTksImV4cCI6MTQ4NDA1MTY1OSwibmJmIjoxNDg0MDQ4MDU5LCJqdGkiOiIzMjA4NWZjMmFmZWFiMjZlOWFmOWM3NWIxNzAxYjU3ZiJ9.LBxNfVAsDlaTDBvFRlAXevqgXaLMzGvg86P2-XOnnCg
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">offers.py::Test_004_All_offers::test_01_all_offers_opened</td>
+          <td class="col-duration">0.16</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">offers.py::Test_004_offer_Show::test_01_offer_page_showed_correctly</td>
+          <td class="col-duration">0.25</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{u'meta': {u'pagination': {u'count': 10, u'links': {u'next': u'http://54.93.81.169/api/v1/offers?page=2'}, u'current_page': 1, u'total_pages': 61, u'per_page': 10, u'total': 608}}, u'data': [{u'offer_quantity': None, u'SKU': None, u'is_bookable': True, u'description': None, u'offer_id_by_partner': u'BREAKFAST', u'title': u'Frukost', u'updated_at': u'2017-01-09', u'price': None, u'business_id': 270, u'partner_link': None, u'created_at': u'2017-01-09', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'booking_form', u'category_id': 85, u'categorization_required': False, u'id': 1074}, {u'offer_quantity': None, u'SKU': None, u'is_bookable': True, u'description': None, u'offer_id_by_partner': u'LUNCH', u'title': u'Lunch', u'updated_at': u'2017-01-09', u'price': None, u'business_id': 236, u'partner_link': None, u'created_at': u'2017-01-09', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'booking_form', u'category_id': 86, u'categorization_required': False, u'id': 887}, {u'offer_quantity': None, u'SKU': None, u'is_bookable': True, u'description': None, u'offer_id_by_partner': u'LUNCH', u'title': u'Lunch', u'updated_at': u'2017-01-09', u'price': None, u'business_id': 269, u'partner_link': None, u'created_at': u'2017-01-09', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'booking_form', u'category_id': 86, u'categorization_required': False, u'id': 1070}, {u'offer_quantity': None, u'SKU': None, u'is_bookable': True, u'description': None, u'offer_id_by_partner': u'217373', u'title': u'Volymfransar Stor P\xe5fyllning(4v)', u'updated_at': u'2017-01-09', u'price': u'950.00', u'business_id': 343, u'partner_link': u'www.bokadirekt.se/public/places/gamla-unik-15788/volymfransar-stor-pafyllning4v-217373', u'created_at': u'2017-01-09', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'link', u'category_id': 35, u'categorization_required': False, u'id': 1350}, {u'offer_quantity': None, u'SKU': None, u'is_bookable': True, u'description': None, u'offer_id_by_partner': u'LUNCH', u'title': u'Lunch', u'updated_at': u'2017-01-09', u'price': None, u'business_id': 271, u'partner_link': None, u'created_at': u'2017-01-09', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'booking_form', u'category_id': 86, u'categorization_required': False, u'id': 1080}, {u'offer_quantity': None, u'SKU': None, u'is_bookable': True, u'description': None, u'offer_id_by_partner': u'BREAKFAST', u'title': u'Frukost', u'updated_at': u'2017-01-09', u'price': None, u'business_id': 294, u'partner_link': None, u'created_at': u'2017-01-09', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'booking_form', u'category_id': 85, u'categorization_required': False, u'id': 1209}, {u'offer_quantity': None, u'SKU': None, u'is_bookable': True, u'description': None, u'offer_id_by_partner': u'165227', u'title': u'Naglar - IBX F\xf6rsta bes\xf6ket', u'updated_at': u'2017-01-09', u'price': u'395.00', u'business_id': 344, u'partner_link': u'www.bokadirekt.se/public/places/dig-i-fokus-4715/naglar-ibx-foersta-besoeket-165227', u'created_at': u'2017-01-09', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'link', u'category_id': 35, u'categorization_required': False, u'id': 1420}, {u'offer_quantity': None, u'SKU': None, u'is_bookable': True, u'description': None, u'offer_id_by_partner': u'DINNER', u'title': u'Middag', u'updated_at': u'2017-01-09', u'price': None, u'business_id': 272, u'partner_link': None, u'created_at': u'2017-01-09', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'booking_form', u'category_id': 88, u'categorization_required': False, u'id': 1087}, {u'offer_quantity': None, u'SKU': None, u'is_bookable': True, u'description': None, u'offer_id_by_partner': u'AFTERNOONTEA', u'title': u'Afternoon tea', u'updated_at': u'2017-01-09', u'price': None, u'business_id': 274, u'partner_link': None, u'created_at': u'2017-01-09', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'booking_form', u'category_id': 89, u'categorization_required': False, u'id': 1101}, {u'offer_quantity': None, u'SKU': None, u'is_bookable': True, u'description': None, u'offer_id_by_partner': u'BREAKFAST', u'title': u'Frukost', u'updated_at': u'2017-01-09', u'price': None, u'business_id': 308, u'partner_link': None, u'created_at': u'2017-01-09', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'booking_form', u'category_id': 85, u'categorization_required': False, u'id': 1288}]}
+{u'offer_quantity': None, u'SKU': None, u'is_bookable': True, u'description': None, u'offer_id_by_partner': u'LUNCH', u'title': u'Lunch', u'updated_at': u'2017-01-09', u'price': None, u'business_id': 236, u'partner_link': None, u'created_at': u'2017-01-09', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'booking_form', u'category_id': 86, u'categorization_required': False, u'id': 887}
+887
+&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">offers.py::Test_004_bestOffers::test_01_best_offers_showed_correctly</td>
+          <td class="col-duration">1.24</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::test_authorization</td>
+          <td class="col-duration">0.19</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:34:20 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgwNjAsImV4cCI6MTQ4NDA1MTY2MCwibmJmIjoxNDg0MDQ4MDYwLCJqdGkiOiIxOTI4ZjQ2NWFjY2ZmNGVmMDYxMzE0MGEzMjU4NTNiNCJ9.UvhNowTudApIgfuDFEmju1nw9owUuy3ZOOZO08DR8-o'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgwNjAsImV4cCI6MTQ4NDA1MTY2MCwibmJmIjoxNDg0MDQ4MDYwLCJqdGkiOiIxOTI4ZjQ2NWFjY2ZmNGVmMDYxMzE0MGEzMjU4NTNiNCJ9.UvhNowTudApIgfuDFEmju1nw9owUuy3ZOOZO08DR8-o
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_business_Creation::test_01_business_created_correctly</td>
+          <td class="col-duration">10.45</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:34:26 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgwNjYsImV4cCI6MTQ4NDA1MTY2NiwibmJmIjoxNDg0MDQ4MDY2LCJqdGkiOiIwMzY0M2U5MzA2ZWQxZjVhMjFlZGVjYmUwY2Q5ZDI4ZSJ9.1KvvL71mLZdhlv4LVCiVL-FNzFTh150H3Ka2fZOHu50'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgwNjYsImV4cCI6MTQ4NDA1MTY2NiwibmJmIjoxNDg0MDQ4MDY2LCJqdGkiOiIwMzY0M2U5MzA2ZWQxZjVhMjFlZGVjYmUwY2Q5ZDI4ZSJ9.1KvvL71mLZdhlv4LVCiVL-FNzFTh150H3Ka2fZOHu50
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_business_Creation::test_01_business_not_created_because_empty_userdata</td>
+          <td class="col-duration">0.07</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_business_Deleting::test_01_business_deleted_correctly</td>
+          <td class="col-duration">10.71</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:34:36 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgwNzYsImV4cCI6MTQ4NDA1MTY3NiwibmJmIjoxNDg0MDQ4MDc2LCJqdGkiOiJmN2FjOWVkYTc3Mjc0MGUzNGU3MGY2OTBhYWNhNDc1OSJ9.eRFNY8ODTLGanyJ22JZfJzF9UaZkPxqS81-LNBvXnXs'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgwNzYsImV4cCI6MTQ4NDA1MTY3NiwibmJmIjoxNDg0MDQ4MDc2LCJqdGkiOiJmN2FjOWVkYTc3Mjc0MGUzNGU3MGY2OTBhYWNhNDc1OSJ9.eRFNY8ODTLGanyJ22JZfJzF9UaZkPxqS81-LNBvXnXs
+{u'description': u'string', u'geo_longitude': u'22.4519749', u'created_at': u'2017-01-10 11:34:41', u'updated_at': u'2017-01-10 11:34:41', u'business_id_by_partner': u'string', u'phone': None, u'email': u'10012017133441@test.com', u'link': None, u'address': u'string', u'logo': None, u'partner_id': 1, u'id': 373, u'geo_latitude': u'48.92279', u'name': u'string'}
+&lt;Response [200]&gt;
+&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_category_Creation::test_01_category_created_correctly</td>
+          <td class="col-duration">10.39</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:34:47 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgwODcsImV4cCI6MTQ4NDA1MTY4NywibmJmIjoxNDg0MDQ4MDg3LCJqdGkiOiJkMmZjN2QxZjk4NzdkODY0ZjFjYmM5NzNmOWUzYjYwYiJ9.gY6ATgOK3VBQT2D7Pqlqy1X2u6LGL1W8xS_PLdU-Bcw'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgwODcsImV4cCI6MTQ4NDA1MTY4NywibmJmIjoxNDg0MDQ4MDg3LCJqdGkiOiJkMmZjN2QxZjk4NzdkODY0ZjFjYmM5NzNmOWUzYjYwYiJ9.gY6ATgOK3VBQT2D7Pqlqy1X2u6LGL1W8xS_PLdU-Bcw
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_category_Deleting::test_01_category_cant_be_deleted_because_id_doesnt_exist</td>
+          <td class="col-duration">10.36</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:34:57 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgwOTcsImV4cCI6MTQ4NDA1MTY5NywibmJmIjoxNDg0MDQ4MDk3LCJqdGkiOiIzMzY3YmIyNDVmOGZiODllMDEzNzI4ZTU3YjQ2ZjMwOSJ9._BjAOl7JCNGLY8iXyybREvJO5-pWMpQSyaPhNocaJQw'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgwOTcsImV4cCI6MTQ4NDA1MTY5NywibmJmIjoxNDg0MDQ4MDk3LCJqdGkiOiIzMzY3YmIyNDVmOGZiODllMDEzNzI4ZTU3YjQ2ZjMwOSJ9._BjAOl7JCNGLY8iXyybREvJO5-pWMpQSyaPhNocaJQw
+&lt;Response [422]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_category_Deleting::test_01_category_deleted_correctly</td>
+          <td class="col-duration">10.73</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:35:08 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgxMDgsImV4cCI6MTQ4NDA1MTcwOCwibmJmIjoxNDg0MDQ4MTA4LCJqdGkiOiI3ODA0NTNhODBlMmViNWY0OWExOGNkMGRkNzMxMjYzZSJ9.5HvgDUQs0757Vd-6c39r4nIejvd9iyUAFwOV_bgcgHY'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgxMDgsImV4cCI6MTQ4NDA1MTcwOCwibmJmIjoxNDg0MDQ4MTA4LCJqdGkiOiI3ODA0NTNhODBlMmViNWY0OWExOGNkMGRkNzMxMjYzZSJ9.5HvgDUQs0757Vd-6c39r4nIejvd9iyUAFwOV_bgcgHY
+&lt;Response [200]&gt;
+&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_category_Deleting::test_01_not_deleted_because_of_alphabetical_id</td>
+          <td class="col-duration">10.38</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:35:18 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgxMTgsImV4cCI6MTQ4NDA1MTcxOCwibmJmIjoxNDg0MDQ4MTE4LCJqdGkiOiIwOTE2MTIzYmMzYWEyZWViNTM3NWRhNGI0MzRjMzRiYiJ9.cyn2ORccyAKGxWTr4u4e_rPGTLxp_MZ6A6m9SDjpTYk'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgxMTgsImV4cCI6MTQ4NDA1MTcxOCwibmJmIjoxNDg0MDQ4MTE4LCJqdGkiOiIwOTE2MTIzYmMzYWEyZWViNTM3NWRhNGI0MzRjMzRiYiJ9.cyn2ORccyAKGxWTr4u4e_rPGTLxp_MZ6A6m9SDjpTYk
+&lt;Response [500]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_user_Creation::test_01_user_created_correctly</td>
+          <td class="col-duration">7.60</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:35:27 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgxMjcsImV4cCI6MTQ4NDA1MTcyNywibmJmIjoxNDg0MDQ4MTI3LCJqdGkiOiJmNTIyNGQ0ZTdhYjg2ZGQwNTBhNTQyODI4N2FlZTZiMiJ9.AT_V2W1K5Ki7V0Yh3fQXRsj24O97QfZ1B6AUWYxsquY'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgxMjcsImV4cCI6MTQ4NDA1MTcyNywibmJmIjoxNDg0MDQ4MTI3LCJqdGkiOiJmNTIyNGQ0ZTdhYjg2ZGQwNTBhNTQyODI4N2FlZTZiMiJ9.AT_V2W1K5Ki7V0Yh3fQXRsj24O97QfZ1B6AUWYxsquY
+answer
+10012017133530@test.com
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_user_Creation::test_02_user_not_created_empty_values</td>
+          <td class="col-duration">6.35</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:35:34 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgxMzQsImV4cCI6MTQ4NDA1MTczNCwibmJmIjoxNDg0MDQ4MTM0LCJqdGkiOiIxOWNlNzg0YmNkMDFjMmMzZGY4Y2U1YmYxODk3YTQwNCJ9.eAxxVURHcYDSM4W8kfrqqfCv5reM1tNjak66YaZv2Ck'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgxMzQsImV4cCI6MTQ4NDA1MTczNCwibmJmIjoxNDg0MDQ4MTM0LCJqdGkiOiIxOWNlNzg0YmNkMDFjMmMzZGY4Y2U1YmYxODk3YTQwNCJ9.eAxxVURHcYDSM4W8kfrqqfCv5reM1tNjak66YaZv2Ck
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_user_Creation::test_03_user_not_created_wrong_email_format</td>
+          <td class="col-duration">6.35</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:35:41 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgxNDEsImV4cCI6MTQ4NDA1MTc0MSwibmJmIjoxNDg0MDQ4MTQxLCJqdGkiOiJmMzE5MmQxNzIxOTg0MzZkMzEzMTc5YjQ1OGFjNjdhMyJ9.HqAhIQZ7kbbJgXryVil5guM8Wwzy3WWhGlc6EAPJjy0'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgxNDEsImV4cCI6MTQ4NDA1MTc0MSwibmJmIjoxNDg0MDQ4MTQxLCJqdGkiOiJmMzE5MmQxNzIxOTg0MzZkMzEzMTc5YjQ1OGFjNjdhMyJ9.HqAhIQZ7kbbJgXryVil5guM8Wwzy3WWhGlc6EAPJjy0
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_All_users::test_01_all_users_opened</td>
+          <td class="col-duration">6.37</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:35:47 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgxNDcsImV4cCI6MTQ4NDA1MTc0NywibmJmIjoxNDg0MDQ4MTQ3LCJqdGkiOiI0ODBhOWY2Njg1MWY4ZjM0ZGViMDgxZTA0MTI2NGFjOCJ9.DhuUIGqJfGO93nXJ5yUj6fMdMt3AXY_1tmcxkYU-J_I'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgxNDcsImV4cCI6MTQ4NDA1MTc0NywibmJmIjoxNDg0MDQ4MTQ3LCJqdGkiOiI0ODBhOWY2Njg1MWY4ZjM0ZGViMDgxZTA0MTI2NGFjOCJ9.DhuUIGqJfGO93nXJ5yUj6fMdMt3AXY_1tmcxkYU-J_I
+{"data":[{"id":1,"full_name":"FullName","email":"29122016162359@test.com","is_active":false,"facebook_id":null,"avatar":null,"birthday":null,"phone":null,"gender":"male"},{"id":2,"full_name":"FullName","email":"29122016162404@test.com","is_active":false,"facebook_id":null,"avatar":null,"birthday":null,"phone":null,"gender":"male"},{"id":3,"full_name":"FullName","email":"29122016162415@test.com","is_active":false,"facebook_id":null,"avatar":null,"birthday":null,"phone":null,"gender":"male"},{"id":4,"full_name":"FullName","email":"29122016162425@test.com","is_active":false,"facebook_id":null,"avatar":null,"birthday":null,"phone":null,"gender":"male"},{"id":5,"full_name":"FullName","email":"29122016162436@test.com","is_active":false,"facebook_id":null,"avatar":null,"birthday":null,"phone":null,"gender":"male"},{"id":6,"full_name":"FullName","email":"29122016162446@test.com","is_active":false,"facebook_id":null,"avatar":null,"birthday":null,"phone":null,"gender":"male"},{"id":7,"full_name":"FullName","email":"29122016162457@test.com","is_active":false,"facebook_id":null,"avatar":null,"birthday":null,"phone":null,"gender":"male"},{"id":9,"full_name":"FullName","email":"29122016162512@test.com","is_active":false,"facebook_id":null,"avatar":null,"birthday":null,"phone":null,"gender":"male"},{"id":10,"full_name":"FullName","email":"29122016162518@test.com","is_active":false,"facebook_id":null,"avatar":null,"birthday":null,"phone":null,"gender":"male"},{"id":11,"full_name":"FullName","email":"29122016162524@test.com","is_active":false,"facebook_id":null,"avatar":null,"birthday":null,"phone":null,"gender":"male"}],"meta":{"pagination":{"total":221,"count":10,"per_page":10,"current_page":1,"total_pages":23,"links":{"next":"http:\/\/54.93.81.169\/api\/v1\/management\/users?page=2"}}}}
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_user_Show::test_01_user_page_showed_correctly</td>
+          <td class="col-duration">6.51</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:35:53 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgxNTMsImV4cCI6MTQ4NDA1MTc1MywibmJmIjoxNDg0MDQ4MTUzLCJqdGkiOiIxOGUxYmEzYWNjZmJkYWM0NzIyMWNmMmUxMTAwODM4MiJ9.c3Gn8a0j9oVU3S7-aJT13vuiXPPVZ1XtQRTjfYjrw-o'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgxNTMsImV4cCI6MTQ4NDA1MTc1MywibmJmIjoxNDg0MDQ4MTUzLCJqdGkiOiIxOGUxYmEzYWNjZmJkYWM0NzIyMWNmMmUxMTAwODM4MiJ9.c3Gn8a0j9oVU3S7-aJT13vuiXPPVZ1XtQRTjfYjrw-o
+&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_user_Deleting::test_01_user_deleted_correctly</td>
+          <td class="col-duration">1.64</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"2645da1de0b629984a49b0650c6c41331636dd5e"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:35:57 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI3MCwiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWdudXAiLCJpYXQiOjE0ODQwNDgxNTgsImV4cCI6MTQ4NDA1MTc1OCwibmJmIjoxNDg0MDQ4MTU4LCJqdGkiOiJmMmU1NDI4M2Q2YmFhOGZmOTcwMjQ4NGU4NmE2NWU0MyJ9.0nauh42oVctxdt1PBR7m-m7l3aKL3KkL5uVzGB0CJ_s'}
+270
+&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_ServerRoles::test_01_all_roles_showed_successfully</td>
+          <td class="col-duration">9.39</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:36:01 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgxNjIsImV4cCI6MTQ4NDA1MTc2MiwibmJmIjoxNDg0MDQ4MTYyLCJqdGkiOiI5ODVjMDEzOGM5YzYzNTRhZjE4MGJhMzZkYWVjYTZmYyJ9.yRe8ArmYZxynWBQGdmKpwbxC_cZK9yYLiOfyKvqumpE'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgxNjIsImV4cCI6MTQ4NDA1MTc2MiwibmJmIjoxNDg0MDQ4MTYyLCJqdGkiOiI5ODVjMDEzOGM5YzYzNTRhZjE4MGJhMzZkYWVjYTZmYyJ9.yRe8ArmYZxynWBQGdmKpwbxC_cZK9yYLiOfyKvqumpE
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_ServerRoles::test_01_all_roles_showed_unsuccessfully</td>
+          <td class="col-duration">6.36</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:36:11 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgxNzEsImV4cCI6MTQ4NDA1MTc3MSwibmJmIjoxNDg0MDQ4MTcxLCJqdGkiOiJhM2ZlNjYxZTBkZjVhYzI1ZDU5NmYwZTEwOGM2NmIwMyJ9.3telSviLy0ntvqDW3H8-s5xNP0bA-yQP2hs_Boij3kU'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgxNzEsImV4cCI6MTQ4NDA1MTc3MSwibmJmIjoxNDg0MDQ4MTcxLCJqdGkiOiJhM2ZlNjYxZTBkZjVhYzI1ZDU5NmYwZTEwOGM2NmIwMyJ9.3telSviLy0ntvqDW3H8-s5xNP0bA-yQP2hs_Boij3kU
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_ServerActions::test_01_all_actions_showed_successfully</td>
+          <td class="col-duration">6.35</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:36:17 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgxNzcsImV4cCI6MTQ4NDA1MTc3NywibmJmIjoxNDg0MDQ4MTc3LCJqdGkiOiIyY2NkNDA3MTFiNWJiOTkyYjE2MzM4OTdiNmY2ZWI5MiJ9.IzLAhGTNtEUw8kGcTOSjgZgcbBro8LDO3FxJKWdY2pI'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgxNzcsImV4cCI6MTQ4NDA1MTc3NywibmJmIjoxNDg0MDQ4MTc3LCJqdGkiOiIyY2NkNDA3MTFiNWJiOTkyYjE2MzM4OTdiNmY2ZWI5MiJ9.IzLAhGTNtEUw8kGcTOSjgZgcbBro8LDO3FxJKWdY2pI
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_ServerRolesCreate::test_01_roles_create_successfully</td>
+          <td class="col-duration">6.65</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>mfgf
+{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:36:24 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgxODQsImV4cCI6MTQ4NDA1MTc4NCwibmJmIjoxNDg0MDQ4MTg0LCJqdGkiOiIxNDU0ZWY2NjUzYTk4NGQ3YzU0ZDU2NGY0ZTA3MmVjYSJ9.gpHPZdjQnnHNYti-vf1ymarOZFhgdlnW_zeGrgdT9uM'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgxODQsImV4cCI6MTQ4NDA1MTc4NCwibmJmIjoxNDg0MDQ4MTg0LCJqdGkiOiIxNDU0ZWY2NjUzYTk4NGQ3YzU0ZDU2NGY0ZTA3MmVjYSJ9.gpHPZdjQnnHNYti-vf1ymarOZFhgdlnW_zeGrgdT9uM
+{u'id': 67, u'name': u'mfgf'}
+67
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_ServerShowRole::test_01_roles_show_successfully</td>
+          <td class="col-duration">6.44</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:36:30 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgxOTAsImV4cCI6MTQ4NDA1MTc5MCwibmJmIjoxNDg0MDQ4MTkwLCJqdGkiOiIwMTVkZWQ2MDY4YWYxNGU3Y2NkZDg0MGE2OWU2NDQ2YyJ9.ifdvr0n49GauUaImcX_2oU6Fdn2HW47fCR_z4W3Im2g'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgxOTAsImV4cCI6MTQ4NDA1MTc5MCwibmJmIjoxNDg0MDQ4MTkwLCJqdGkiOiIwMTVkZWQ2MDY4YWYxNGU3Y2NkZDg0MGE2OWU2NDQ2YyJ9.ifdvr0n49GauUaImcX_2oU6Fdn2HW47fCR_z4W3Im2g
+5
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_ServerUpdateRole::test_01_roles_show_successfully</td>
+          <td class="col-duration">12.90</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:36:37 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgxOTcsImV4cCI6MTQ4NDA1MTc5NywibmJmIjoxNDg0MDQ4MTk3LCJqdGkiOiI1MzVlZjQzZWEzZWI5NzQ0NmYxN2Q2MGM5ZDA1ZmU0MiJ9.xRjyxysz-Ntw4kxkmo4g54OiYzW3sY-nmzXdXj40vHM'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgxOTcsImV4cCI6MTQ4NDA1MTc5NywibmJmIjoxNDg0MDQ4MTk3LCJqdGkiOiI1MzVlZjQzZWEzZWI5NzQ0NmYxN2Q2MGM5ZDA1ZmU0MiJ9.xRjyxysz-Ntw4kxkmo4g54OiYzW3sY-nmzXdXj40vHM
+3
+jedd
+{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:36:43 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgyMDMsImV4cCI6MTQ4NDA1MTgwMywibmJmIjoxNDg0MDQ4MjAzLCJqdGkiOiJmMjZlNGNhNmZmMTk0NjhiMWIyZTZiYmU5ZGViNDMzZSJ9.GkRp5xATv7CLu2JA1JCDMaPamWOypXi10mgJC8ez4Fc'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgyMDMsImV4cCI6MTQ4NDA1MTgwMywibmJmIjoxNDg0MDQ4MjAzLCJqdGkiOiJmMjZlNGNhNmZmMTk0NjhiMWIyZTZiYmU5ZGViNDMzZSJ9.GkRp5xATv7CLu2JA1JCDMaPamWOypXi10mgJC8ez4Fc
+{"id":68,"name":"jedd"}
+{u'id': 68, u'name': u'jedd'}
+fiac
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_offer_Creation::test_01_offer_created_correctly</td>
+          <td class="col-duration">6.39</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:36:50 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgyMTAsImV4cCI6MTQ4NDA1MTgxMCwibmJmIjoxNDg0MDQ4MjEwLCJqdGkiOiJhMWY4OThmMWQwYzc0MDAyNzM5ZjI4ZDlmNDhiODA0YSJ9.zLRXJ-8CgmXXz1egBrm3lKKK6UyBwqZmHnO_DNJ0A1E'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgyMTAsImV4cCI6MTQ4NDA1MTgxMCwibmJmIjoxNDg0MDQ4MjEwLCJqdGkiOiJhMWY4OThmMWQwYzc0MDAyNzM5ZjI4ZDlmNDhiODA0YSJ9.zLRXJ-8CgmXXz1egBrm3lKKK6UyBwqZmHnO_DNJ0A1E
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_offer_Deleting::test_01_offer_deleted_correctly</td>
+          <td class="col-duration">6.68</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:36:56 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgyMTYsImV4cCI6MTQ4NDA1MTgxNiwibmJmIjoxNDg0MDQ4MjE2LCJqdGkiOiI4Nzc1MTliZGMxOGZiMGNhNGZiMjRlYWM4YjYzZTUwNiJ9.bmOa7CLYyO0j4nsPwBYxuQdh9qJZp8li9gZFhoutdu4'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgyMTYsImV4cCI6MTQ4NDA1MTgxNiwibmJmIjoxNDg0MDQ4MjE2LCJqdGkiOiI4Nzc1MTliZGMxOGZiMGNhNGZiMjRlYWM4YjYzZTUwNiJ9.bmOa7CLYyO0j4nsPwBYxuQdh9qJZp8li9gZFhoutdu4
+&lt;Response [200]&gt;
+&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_All_Partners::test_01_all_partners_opened</td>
+          <td class="col-duration">6.37</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:37:03 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgyMjMsImV4cCI6MTQ4NDA1MTgyMywibmJmIjoxNDg0MDQ4MjIzLCJqdGkiOiIxMmQzNjYyNTU1NTU3YmFkODlhNmQxOWUyNGQ3NDZjMCJ9.WxH_R7xiN5jKycjj8Xlbu3YSML4FueFwFLSTkkGU5tY'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgyMjMsImV4cCI6MTQ4NDA1MTgyMywibmJmIjoxNDg0MDQ4MjIzLCJqdGkiOiIxMmQzNjYyNTU1NTU3YmFkODlhNmQxOWUyNGQ3NDZjMCJ9.WxH_R7xiN5jKycjj8Xlbu3YSML4FueFwFLSTkkGU5tY
+&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_Partner_Show::test_01_partner_page_showed_correctly</td>
+          <td class="col-duration">6.42</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:37:09 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgyMjksImV4cCI6MTQ4NDA1MTgyOSwibmJmIjoxNDg0MDQ4MjI5LCJqdGkiOiI4YzJiMjZkZmUzMTZlZTFmNjRhZmQzZjJiMmJhYjFmNyJ9.09zfRJio0WldwugH6bvl3G7l_XXooV-LpoC0sl3MMaw'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgyMjksImV4cCI6MTQ4NDA1MTgyOSwibmJmIjoxNDg0MDQ4MjI5LCJqdGkiOiI4YzJiMjZkZmUzMTZlZTFmNjRhZmQzZjJiMmJhYjFmNyJ9.09zfRJio0WldwugH6bvl3G7l_XXooV-LpoC0sl3MMaw
+6
+&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_Partner_Updating::test_01_partner_updated_correctly</td>
+          <td class="col-duration">6.39</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:37:15 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgyMzYsImV4cCI6MTQ4NDA1MTgzNiwibmJmIjoxNDg0MDQ4MjM2LCJqdGkiOiIzMGY0NTA1NDRmODhhMzk3ZWE2Njk4YWJlOTM5MjdjOCJ9.6aNPFC4naqL2TFnpiVRsejRoYV-gQstkrui6tgyiu1g'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgyMzYsImV4cCI6MTQ4NDA1MTgzNiwibmJmIjoxNDg0MDQ4MjM2LCJqdGkiOiIzMGY0NTA1NDRmODhhMzk3ZWE2Njk4YWJlOTM5MjdjOCJ9.6aNPFC4naqL2TFnpiVRsejRoYV-gQstkrui6tgyiu1g
+&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_Role_Attaching::test_01_role_is_attached_successfully</td>
+          <td class="col-duration">6.39</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:37:22 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgyNDIsImV4cCI6MTQ4NDA1MTg0MiwibmJmIjoxNDg0MDQ4MjQyLCJqdGkiOiI5ODAyYWM1ZTE2YzdhNzkwZDQzNTYxMDVlN2FhNGJiNSJ9.FySr_cP8ZKSYbv0C40f0AyMdkV10PpbVCA3Y_1WzaaM'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgyNDIsImV4cCI6MTQ4NDA1MTg0MiwibmJmIjoxNDg0MDQ4MjQyLCJqdGkiOiI5ODAyYWM1ZTE2YzdhNzkwZDQzNTYxMDVlN2FhNGJiNSJ9.FySr_cP8ZKSYbv0C40f0AyMdkV10PpbVCA3Y_1WzaaM
+&lt;Response [204]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_Role_Detaching::test_01_role_is_detached_successfully</td>
+          <td class="col-duration">6.38</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '203', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"8c1bd93863b863f4bc265c5fc30c2cb83e256a56"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Tue, 10 Jan 2017 11:37:28 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgyNDgsImV4cCI6MTQ4NDA1MTg0OCwibmJmIjoxNDg0MDQ4MjQ4LCJqdGkiOiJiNzk3YTgwYTYzYWQxODUzN2RkMjg4YzExOWE1NzU0YyJ9.cNZDk-g0gCsinaBcmTJl-qX87gU8cpkQtJAGn7dsaQ4'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI1NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQwNDgyNDgsImV4cCI6MTQ4NDA1MTg0OCwibmJmIjoxNDg0MDQ4MjQ4LCJqdGkiOiJiNzk3YTgwYTYzYWQxODUzN2RkMjg4YzExOWE1NzU0YyJ9.cNZDk-g0gCsinaBcmTJl-qX87gU8cpkQtJAGn7dsaQ4
+&lt;Response [204]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">search.py::Test_004_Search::test_01_search_successfully</td>
+          <td class="col-duration">0.14</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">search.py::Test_004_Search::test_02_search_successfully</td>
+          <td class="col-duration">0.13</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">search.py::Test_004_Search1::test_01_search_successfully</td>
+          <td class="col-duration">0.14</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">search.py::Test_004_Search2::test_01_search_successfully</td>
+          <td class="col-duration">0.13</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">search.py::Test_004_Search3::test_01_search_successfully</td>
+          <td class="col-duration">0.13</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">search.py::Test_004_Search4::test_01_search_successfully</td>
+          <td class="col-duration">0.11</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">search.py::Test_004_Search5::test_01_search_successfully</td>
+          <td class="col-duration">0.16</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">search.py::Test_004_Search6::test_01_search_successfully</td>
+          <td class="col-duration">0.16</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="empty log">No log output captured.</div></td></tr></tbody></table></body></html>
