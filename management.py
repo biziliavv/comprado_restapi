@@ -602,6 +602,239 @@ class Test_004_offer_Creation(unittest.TestCase):
 
         self.assertEqual(response2.status_code, SUCCESS)
 
+class Test_004_offer_Approving(unittest.TestCase):
+    def __init__(self, *a, **kw):
+        super(Test_004_offer_Approving, self).__init__(*a, **kw)
+
+    def test_01_offer_approved_correctly(self):
+        with open('USER_DATA.json') as data_file:
+            data = json.load(data_file)
+        s = requests.Session()
+        time.sleep(3)
+        token, index = test_authorization()
+        time.sleep(3)
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
+        self.host = host
+
+        self.command_offer_create = 'management/offers/create'
+        self.command_offer_approve = 'management/offers/approve'
+        self.command_offer_delete = 'management/offers/delete'
+
+        self.url_offer_create = 'http://{}/{}'.format(self.host, self.command_offer_create)
+        userdata = json.dumps({"title": "string1", "description": "string", "business_id": 358, "category_id": 160, "SKU": "string","offer_quantity": 0, "offer_id_by_partner": "string", "delivery_cost": 0, "vat": 0})
+
+        response2 = s.post(self.url_offer_create, data=userdata, headers=headers)
+
+        self.assertEqual(response2.status_code, SUCCESS)
+
+        res = json.loads(response2.content)
+        index = res['id']
+        self.offer_ids = 'offer_ids'
+        self.url_offer_approve = 'http://{}/{}?{}={}'.format(self.host, self.command_offer_approve, self.offer_ids, index)
+
+        response2 = s.post(self.url_offer_approve, headers=headers)
+
+        self.assertEqual(response2.status_code, SUCCESS)
+
+        self.command_offer_delete = 'management/offers/delete'
+        self.url_offer_delete = 'http://{}/{}/{}'.format(self.host, self.command_offer_delete, index)
+
+        response2 = s.delete(self.url_offer_delete, headers=headers)
+        print response2
+        self.assertEqual(response2.status_code, SUCCESS)
+
+class Test_004_offer_Disapproving(unittest.TestCase):
+    def __init__(self, *a, **kw):
+        super(Test_004_offer_Disapproving, self).__init__(*a, **kw)
+
+    def test_01_offer_disapproved_correctly(self):
+        with open('USER_DATA.json') as data_file:
+            data = json.load(data_file)
+        s = requests.Session()
+        time.sleep(3)
+        token, index = test_authorization()
+        time.sleep(3)
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
+        self.host = host
+        self.command_offer_create = 'management/offers/create'
+        self.command_offer_disapprove = 'management/offers/disapprove'
+        self.command_offer_delete = 'management/offers/delete'
+
+        self.url_offer_create = 'http://{}/{}'.format(self.host, self.command_offer_create)
+        userdata = json.dumps({"title": "string1", "description": "string", "business_id": 358, "category_id": 160, "SKU": "string","offer_quantity": 0, "offer_id_by_partner": "string", "delivery_cost": 0, "vat": 0})
+
+        response2 = s.post(self.url_offer_create, data=userdata, headers=headers)
+
+        self.assertEqual(response2.status_code, SUCCESS)
+
+        res = json.loads(response2.content)
+        index = res['id']
+        self.offer_ids = 'offer_ids'
+        self.url_offer_disapprove = 'http://{}/{}?{}={}'.format(self.host, self.command_offer_disapprove, self.offer_ids, index)
+
+        response2 = s.post(self.url_offer_disapprove, headers=headers)
+
+        self.assertEqual(response2.status_code, SUCCESS)
+
+        self.command_offer_delete = 'management/offers/delete'
+        self.url_offer_delete = 'http://{}/{}/{}'.format(self.host, self.command_offer_delete, index)
+
+        response2 = s.delete(self.url_offer_delete, headers=headers)
+        print response2
+        self.assertEqual(response2.status_code, SUCCESS)
+
+
+class Test_004_offer_Publishing(unittest.TestCase):
+    def __init__(self, *a, **kw):
+        super(Test_004_offer_Publishing, self).__init__(*a, **kw)
+
+    def test_01_offer_published_correctly(self):
+        with open('USER_DATA.json') as data_file:
+            data = json.load(data_file)
+        s = requests.Session()
+        time.sleep(3)
+        token, index = test_authorization()
+        time.sleep(3)
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
+        self.host = host
+        self.command_offer_create = 'management/offers/create'
+        self.command_offer_publish = 'management/offers/publish'
+        self.command_offer_delete = 'management/offers/delete'
+
+        self.url_offer_create = 'http://{}/{}'.format(self.host, self.command_offer_create)
+        userdata = json.dumps({"title": "string1", "description": "string", "business_id": 358, "category_id": 160, "SKU": "string","offer_quantity": 0, "offer_id_by_partner": "string", "delivery_cost": 0, "vat": 0})
+
+        response2 = s.post(self.url_offer_create, data=userdata, headers=headers)
+
+        self.assertEqual(response2.status_code, SUCCESS)
+
+        res = json.loads(response2.content)
+        index = res['id']
+        self.offer_ids = 'offer_ids'
+        self.url_offer_publish = 'http://{}/{}?{}={}'.format(self.host, self.command_offer_publish, self.offer_ids, index)
+
+        response2 = s.post(self.url_offer_publish, headers=headers)
+
+        self.assertEqual(response2.status_code, SUCCESS)
+
+        self.command_offer_delete = 'management/offers/delete'
+        self.url_offer_delete = 'http://{}/{}/{}'.format(self.host, self.command_offer_delete, index)
+
+        response2 = s.delete(self.url_offer_delete, headers=headers)
+        print response2
+        self.assertEqual(response2.status_code, SUCCESS)
+
+
+class Test_004_offer_Unpublishing(unittest.TestCase):
+    def __init__(self, *a, **kw):
+        super(Test_004_offer_Unpublishing, self).__init__(*a, **kw)
+
+    def test_01_offer_unpublished_correctly(self):
+        with open('USER_DATA.json') as data_file:
+            data = json.load(data_file)
+        s = requests.Session()
+        time.sleep(3)
+        token, index = test_authorization()
+        time.sleep(3)
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
+        self.host = host
+        self.command_offer_create = 'management/offers/create'
+        self.command_offer_unpublish = 'management/offers/unpublish'
+        self.command_offer_delete = 'management/offers/delete'
+
+        self.url_offer_create = 'http://{}/{}'.format(self.host, self.command_offer_create)
+        userdata = json.dumps({"title": "string1", "description": "string", "business_id": 358, "category_id": 160, "SKU": "string","offer_quantity": 0, "offer_id_by_partner": "string", "delivery_cost": 0, "vat": 0})
+
+        response2 = s.post(self.url_offer_create, data=userdata, headers=headers)
+
+        self.assertEqual(response2.status_code, SUCCESS)
+
+        res = json.loads(response2.content)
+        index = res['id']
+        self.offer_ids = 'offer_ids'
+        self.url_offer_unpublish = 'http://{}/{}?{}={}'.format(self.host, self.command_offer_unpublish, self.offer_ids, index)
+
+        response2 = s.post(self.url_offer_unpublish, headers=headers)
+
+        self.assertEqual(response2.status_code, SUCCESS)
+
+        self.command_offer_delete = 'management/offers/delete'
+        self.url_offer_delete = 'http://{}/{}/{}'.format(self.host, self.command_offer_delete, index)
+
+        response2 = s.delete(self.url_offer_delete, headers=headers)
+        print response2
+        self.assertEqual(response2.status_code, SUCCESS)
+
+
+class Test_004_offer_Extra_Categories(unittest.TestCase):
+    def __init__(self, *a, **kw):
+        super(Test_004_offer_Extra_Categories, self).__init__(*a, **kw)
+
+    def test_01_offer_added_and_removed_extra_categories_correctly(self):
+        with open('USER_DATA.json') as data_file:
+            data = json.load(data_file)
+        s = requests.Session()
+        time.sleep(3)
+        token, index = test_authorization()
+        time.sleep(3)
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
+        self.host = host
+        self.command_category_create = 'management/categories/create'
+
+        self.url_category_create = 'http://{}/{}'.format(self.host, self.command_category_create)
+        userdata = json.dumps({"parent_id": 2, "is_last": "false", "title": "string", "description": "string"})
+
+        response2 = s.post(self.url_category_create, data=userdata, headers=headers)
+        cont = json.loads(response2.content)
+        identifier = cont['id']
+        self.assertEqual(response2.status_code, SUCCESS)
+        self.command_offer_create = 'management/offers/create'
+
+        self.command_offer_attach_extra_category = 'management/offers/attach/extra-categories'
+        self.command_offer_detach_extra_category = 'management/offers/detach/extra-categories'
+
+        self.command_offer_delete = 'management/offers/delete'
+
+        self.url_offer_create = 'http://{}/{}'.format(self.host, self.command_offer_create)
+        userdata = json.dumps({"title": "string1", "description": "string", "business_id": 358, "category_id": 160, "SKU": "string","offer_quantity": 0, "offer_id_by_partner": "string", "delivery_cost": 0, "vat": 0})
+
+        response2 = s.post(self.url_offer_create, data=userdata, headers=headers)
+
+        self.assertEqual(response2.status_code, SUCCESS)
+
+        res = json.loads(response2.content)
+        index = res['id']
+        self.offer_ids = 'offer_id'
+        self.category_ids = 'category_ids'
+
+        self.url_offer_attach_extra_categories = 'http://{}/{}?{}={}&{}={}'.format(self.host, self.command_offer_attach_extra_category, self.offer_ids, index, self.category_ids, identifier)
+
+        response2 = s.post(self.url_offer_attach_extra_categories, headers=headers)
+
+        self.assertEqual(response2.status_code, ACTION_IS_DONE)
+
+        self.url_offer_detach_extra_categories = 'http://{}/{}?{}={}&{}={}'.format(self.host,
+                                                                                   self.command_offer_detach_extra_category,
+                                                                                   self.offer_ids, index,
+                                                                                   self.category_ids, identifier)
+
+        response2 = s.post(self.url_offer_detach_extra_categories, headers=headers)
+
+        self.assertEqual(response2.status_code, ACTION_IS_DONE)
+        self.command_category_delete = 'management/categories/delete'
+
+        self.url_category_delete = 'http://{}/{}/{}'.format(self.host, self.command_category_delete, identifier)
+        response2 = s.delete(self.url_category_delete, headers=headers)
+        print response2
+        self.assertEqual(response2.status_code, SUCCESS)
+
+
+        self.command_offer_delete = 'management/offers/delete'
+        self.url_offer_delete = 'http://{}/{}/{}'.format(self.host, self.command_offer_delete, index)
+
+        response2 = s.delete(self.url_offer_delete, headers=headers)
+        print response2
+        self.assertEqual(response2.status_code, SUCCESS)
 
 class Test_004_offer_Deleting(unittest.TestCase):
         def __init__(self, *a, **kw):
@@ -646,6 +879,8 @@ class Test_004_offer_Deleting(unittest.TestCase):
             response2 = s.delete(self.url_offer_delete, headers=headers)
             print response2
             self.assertEqual(response2.status_code, SUCCESS)
+
+
 
 
 class Test_004_All_Partners(unittest.TestCase):
