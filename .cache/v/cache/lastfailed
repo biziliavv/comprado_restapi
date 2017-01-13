@@ -1,1 +1,4 @@
-{}
+{
+  "authentication.py::test_authorization": true, 
+  "businesses.py::test_authorization": true
+}

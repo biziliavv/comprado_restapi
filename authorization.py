@@ -21,22 +21,23 @@ BADDATA = 422
 
 def test_authorization():
 
-        command_signup = 'auth/signin'
+        command_signin = 'auth/signin'
 
-        url_signup = 'http://{}/{}'.format(host, command_signup)
+        url_signin = 'http://{}/{}'.format(host, command_signin)
         s = requests.Session()
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
 
 
         email_value = time.strftime("%d%m%Y" + "%H%M%S") + "@" + "test.com"
 
-        userdata = json.dumps({"email": "test10024@mailinator.com", "password": "98342933"})
-        response2 = s.post(url_signup, data=userdata, headers=headers)
+        userdata = json.dumps({"email": "test10025@mailinator.com", "password": "33969288"})
+        response2 = s.post(url_signin, data=userdata, headers=headers)
         res = response2.headers
         print res
         auth_token = res['Authorization']
         cont = json.loads(response2.content)
         index = cont['id']
+
         print auth_token
         return (auth_token, index)
 
