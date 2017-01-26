@@ -228,7 +228,7 @@ function filter_table(elem) {
     not_found_message.hidden = !all_rows_hidden;
 }
 </script>
-    <p>Report generated on 13-Jan-2017 at 09:57:13 by<a href="https://pypi.python.org/pypi/pytest-html"> pytest-html</a> v1.12.0</p>
+    <p>Report generated on 26-Jan-2017 at 11:30:09 by<a href="https://pypi.python.org/pypi/pytest-html"> pytest-html</a> v1.12.0</p>
     <h2>Environment</h2>
     <table id="environment">
       <tr>
@@ -238,8 +238,8 @@ function filter_table(elem) {
         <td>Python</td>
         <td>2.7.12</td></tr></table>
     <h2>Summary</h2>
-    <p>66 tests ran in 257.99 seconds. </p>
-    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">64 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">2 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
+    <p>82 tests ran in 602.29 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="passed">82 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filter_table(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
     <h2>Results</h2>
     <table id="results-table">
       <thead id="results-table-head">
@@ -250,31 +250,11 @@ function filter_table(elem) {
           <th>Links</th></tr>
         <tr hidden="true" id="not-found-message">
           <th colspan="5">No results found. Try to check the filters</th></tr></thead>
-      <tbody class="failed results-table-row">
-        <tr>
-          <td class="col-result">Failed</td>
-          <td class="col-name">authentication.py::test_authorization</td>
-          <td class="col-duration">0.18</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="5">
-            <div class="log">def test_authorization():<br/>    <br/>            command_signup = 'auth/signin'<br/>    <br/>            url_signup = 'http://{}/{}'.format(host, command_signup)<br/>            s = requests.Session()<br/>            headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}<br/>    <br/>    <br/>            email_value = time.strftime("%d%m%Y" + "%H%M%S") + "@" + "test.com"<br/>    <br/>            userdata = json.dumps({"email": "test10025@mailinator.com", "password": "33969288"})<br/>            response2 = s.post(url_signup, data=userdata, headers=headers)<br/>            res = response2.headers<br/>            print res<br/>&gt;           auth_token = res['Authorization']<br/><br/>authorization.py:37: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br/><br/>self = {'Content-Length': '62', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'cl...', 'Date': 'Fri, 13 Jan 2017 07:53:00 GMT', 'Content-Type': 'application/json'}<br/>key = 'Authorization'<br/><br/>    def __getitem__(self, key):<br/>&gt;       return self._store[key.lower()][1]<br/><span class="error">E       KeyError: 'authorization'</span><br/><br/>/usr/local/lib/python2.7/site-packages/requests/structures.py:54: KeyError<br/>----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '62', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'Cache-Control': 'no-cache', 'Date': 'Fri, 13 Jan 2017 07:53:00 GMT', 'Content-Type': 'application/json'}
-</div></td></tr></tbody>
-      <tbody class="failed results-table-row">
-        <tr>
-          <td class="col-result">Failed</td>
-          <td class="col-name">businesses.py::test_authorization</td>
-          <td class="col-duration">0.19</td>
-          <td class="col-links"></td></tr>
-        <tr>
-          <td class="extra" colspan="5">
-            <div class="log">def test_authorization():<br/>    <br/>            command_signup = 'auth/signin'<br/>    <br/>            url_signup = 'http://{}/{}'.format(host, command_signup)<br/>            s = requests.Session()<br/>            headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}<br/>    <br/>    <br/>            email_value = time.strftime("%d%m%Y" + "%H%M%S") + "@" + "test.com"<br/>    <br/>            userdata = json.dumps({"email": "test10025@mailinator.com", "password": "33969288"})<br/>            response2 = s.post(url_signup, data=userdata, headers=headers)<br/>            res = response2.headers<br/>            print res<br/>&gt;           auth_token = res['Authorization']<br/><br/>authorization.py:37: <br/>_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ <br/><br/>self = {'Content-Length': '62', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'cl...', 'Date': 'Fri, 13 Jan 2017 07:53:00 GMT', 'Content-Type': 'application/json'}<br/>key = 'Authorization'<br/><br/>    def __getitem__(self, key):<br/>&gt;       return self._store[key.lower()][1]<br/><span class="error">E       KeyError: 'authorization'</span><br/><br/>/usr/local/lib/python2.7/site-packages/requests/structures.py:54: KeyError<br/>----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '62', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'Cache-Control': 'no-cache', 'Date': 'Fri, 13 Jan 2017 07:53:00 GMT', 'Content-Type': 'application/json'}
-</div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">authentication.py::Test_004_ServerRegister::test_01_register_successfully</td>
-          <td class="col-duration">1.38</td>
+          <td class="col-duration">1.85</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
@@ -283,7 +263,7 @@ function filter_table(elem) {
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">authentication.py::Test_004_ServerRegister::test_02_register_empty_values</td>
-          <td class="col-duration">0.12</td>
+          <td class="col-duration">0.10</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
@@ -292,7 +272,7 @@ function filter_table(elem) {
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">authentication.py::Test_004_ServerRegister::test_03_register_wrong_email_format</td>
-          <td class="col-duration">0.11</td>
+          <td class="col-duration">0.10</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
@@ -301,7 +281,7 @@ function filter_table(elem) {
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">authentication.py::Test_004_ServerRegister::test_04_register_already_registered_email</td>
-          <td class="col-duration">0.10</td>
+          <td class="col-duration">0.12</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
@@ -319,7 +299,7 @@ function filter_table(elem) {
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">authentication.py::Test_004_ServerLoginByFacebook::test_01_register_successfully</td>
-          <td class="col-duration">0.33</td>
+          <td class="col-duration">0.28</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
@@ -328,27 +308,50 @@ function filter_table(elem) {
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">authentication.py::Test_Recovery_Password::test_01_recovered_password_successfully</td>
-          <td class="col-duration">1.82</td>
+          <td class="col-duration">1.32</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="empty log">No log output captured.</div></td></tr></tbody>
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>4898d365a4a5a1efaec0778201e44a626a6b22a4
+</div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">authentication.py::Test_Refresh_Token::test_01_refreshed_token_successfully</td>
-          <td class="col-duration">0.34</td>
+          <td class="col-duration">5.35</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:52:59 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTM5ODAsImV4cCI6MTQ4NDI5NzU4MCwibmJmIjoxNDg0MjkzOTgwLCJqdGkiOiIyODM0MDBmOGNlOTM1MjViMTZmYTkwOWY1ODZmMzBhMiJ9.OaowpKibHcHHati9fE94BJloMZ3Sy6nSIqjFfzoMRj8'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTM5ODAsImV4cCI6MTQ4NDI5NzU4MCwibmJmIjoxNDg0MjkzOTgwLCJqdGkiOiIyODM0MDBmOGNlOTM1MjViMTZmYTkwOWY1ODZmMzBhMiJ9.OaowpKibHcHHati9fE94BJloMZ3Sy6nSIqjFfzoMRj8
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:20:11 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNDExLCJleHAiOjE0ODU0MjYwMTEsIm5iZiI6MTQ4NTQyMjQxMSwianRpIjoiYTE3Njc0ZThkMzhkMzgwZDlmOTQ1ODZhZDczYjllNGYifQ.358nFuPfSXc3-_h6FXv_v062L_HTbXUPBfF1L_Vctcs'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNDExLCJleHAiOjE0ODU0MjYwMTEsIm5iZiI6MTQ4NTQyMjQxMSwianRpIjoiYTE3Njc0ZThkMzhkMzgwZDlmOTQ1ODZhZDczYjllNGYifQ.358nFuPfSXc3-_h6FXv_v062L_HTbXUPBfF1L_Vctcs
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">authentication.py::test_authorization</td>
+          <td class="col-duration">5.20</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:20:16 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNDE3LCJleHAiOjE0ODU0MjYwMTcsIm5iZiI6MTQ4NTQyMjQxNywianRpIjoiY2E3MjNiNDY2ZjE4YmRlNGFhZDRkYzA3YWFlMWNiNWMifQ.NFsZyXYiO2WwSRspkUZqqIiAipz-oRKU9ikTs6iVFPM'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNDE3LCJleHAiOjE0ODU0MjYwMTcsIm5iZiI6MTQ4NTQyMjQxNywianRpIjoiY2E3MjNiNDY2ZjE4YmRlNGFhZDRkYzA3YWFlMWNiNWMifQ.NFsZyXYiO2WwSRspkUZqqIiAipz-oRKU9ikTs6iVFPM
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">businesses.py::test_authorization</td>
+          <td class="col-duration">5.20</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:20:22 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNDIyLCJleHAiOjE0ODU0MjYwMjIsIm5iZiI6MTQ4NTQyMjQyMiwianRpIjoiYzRjMzJlNDVkNDkxYzZlOTQ4ZjVhYzYzOWQ0MWM5OTAifQ.a6Q1b4aQVCacv2oQGhPLRXqbJ_-ovtlAFyxzJNuEpp4'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNDIyLCJleHAiOjE0ODU0MjYwMjIsIm5iZiI6MTQ4NTQyMjQyMiwianRpIjoiYzRjMzJlNDVkNDkxYzZlOTQ4ZjVhYzYzOWQ0MWM5OTAifQ.a6Q1b4aQVCacv2oQGhPLRXqbJ_-ovtlAFyxzJNuEpp4
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">businesses.py::Test_004_All_businesses::test_01_all_businesses_opened</td>
-          <td class="col-duration">0.20</td>
+          <td class="col-duration">0.16</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
@@ -358,31 +361,31 @@ Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wv
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">businesses.py::Test_004_business_Show::test_01_business_page_showed_correctly</td>
-          <td class="col-duration">0.27</td>
+          <td class="col-duration">0.26</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{u'meta': {u'pagination': {u'count': 10, u'links': {u'next': u'http://54.93.81.169/api/v1/businesses?page=2'}, u'current_page': 1, u'total_pages': 14, u'per_page': 10, u'total': 140}}, u'data': [{u'description': u'P\xe5 restaurang 1909 \xe4r s\xe4songsanpassande r\xe5varor en f\xf6ruts\xe4ttning f\xf6r matlagningen. D\xe4rf\xf6r anv\xe4nds bara det b\xe4sta r\xe5varorna, g\xe4rna n\xe4rproducerat fr\xe5n den rika jordbruksbygden i M\xe4lardalen. Utav dessa skapas genuin matlagning d\xe4r alla smaker f\xe5r komma till sin r\xe4tt i en okonstlat och kreativ presentation.\n \nV\xe4lkommen!', u'geo_longitude': u'17.719419315379', u'created_at': u'2017-01-09 14:38:02', u'updated_at': u'2017-01-09 14:38:09', u'business_id_by_partner': u'49823', u'phone': None, u'email': u'restaurangen@sigtunastadshotell.se', u'link': u'http://www.sigtunastadshotell.se', u'address': u'Stora Nygatan 3 Sigtuna', u'logo': None, u'partner_id': 3, u'id': 233, u'geo_latitude': u'59.614726119356', u'name': u'1909 Sigtuna StadsHotell'}, {u'description': u'I en varm och trevlig milj\xf6 med medelhavsk\xe4nsla, avnjuter du Agatons v\xe4llagade k\xf6tt och fiskr\xe4tter. P\xe5 menyn finns \xe4ven en m\xe4ngd pastar\xe4tter och goda pizzor som serveras direkt fr\xe5n pizzaugnen. V\xe4lj bland \xf6vriga italienska l\xe4ckerheter, som exempelvis: Zuppa di pomodori e chili con risoni, tomat- och chilisoppa med risoni, serveras med en parmesan- &amp; basilikacr\xe8me,  Pasta ai Frutti di Mare, f\xe4rsk pasta med bl\xe5musslor, scampi, calamari, vitl\xf6k, vitvin och tomats\xe5s samt goda efterr\xe4tter som Mousse di cioccolata con fragole e Grand Marnier, chokladmousse med Grand Marnier-doftande jordgubbar.', u'geo_longitude': u'18.07205', u'created_at': u'2017-01-09 14:38:02', u'updated_at': u'2017-01-09 14:38:13', u'business_id_by_partner': u'18718', u'phone': None, u'email': u'kontakt@restaurangagaton.se', u'link': u'http://www.restaurangagaton.se', u'address': u'V\xe4sterl\xe5nggatan 72 Stockholm', u'logo': None, u'partner_id': 3, u'id': 236, u'geo_latitude': u'59.32299', u'name': u'Agaton'}, {u'description': u'\xc4ntligen dags f\xf6r vikingatider! D\xf6rrarna st\xe5r \xf6ppna till Sveriges f\xf6rsta och enda restaurang med total inriktning p\xe5 det gastronomiska arvet fr\xe5n sena j\xe4rn\xe5ldern. I Drottning Kristinas gamla vink\xe4llare p\xe5 V\xe4sterl\xe5ngatan 68b i Gamla Stan \xe5terskapas numera andra tider!\n\nAifur Krog &amp; Bar \xe4r resultatet av ett snart 20-\xe5rigt samlande och l\xe4rande om historien, livet, maten och kulturen fr\xe5n \xe5ren 700- 1100 e Kr, den s.k. vikingatiden. Denna kunskap sammanslaget med duktig och kunnig personal, skapar den speciella atmosf\xe4ren p\xe5 Aifur Krog &amp; Bar som ger dig en garanterad annorlunda upplevelse!\n\nH\xe4r bjuds du p\xe5 allt ifr\xe5n mj\xf6dkokta musslor och \xe4lgytterfil\xe9 till saffranspannkaka. \nOch till dryck f\xe5r du avnjuta massor av mj\xf6d, men \xe4ven vin och \xf6l. \n\nAifur Krog &amp; Bar \xe4r d\xf6pt efter det legendariska vikingaskeppet Aifur som betyder Den alltid v\xe5ldsamma och syftar p\xe5 en legendarisk brusande fors i floden Dnjepr, p\xe5 vilken m\xe5nga vikingar seglade och rodde under sina resor \xd6sterut. \n\nVarmt v\xe4lkomna \xf6nskar Martin E-type Erikson med personal.', u'geo_longitude': u'18.071998', u'created_at': u'2017-01-09 14:38:02', u'updated_at': u'2017-01-09 14:38:14', u'business_id_by_partner': u'34955', u'phone': u'+46 8201055', u'email': u'info@aifur.se', u'link': u'http://www.aifur.se/', u'address': u'V\xe4sterl\xe5nggatan 68 B Stockholm', u'logo': None, u'partner_id': 3, u'id': 237, u'geo_latitude': u'59.3231569', u'name': u'Aifur Krog &amp; Bar'}, {u'description': u'Id\xe9n p\xe5 ett nytt koncept f\xf6r en sportbar f\xf6ddes 2007 efter ett bes\xf6k i Miami d\xe4r en middag p\xe5 det exklusiva stekhuset Houston\xb4s gett mersmak. Var det m\xf6jligt att kombinera den niv\xe5n p\xe5 mat med en sportbar? Och om s\xe5 var fallet, varf\xf6r hade ingen redan gjort det?\n\nUnder ett \xe5r v\xe4xte id\xe9n och i november 2008 checkar fyra v\xe4nner in p\xe5 flighten till New York med den tydliga m\xe5ls\xe4ttningen att tr\xe4nga djupt in i den amerikanska sport- och matkulturen. F\xf6rbi baseballkepsar och cajunkryddade ribs vidare in mot sj\xe4lvaste sj\xe4len i den amerikanska sportbarkulturen.', u'geo_longitude': u'21.689962', u'created_at': u'2017-01-09 14:38:02', u'updated_at': u'2017-01-09 14:38:16', u'business_id_by_partner': u'45527', u'phone': u'+46 92116300', u'email': u'boden@allstarbar.se', u'link': u'http://www.allstarbar.se/boden/', u'address': u'Kungsgatan 43 Boden', u'logo': None, u'partner_id': 3, u'id': 238, u'geo_latitude': u'65.8248672', u'name': u'Allstar Boden'}, {u'description': u'Allstars moderna steakhouse erbjuder det klassiska amerikanska k\xf6ket ? med en extra touch. Kedjan kallar det kort\noch gott: Junkfood de Luxe. Sj\xe4lvklart erbjuder Allstar p\xe5 stadens b\xe4sta burgare och maffiga stekar, men ocks\xe5\nfr\xe4scha sallader och sp\xe4nnande wokar. Restaurangens Allstars i k\xf6ket levererar helt enkelt mat med \xe4kta k\xf6ksm\xe4stargl\xe4dje.', u'geo_longitude': u'14.636417715344', u'created_at': u'2017-01-09 14:38:02', u'updated_at': u'2017-01-09 14:38:17', u'business_id_by_partner': u'47730', u'phone': u'+46 63101450', u'email': u'ostersund@allstarbar.se', u'link': u'http://www.allstarbar.se/ostersund/', u'address': u'Biblioteksgatan 11 \xd6stersund', u'logo': None, u'partner_id': 3, u'id': 239, u'geo_latitude': u'63.178134667455', u'name': u'Allstar \xd6stersund'}, {u'description': u'Id\xe9n p\xe5 ett nytt koncept f\xf6r en sportbar f\xf6ddes 2007 efter ett bes\xf6k i Miami d\xe4r en middag p\xe5 det exklusiva stekhuset Houston\xb4s gett mersmak. Var det m\xf6jligt att kombinera den niv\xe5n p\xe5 mat med en sportbar? Och om s\xe5 var fallet, varf\xf6r hade ingen redan gjort det?\n\nUnder ett \xe5r v\xe4xte id\xe9n och i november 2008 checkar fyra v\xe4nner in p\xe5 flighten till New York med den tydliga m\xe5ls\xe4ttningen att tr\xe4nga djupt in i den amerikanska sport- och matkulturen. F\xf6rbi baseballkepsar och cajunkryddade ribs vidare in mot sj\xe4lvaste sj\xe4len i den amerikanska sportbarkulturen.', u'geo_longitude': u'16.5489939', u'created_at': u'2017-01-09 14:38:02', u'updated_at': u'2017-01-09 14:38:20', u'business_id_by_partner': u'45522', u'phone': u'+46 21143030', u'email': u'vasteras@allstarbar.se', u'link': u'http://www.allstarbar.se/vasteras', u'address': u'STORA GATAN 7 V\xc4STER\xc5S', u'logo': None, u'partner_id': 3, u'id': 241, u'geo_latitude': u'59.6102089', u'name': u'Allstar V\xe4ster\xe5s'}, {u'description': u'Bistro med franska och svenska klassiker p\xe5 menyn. Stor, gener\xf6s bar och lounge med vardagsrumsk\xe4nsla.', u'geo_longitude': u'18.063968198147', u'created_at': u'2017-01-09 14:38:02', u'updated_at': u'2017-01-09 14:38:24', u'business_id_by_partner': u'49751', u'phone': u'+46 855001600', u'email': u'bokning@andrestaurant.se', u'link': u'http://www.andhotel.se/food.aspx', u'address': u'Apelbergsgatan 40 Stockholm', u'logo': None, u'partner_id': 3, u'id': 243, u'geo_latitude': u'59.336364916795', u'name': u'And restaurant'}, {u'description': u'Annikas K\xf6k &amp; Bar \xe4r en mysig kvarterskrog i S\xe4len. Bel\xe4gen vid skidanl\xe4ggningen i St\xf6ten kan du h\xe4r njuta av svensk husmanskost, d\xe4r det dessutom finns en egen buff\xe9 barnen kan hugga in p\xe5 under kv\xe4llarna. I baren finns det bland annat m\xe5nga sp\xe4nnande \xf6lsorter fr\xe5n hela v\xe4rlden f\xf6r dig att best\xe4lla. Annikas K\xf6k &amp; Bar \xe4r st\xe4llet f\xf6r dig som \xe4r ute efter en lugn stund med familjen under skidsemestern.  ', u'geo_longitude': u'12.9667771', u'created_at': u'2017-01-09 14:38:02', u'updated_at': u'2017-01-09 14:38:26', u'business_id_by_partner': u'53594', u'phone': u'+46 20 585000', u'email': u'boka@annikaskok.se', u'link': u'http://www.annikaskok.se/', u'address': u'Skidtorget S\xe4len', u'logo': None, u'partner_id': 3, u'id': 245, u'geo_latitude': u'61.1839882', u'name': u'Annikas K\xf6k &amp; bar'}, {u'description': u'Hos restaurang Antibarbarus finns tv\xe5 huvudinspirationer; street food och mat fr\xe5n hela v\xe4rlden. Med s\xe4songsanpassade menyer l\xe4ggs mycket fokus p\xe5 enkelhet och dess hantverk. Hela Antibarbarus verksamhet genomsyras av h\xe5llbarhetst\xe4nk, och de anv\xe4nder ekologiska r\xe5varor i den m\xe5n det g\xe5r. I cocktailbaren skapas sp\xe4nnande kaffedrinkar och drinkar, och \xf6len \xe4r hantverksbryggd fr\xe5n svenska mikrobryggerier. Restaurangen satsar dessutom p\xe5 ett helt ekologiskt vinsortiment d\xe4r biodynamiska naturviner st\xe5r i centrum.\n', u'geo_longitude': u'11.945680184131', u'created_at': u'2017-01-09 14:38:02', u'updated_at': u'2017-01-09 14:38:28', u'business_id_by_partner': u'52766', u'phone': u'+46 52315860', u'email': u'bokning@antibarbarus.se', u'link': u'http://www.antibarbarus.se', u'address': u'Gustaf Dal\xe9nsgatan 6 G\xf6teborg', u'logo': None, u'partner_id': 3, u'id': 246, u'geo_latitude': u'57.724522266032', u'name': u'Antibarbarus'}, {u'description': u'I Askimsterassen uppe p\xe5 h\xf6jden har man en fantastisk utsikt \xf6ver det vackra havet. Med tv\xe5 stora terrasser och en ljus lokal kan du njuta av god mat. Restaurangen \xe4r familje\xe4gd och de vill att deras g\xe4star ska k\xe4nna sig som hemma h\xe4r, och de har \xe4ven ett barnrum med pyssel f\xf6r de minsta n\xe4r de tr\xf6ttnat att sitta vid bordet. \n', u'geo_longitude': u'11.928517180951', u'created_at': u'2017-01-09 14:38:02', u'updated_at': u'2017-01-09 14:38:30', u'business_id_by_partner': u'51954', u'phone': u'+46 31425777', u'email': u'info@askimsterrassen.se', u'link': u'http://www.askimsterrassen.se/index.php', u'address': u'Lekullev\xe4gen 10 Askim', u'logo': None, u'partner_id': 3, u'id': 248, u'geo_latitude': u'57.628283411351', u'name': u'Askims Terrassen'}]}
-{u'description': u'P\xe5 restaurang 1909 \xe4r s\xe4songsanpassande r\xe5varor en f\xf6ruts\xe4ttning f\xf6r matlagningen. D\xe4rf\xf6r anv\xe4nds bara det b\xe4sta r\xe5varorna, g\xe4rna n\xe4rproducerat fr\xe5n den rika jordbruksbygden i M\xe4lardalen. Utav dessa skapas genuin matlagning d\xe4r alla smaker f\xe5r komma till sin r\xe4tt i en okonstlat och kreativ presentation.\n \nV\xe4lkommen!', u'geo_longitude': u'17.719419315379', u'created_at': u'2017-01-09 14:38:02', u'updated_at': u'2017-01-09 14:38:09', u'business_id_by_partner': u'49823', u'phone': None, u'email': u'restaurangen@sigtunastadshotell.se', u'link': u'http://www.sigtunastadshotell.se', u'address': u'Stora Nygatan 3 Sigtuna', u'logo': None, u'partner_id': 3, u'id': 233, u'geo_latitude': u'59.614726119356', u'name': u'1909 Sigtuna StadsHotell'}
-233
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{u'meta': {u'pagination': {u'count': 10, u'links': {u'next': u'http://54.93.81.169/api/v1/businesses?page=2'}, u'current_page': 1, u'total_pages': 13, u'per_page': 10, u'total': 128}}, u'data': [{u'description': None, u'geo_longitude': u'17.991010665894', u'created_at': u'2017-01-20 16:50:52', u'updated_at': u'2017-01-20 16:50:52', u'business_id_by_partner': u'4328', u'phone': None, u'email': None, u'link': u'www.bokadirekt.se/public/places/4328', u'address': u'Kommunalv\xe4gen 34', u'logo': None, u'partner_id': 4, u'id': 1, u'geo_latitude': u'59.239791870117', u'name': u'Salong Winblad'}, {u'description': None, u'geo_longitude': u'17.852869033813', u'created_at': u'2017-01-20 16:50:55', u'updated_at': u'2017-01-20 16:50:55', u'business_id_by_partner': u'14232', u'phone': None, u'email': None, u'link': u'www.bokadirekt.se/public/places/14232', u'address': u'Nym\xe4rstagatan 2', u'logo': None, u'partner_id': 4, u'id': 2, u'geo_latitude': u'59.619789123535', u'name': u'H\xe4lsoarkaden'}, {u'description': None, u'geo_longitude': u'17.976690292358', u'created_at': u'2017-01-20 16:50:56', u'updated_at': u'2017-01-20 16:50:56', u'business_id_by_partner': u'8581', u'phone': None, u'email': None, u'link': u'www.bokadirekt.se/public/places/8581', u'address': u'Patron Pers v\xe4g 5', u'logo': None, u'partner_id': 4, u'id': 3, u'geo_latitude': u'59.236259460449', u'name': u'Loreley Medicinsk Fotv\xe5rd'}, {u'description': None, u'geo_longitude': u'18.080768585205', u'created_at': u'2017-01-20 16:50:56', u'updated_at': u'2017-01-20 16:50:56', u'business_id_by_partner': u'4131', u'phone': None, u'email': None, u'link': u'www.bokadirekt.se/public/places/4131', u'address': u'Sibyllegatan 16', u'logo': None, u'partner_id': 4, u'id': 4, u'geo_latitude': u'59.33687210083', u'name': u'Fotv\xe5rdsteamet'}, {u'description': None, u'geo_longitude': u'17.994398117065', u'created_at': u'2017-01-20 16:50:58', u'updated_at': u'2017-01-20 16:50:58', u'business_id_by_partner': u'10610', u'phone': None, u'email': None, u'link': u'www.bokadirekt.se/public/places/10610', u'address': u'Ankdammsgatan 24', u'logo': None, u'partner_id': 4, u'id': 5, u'geo_latitude': u'59.355701446533', u'name': u'Lilac Salong '}, {u'description': None, u'geo_longitude': u'18.059450149536', u'created_at': u'2017-01-20 16:50:59', u'updated_at': u'2017-01-20 16:50:59', u'business_id_by_partner': u'9610', u'phone': None, u'email': None, u'link': u'www.bokadirekt.se/public/places/9610', u'address': u'Kungstensgatan 26 ', u'logo': None, u'partner_id': 4, u'id': 6, u'geo_latitude': u'59.341949462891', u'name': u'Paulas \t'}, {u'description': None, u'geo_longitude': u'18.070726394653', u'created_at': u'2017-01-20 16:50:59', u'updated_at': u'2017-01-20 16:50:59', u'business_id_by_partner': u'5735', u'phone': None, u'email': None, u'link': u'www.bokadirekt.se/public/places/5735', u'address': u'Valhallav\xe4gen 75 ', u'logo': None, u'partner_id': 4, u'id': 7, u'geo_latitude': u'59.346057891846', u'name': u'Nails by Sussie'}, {u'description': None, u'geo_longitude': u'18.074365615845', u'created_at': u'2017-01-20 16:51:00', u'updated_at': u'2017-01-20 16:51:00', u'business_id_by_partner': u'15788', u'phone': None, u'email': None, u'link': u'www.bokadirekt.se/public/places/15788', u'address': u'Skeppar Karls Gr\xe4nd 4 ', u'logo': None, u'partner_id': 4, u'id': 8, u'geo_latitude': u'59.325710296631', u'name': u'Gamla Unik'}, {u'description': None, u'geo_longitude': u'17.906957626343', u'created_at': u'2017-01-20 16:51:00', u'updated_at': u'2017-01-20 16:51:00', u'business_id_by_partner': u'4715', u'phone': None, u'email': None, u'link': u'www.bokadirekt.se/public/places/4715', u'address': u'Kv\xe4llsv\xe4gen 5', u'logo': None, u'partner_id': 4, u'id': 9, u'geo_latitude': u'59.205326080322', u'name': u'Dig i Fokus'}, {u'description': None, u'geo_longitude': u'18.072088241577', u'created_at': u'2017-01-20 16:51:01', u'updated_at': u'2017-01-20 16:51:01', u'business_id_by_partner': u'4657', u'phone': None, u'email': None, u'link': u'www.bokadirekt.se/public/places/4657', u'address': u'M\xe4ster Samuelsgatan 9', u'logo': None, u'partner_id': 4, u'id': 10, u'geo_latitude': u'59.334247589111', u'name': u'FRIDA SELKIRK nailstyling'}]}
+{u'description': None, u'geo_longitude': u'17.991010665894', u'created_at': u'2017-01-20 16:50:52', u'updated_at': u'2017-01-20 16:50:52', u'business_id_by_partner': u'4328', u'phone': None, u'email': None, u'link': u'www.bokadirekt.se/public/places/4328', u'address': u'Kommunalv\xe4gen 34', u'logo': None, u'partner_id': 4, u'id': 1, u'geo_latitude': u'59.239791870117', u'name': u'Salong Winblad'}
+1
 &lt;Response [200]&gt;
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">categories.py::test_authorization</td>
-          <td class="col-duration">0.20</td>
+          <td class="col-duration">5.20</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:53:01 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTM5ODEsImV4cCI6MTQ4NDI5NzU4MSwibmJmIjoxNDg0MjkzOTgxLCJqdGkiOiJhNDYyZjIzYTkzMGRlNTMyYTlhYWEzYjQ2Njc2YmZmOCJ9.WbdODl-p8J2YI0_TLhmDlGGwmYMNVWnoD75gPsXof2o'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTM5ODEsImV4cCI6MTQ4NDI5NzU4MSwibmJmIjoxNDg0MjkzOTgxLCJqdGkiOiJhNDYyZjIzYTkzMGRlNTMyYTlhYWEzYjQ2Njc2YmZmOCJ9.WbdODl-p8J2YI0_TLhmDlGGwmYMNVWnoD75gPsXof2o
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:20:27 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNDI3LCJleHAiOjE0ODU0MjYwMjcsIm5iZiI6MTQ4NTQyMjQyNywianRpIjoiZGE1NmUwOTliZGFjNzJhNWNjOTYwMWFjMjQxMDc2OTEifQ.eB6gNwlUVnRT9pENwB1dLYVamkMgrwMTmaA1whZ7vlM'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNDI3LCJleHAiOjE0ODU0MjYwMjcsIm5iZiI6MTQ4NTQyMjQyNywianRpIjoiZGE1NmUwOTliZGFjNzJhNWNjOTYwMWFjMjQxMDc2OTEifQ.eB6gNwlUVnRT9pENwB1dLYVamkMgrwMTmaA1whZ7vlM
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">categories.py::Test_004_All_categories::test_01_all_categories_opened</td>
-          <td class="col-duration">0.15</td>
+          <td class="col-duration">0.16</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
@@ -392,11 +395,11 @@ Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wv
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">categories.py::Test_004_category_Show::test_01_category_page_short_version_showed_correctly</td>
-          <td class="col-duration">0.27</td>
+          <td class="col-duration">0.25</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{u'meta': {u'pagination': {u'count': 10, u'links': {u'next': u'http://54.93.81.169/api/v1/categories?page=2'}, u'current_page': 1, u'total_pages': 6, u'per_page': 10, u'total': 51}}, u'data': [{u'description': u' subcategorys for Comprado progect ', u'title': u'H\xe5r', u'created_at': u'2016-12-10', u'updated_at': u'2016-12-10', u'parent_id': 1, u'is_last': False, u'id': 9}, {u'description': u' subcategorys for Comprado progect ', u'title': u'Klippning', u'created_at': u'2016-12-10', u'updated_at': u'2016-12-10', u'parent_id': 9, u'is_last': False, u'id': 21}, {u'description': u' subcategorys for Comprado progect ', u'title': u'F\xe4rgning', u'created_at': u'2016-12-10', u'updated_at': u'2016-12-10', u'parent_id': 9, u'is_last': False, u'id': 22}, {u'description': u' subcategorys for Comprado progect ', u'title': u'Kombinerade behandlingar', u'created_at': u'2016-12-10', u'updated_at': u'2016-12-10', u'parent_id': 9, u'is_last': False, u'id': 23}, {u'description': u' subcategorys for Comprado progect ', u'title': u'H\xe5rf\xf6rl\xe4ngning', u'created_at': u'2016-12-10', u'updated_at': u'2016-12-10', u'parent_id': 9, u'is_last': False, u'id': 24}, {u'description': u' subcategorys for Comprado progect ', u'title': u'Klippning Herr (kort h\xe5r)', u'created_at': u'2016-12-10', u'updated_at': u'2016-12-10', u'parent_id': 21, u'is_last': True, u'id': 35}, {u'description': u' subcategorys for Comprado progect ', u'title': u'Klippning Dam (l\xe5ngt h\xe5r)', u'created_at': u'2016-12-10', u'updated_at': u'2016-12-10', u'parent_id': 21, u'is_last': True, u'id': 36}, {u'description': u' subcategorys for Comprado progect ', u'title': u'Klippning Barn', u'created_at': u'2016-12-10', u'updated_at': u'2016-12-10', u'parent_id': 21, u'is_last': True, u'id': 37}, {u'description': u' subcategorys for Comprado progect ', u'title': u'Rakning', u'created_at': u'2016-12-10', u'updated_at': u'2016-12-10', u'parent_id': 21, u'is_last': True, u'id': 38}, {u'description': u' subcategorys for Comprado progect ', u'title': u'Huvud F\xe4rgning', u'created_at': u'2016-12-10', u'updated_at': u'2016-12-10', u'parent_id': 22, u'is_last': False, u'id': 43}]}
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{u'meta': {u'pagination': {u'count': 10, u'links': {u'next': u'http://54.93.81.169/api/v1/categories?page=2'}, u'current_page': 1, u'total_pages': 8, u'per_page': 10, u'total': 72}}, u'data': [{u'description': u' subcategorys for Comprado progect ', u'title': u'H\xe5r', u'created_at': u'2016-12-10', u'updated_at': u'2016-12-10', u'parent_id': 1, u'is_last': False, u'id': 9}, {u'description': u' subcategorys for Comprado progect ', u'title': u'Klippning', u'created_at': u'2016-12-10', u'updated_at': u'2016-12-10', u'parent_id': 9, u'is_last': False, u'id': 21}, {u'description': u' subcategorys for Comprado progect ', u'title': u'F\xe4rgning', u'created_at': u'2016-12-10', u'updated_at': u'2016-12-10', u'parent_id': 9, u'is_last': False, u'id': 22}, {u'description': u' subcategorys for Comprado progect ', u'title': u'Kombinerade behandlingar', u'created_at': u'2016-12-10', u'updated_at': u'2016-12-10', u'parent_id': 9, u'is_last': False, u'id': 23}, {u'description': u' subcategorys for Comprado progect ', u'title': u'H\xe5rf\xf6rl\xe4ngning', u'created_at': u'2016-12-10', u'updated_at': u'2016-12-10', u'parent_id': 9, u'is_last': False, u'id': 24}, {u'description': u' subcategorys for Comprado progect ', u'title': u'Klippning Herr (kort h\xe5r)', u'created_at': u'2016-12-10', u'updated_at': u'2016-12-10', u'parent_id': 21, u'is_last': True, u'id': 35}, {u'description': u' subcategorys for Comprado progect ', u'title': u'Klippning Dam (l\xe5ngt h\xe5r)', u'created_at': u'2016-12-10', u'updated_at': u'2016-12-10', u'parent_id': 21, u'is_last': True, u'id': 36}, {u'description': u' subcategorys for Comprado progect ', u'title': u'Klippning Barn', u'created_at': u'2016-12-10', u'updated_at': u'2016-12-10', u'parent_id': 21, u'is_last': True, u'id': 37}, {u'description': u' subcategorys for Comprado progect ', u'title': u'Rakning', u'created_at': u'2016-12-10', u'updated_at': u'2016-12-10', u'parent_id': 21, u'is_last': True, u'id': 38}, {u'description': u' subcategorys for Comprado progect ', u'title': u'Huvud F\xe4rgning', u'created_at': u'2016-12-10', u'updated_at': u'2016-12-10', u'parent_id': 22, u'is_last': False, u'id': 43}]}
 {u'description': u' subcategorys for Comprado progect ', u'title': u'H\xe5r', u'created_at': u'2016-12-10', u'updated_at': u'2016-12-10', u'parent_id': 1, u'is_last': False, u'id': 9}
 9
 &lt;Response [200]&gt;
@@ -405,11 +408,11 @@ Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wv
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">categories.py::Test_004_category_Show::test_01_category_page_showed_correctly</td>
-          <td class="col-duration">0.28</td>
+          <td class="col-duration">0.26</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{u'meta': {u'pagination': {u'count': 6, u'links': [], u'current_page': 1, u'total_pages': 1, u'per_page': 1000, u'total': 6}}, u'data': [{u'description': u'Frukost', u'title': u'Frukost', u'created_at': u'2016-12-11', u'updated_at': u'2016-12-11', u'parent_id': 2, u'is_last': True, u'id': 85}, {u'description': u'Lunch', u'title': u'Lunch', u'created_at': u'2016-12-11', u'updated_at': u'2016-12-11', u'parent_id': 2, u'is_last': True, u'id': 86}, {u'description': u'Brunch', u'title': u'Brunch', u'created_at': u'2016-12-11', u'updated_at': u'2016-12-11', u'parent_id': 2, u'is_last': True, u'id': 87}, {u'description': u'Middag', u'title': u'Middag', u'created_at': u'2016-12-11', u'updated_at': u'2016-12-11', u'parent_id': 2, u'is_last': True, u'id': 88}, {u'description': u'Afternoon tea', u'title': u'Afternoon tea', u'created_at': u'2016-12-11', u'updated_at': u'2016-12-11', u'parent_id': 2, u'is_last': True, u'id': 89}, {u'description': u' subcategorys for Comprado progect ', u'title': u'Hemmabio', u'created_at': u'2017-01-11', u'updated_at': u'2017-01-11', u'parent_id': 2, u'is_last': True, u'id': 189}]}
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{u'meta': {u'pagination': {u'count': 9, u'links': [], u'current_page': 1, u'total_pages': 1, u'per_page': 1000, u'total': 9}}, u'data': [{u'description': u'Frukost', u'title': u'Frukost', u'created_at': u'2016-12-11', u'updated_at': u'2016-12-11', u'parent_id': 2, u'is_last': True, u'id': 85}, {u'description': u'Lunch', u'title': u'Lunch', u'created_at': u'2016-12-11', u'updated_at': u'2016-12-11', u'parent_id': 2, u'is_last': True, u'id': 86}, {u'description': u'Brunch', u'title': u'Brunch', u'created_at': u'2016-12-11', u'updated_at': u'2016-12-11', u'parent_id': 2, u'is_last': True, u'id': 87}, {u'description': u'Middag', u'title': u'Middag', u'created_at': u'2016-12-11', u'updated_at': u'2016-12-11', u'parent_id': 2, u'is_last': True, u'id': 88}, {u'description': u'Afternoon tea', u'title': u'Afternoon tea', u'created_at': u'2016-12-11', u'updated_at': u'2016-12-11', u'parent_id': 2, u'is_last': True, u'id': 89}, {u'description': u'string', u'title': u'string', u'created_at': u'2017-01-23', u'updated_at': u'2017-01-23', u'parent_id': 2, u'is_last': True, u'id': 96}, {u'description': u'string', u'title': u'string', u'created_at': u'2017-01-23', u'updated_at': u'2017-01-23', u'parent_id': 2, u'is_last': True, u'id': 100}, {u'description': u'string', u'title': u'string', u'created_at': u'2017-01-23', u'updated_at': u'2017-01-23', u'parent_id': 2, u'is_last': True, u'id': 103}, {u'description': u'string', u'title': u'string', u'created_at': u'2017-01-23', u'updated_at': u'2017-01-23', u'parent_id': 2, u'is_last': True, u'id': 106}]}
 {u'description': u'Frukost', u'title': u'Frukost', u'created_at': u'2016-12-11', u'updated_at': u'2016-12-11', u'parent_id': 2, u'is_last': True, u'id': 85}
 85
 &lt;Response [200]&gt;
@@ -417,24 +420,38 @@ Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wv
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">my_account.py::test_authorization</td>
-          <td class="col-duration">0.20</td>
+          <td class="col-name">categories.py::Test_004_Tag_Attaching_To_Category::test_01_category_created_correctly</td>
+          <td class="col-duration">15.98</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:53:02 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTM5ODIsImV4cCI6MTQ4NDI5NzU4MiwibmJmIjoxNDg0MjkzOTgyLCJqdGkiOiJlYTkxMjkwYmYyYjM4MTU4MDU2ZDZkNWE1OWY4NGQ0MiJ9.U2MmQBYeShT75EPYI9X3JUvQ4ka-pwXHMswKnCPaucc'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTM5ODIsImV4cCI6MTQ4NDI5NzU4MiwibmJmIjoxNDg0MjkzOTgyLCJqdGkiOiJlYTkxMjkwYmYyYjM4MTU4MDU2ZDZkNWE1OWY4NGQ0MiJ9.U2MmQBYeShT75EPYI9X3JUvQ4ka-pwXHMswKnCPaucc
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:20:38 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNDM4LCJleHAiOjE0ODU0MjYwMzgsIm5iZiI6MTQ4NTQyMjQzOCwianRpIjoiMjQ2ODUxMjBjNTFmNzk4MzRlMjJjYzMwNDNmMmU3NzcifQ.rffcCmYDjtH6b5JAU_B5-lPrpPqXT4e-NwDbJIvecq4'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNDM4LCJleHAiOjE0ODU0MjYwMzgsIm5iZiI6MTQ4NTQyMjQzOCwianRpIjoiMjQ2ODUxMjBjNTFmNzk4MzRlMjJjYzMwNDNmMmU3NzcifQ.rffcCmYDjtH6b5JAU_B5-lPrpPqXT4e-NwDbJIvecq4
+
+
+&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">my_account.py::test_authorization</td>
+          <td class="col-duration">5.19</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:20:49 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNDQ5LCJleHAiOjE0ODU0MjYwNDksIm5iZiI6MTQ4NTQyMjQ0OSwianRpIjoiYTIwODY0N2ZhNjg5ZDk1ZjI1MWZlYzBhYTlmYmYxYjQifQ.pfhsP0cp54J9GFkV9ERvbyFWciZ6DgGJAq-oiBcppxs'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNDQ5LCJleHAiOjE0ODU0MjYwNDksIm5iZiI6MTQ4NTQyMjQ0OSwianRpIjoiYTIwODY0N2ZhNjg5ZDk1ZjI1MWZlYzBhYTlmYmYxYjQifQ.pfhsP0cp54J9GFkV9ERvbyFWciZ6DgGJAq-oiBcppxs
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">my_account.py::Test_004_My_Profile_View::test_01_user_profile_opened</td>
-          <td class="col-duration">10.37</td>
+          <td class="col-duration">15.40</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:53:07 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTM5ODcsImV4cCI6MTQ4NDI5NzU4NywibmJmIjoxNDg0MjkzOTg3LCJqdGkiOiIwYTUyMDJkNWEzMDIwNWZkNDMzODEzOGZmODZmMGZkZCJ9.EEhtuqWHVIzSNWTbv--3e3oz2B_1lighGGLteUnhT74'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTM5ODcsImV4cCI6MTQ4NDI5NzU4NywibmJmIjoxNDg0MjkzOTg3LCJqdGkiOiIwYTUyMDJkNWEzMDIwNWZkNDMzODEzOGZmODZmMGZkZCJ9.EEhtuqWHVIzSNWTbv--3e3oz2B_1lighGGLteUnhT74
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:20:59 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNDU5LCJleHAiOjE0ODU0MjYwNTksIm5iZiI6MTQ4NTQyMjQ1OSwianRpIjoiNWQwYzE0MzljYWFjOGYxMTMyYTdiODU3ZTNiZDM1MWUifQ.rOSDe9KmPw_daGYCdJSKopRno3J9AgKI1Kj_R4qznxM'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNDU5LCJleHAiOjE0ODU0MjYwNTksIm5iZiI6MTQ4NTQyMjQ1OSwianRpIjoiNWQwYzE0MzljYWFjOGYxMTMyYTdiODU3ZTNiZDM1MWUifQ.rOSDe9KmPw_daGYCdJSKopRno3J9AgKI1Kj_R4qznxM
 &lt;Response [200]&gt;
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
@@ -471,29 +488,61 @@ Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wv
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">my_account.py::Test_004_My_Profile_Edit::test_01_user_profile_edited</td>
-          <td class="col-duration">10.37</td>
+          <td class="col-duration">15.37</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:53:18 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTM5OTgsImV4cCI6MTQ4NDI5NzU5OCwibmJmIjoxNDg0MjkzOTk4LCJqdGkiOiIwNWJjMDZmNTdhOGQ4YTEyNzc2ODY3YWVhMjgxOGVlNCJ9.gYAoVnY6d35GoCK0b3mE3MFHV0w24I_JhRbcnOcDU8k'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTM5OTgsImV4cCI6MTQ4NDI5NzU5OCwibmJmIjoxNDg0MjkzOTk4LCJqdGkiOiIwNWJjMDZmNTdhOGQ4YTEyNzc2ODY3YWVhMjgxOGVlNCJ9.gYAoVnY6d35GoCK0b3mE3MFHV0w24I_JhRbcnOcDU8k
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:21:15 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNDc1LCJleHAiOjE0ODU0MjYwNzUsIm5iZiI6MTQ4NTQyMjQ3NSwianRpIjoiNzM3MzU5NmNmYmU0NzlkOTE1NTA1ZWViMTc0NTZjNDUifQ.5qrdg4nw7wY0qakp9FkCMmHWsZH_hFsA39VuuwZTiEQ'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNDc1LCJleHAiOjE0ODU0MjYwNzUsIm5iZiI6MTQ4NTQyMjQ3NSwianRpIjoiNzM3MzU5NmNmYmU0NzlkOTE1NTA1ZWViMTc0NTZjNDUifQ.5qrdg4nw7wY0qakp9FkCMmHWsZH_hFsA39VuuwZTiEQ
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">my_account.py::Test_My_Profile_Change_Password::test_01_user_change_password_successfully</td>
+          <td class="col-duration">0.48</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '193', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"38ee0f25e0bb0757caade23c2d5068d3c4c0b2ae"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:21:25 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNDg1LCJleHAiOjE0ODU0MjYwODUsIm5iZiI6MTQ4NTQyMjQ4NSwianRpIjoiMmM3NGI1OWFlMzY2ZjA4N2QyZTA2Njc1NzQzNzIyNjYifQ.SwTDGq3hKGr4TmBywC-4fZgWbE_4OpNt4U0rmumgy5A'}
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">my_account.py::Test_My_Profile_Change_Password::test_02_user_change_password_empty_old_password</td>
+          <td class="col-duration">0.32</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '193', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"38ee0f25e0bb0757caade23c2d5068d3c4c0b2ae"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:21:26 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNDg2LCJleHAiOjE0ODU0MjYwODYsIm5iZiI6MTQ4NTQyMjQ4NiwianRpIjoiYTk3ZjNiNTgyODFlODkyOTM0M2E4NzRhNTAwNDM4ZTcifQ.8FOVPatmRMYms4MQRYyKZrzdLYQPLyjcnZ2cJwKDA9Y'}
+{'Content-Length': '193', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"38ee0f25e0bb0757caade23c2d5068d3c4c0b2ae"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:21:26 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNDg2LCJleHAiOjE0ODU0MjYwODYsIm5iZiI6MTQ4NTQyMjQ4NiwianRpIjoiYTk3ZjNiNTgyODFlODkyOTM0M2E4NzRhNTAwNDM4ZTcifQ.8FOVPatmRMYms4MQRYyKZrzdLYQPLyjcnZ2cJwKDA9Y'}
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">my_account.py::Test_My_Profile_Change_Password::test_02_user_change_password_wrong_old_password</td>
+          <td class="col-duration">0.40</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '193', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"38ee0f25e0bb0757caade23c2d5068d3c4c0b2ae"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:21:26 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNDg2LCJleHAiOjE0ODU0MjYwODYsIm5iZiI6MTQ4NTQyMjQ4NiwianRpIjoiYTk3ZjNiNTgyODFlODkyOTM0M2E4NzRhNTAwNDM4ZTcifQ.8FOVPatmRMYms4MQRYyKZrzdLYQPLyjcnZ2cJwKDA9Y'}
+{'Content-Length': '193', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"38ee0f25e0bb0757caade23c2d5068d3c4c0b2ae"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:21:26 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNDg2LCJleHAiOjE0ODU0MjYwODYsIm5iZiI6MTQ4NTQyMjQ4NiwianRpIjoiYTk3ZjNiNTgyODFlODkyOTM0M2E4NzRhNTAwNDM4ZTcifQ.8FOVPatmRMYms4MQRYyKZrzdLYQPLyjcnZ2cJwKDA9Y'}
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">offers.py::test_authorization</td>
-          <td class="col-duration">0.20</td>
+          <td class="col-duration">5.20</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:53:23 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQwMDMsImV4cCI6MTQ4NDI5NzYwMywibmJmIjoxNDg0Mjk0MDAzLCJqdGkiOiI4YjVlN2EwYjc1MzQ1MmFmNWY0ZDE3YTBmMzZkMjkwOSJ9.ZAkSnPxih4J763KYxTQGh3f_GRfvlZckuhgl4xRQKio'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQwMDMsImV4cCI6MTQ4NDI5NzYwMywibmJmIjoxNDg0Mjk0MDAzLCJqdGkiOiI4YjVlN2EwYjc1MzQ1MmFmNWY0ZDE3YTBmMzZkMjkwOSJ9.ZAkSnPxih4J763KYxTQGh3f_GRfvlZckuhgl4xRQKio
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:21:27 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNDg3LCJleHAiOjE0ODU0MjYwODcsIm5iZiI6MTQ4NTQyMjQ4NywianRpIjoiYTc1ZTk0MTQ4NjQxMWU1ZjFjNjRkZWQ0MDU5NDFjOGEifQ.jdkqVvyujry50OFvjBrgiyoNpyZxu4K28G7khH1BtvA'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNDg3LCJleHAiOjE0ODU0MjYwODcsIm5iZiI6MTQ4NTQyMjQ4NywianRpIjoiYTc1ZTk0MTQ4NjQxMWU1ZjFjNjRkZWQ0MDU5NDFjOGEifQ.jdkqVvyujry50OFvjBrgiyoNpyZxu4K28G7khH1BtvA
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">offers.py::Test_004_All_offers::test_01_all_offers_opened</td>
-          <td class="col-duration">0.14</td>
+          <td class="col-duration">0.16</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
@@ -507,16 +556,16 @@ Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wv
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{u'meta': {u'pagination': {u'count': 10, u'links': {u'next': u'http://54.93.81.169/api/v1/offers?page=2'}, u'current_page': 1, u'total_pages': 62, u'per_page': 10, u'total': 620}}, u'data': [{u'offer_quantity': None, u'SKU': None, u'is_bookable': True, u'description': None, u'offer_id_by_partner': u'BREAKFAST', u'title': u'Frukost', u'updated_at': u'2017-01-09', u'price': None, u'business_id': 270, u'partner_link': None, u'created_at': u'2017-01-09', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'booking_form', u'category_id': 85, u'categorization_required': False, u'id': 1074}, {u'offer_quantity': None, u'SKU': None, u'is_bookable': True, u'description': None, u'offer_id_by_partner': u'LUNCH', u'title': u'Lunch', u'updated_at': u'2017-01-09', u'price': None, u'business_id': 236, u'partner_link': None, u'created_at': u'2017-01-09', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'booking_form', u'category_id': 86, u'categorization_required': False, u'id': 887}, {u'offer_quantity': 0, u'SKU': u'string', u'is_bookable': False, u'description': u'string', u'offer_id_by_partner': u'string', u'title': u'string1', u'updated_at': u'2017-01-12', u'price': None, u'business_id': 358, u'partner_link': None, u'created_at': u'2017-01-12', u'status': None, u'delivery_cost': u'0.00', u'booking_flow': None, u'category_id': 160, u'categorization_required': False, u'id': 1513}, {u'offer_quantity': None, u'SKU': None, u'is_bookable': True, u'description': None, u'offer_id_by_partner': u'LUNCH', u'title': u'Lunch', u'updated_at': u'2017-01-09', u'price': None, u'business_id': 269, u'partner_link': None, u'created_at': u'2017-01-09', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'booking_form', u'category_id': 86, u'categorization_required': False, u'id': 1070}, {u'offer_quantity': None, u'SKU': None, u'is_bookable': True, u'description': None, u'offer_id_by_partner': u'217373', u'title': u'Volymfransar Stor P\xe5fyllning(4v)', u'updated_at': u'2017-01-09', u'price': u'950.00', u'business_id': 343, u'partner_link': u'www.bokadirekt.se/public/places/gamla-unik-15788/volymfransar-stor-pafyllning4v-217373', u'created_at': u'2017-01-09', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'link', u'category_id': 35, u'categorization_required': False, u'id': 1350}, {u'offer_quantity': None, u'SKU': None, u'is_bookable': True, u'description': None, u'offer_id_by_partner': u'LUNCH', u'title': u'Lunch', u'updated_at': u'2017-01-09', u'price': None, u'business_id': 271, u'partner_link': None, u'created_at': u'2017-01-09', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'booking_form', u'category_id': 86, u'categorization_required': False, u'id': 1080}, {u'offer_quantity': None, u'SKU': None, u'is_bookable': True, u'description': None, u'offer_id_by_partner': u'BREAKFAST', u'title': u'Frukost', u'updated_at': u'2017-01-09', u'price': None, u'business_id': 294, u'partner_link': None, u'created_at': u'2017-01-09', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'booking_form', u'category_id': 85, u'categorization_required': False, u'id': 1209}, {u'offer_quantity': None, u'SKU': None, u'is_bookable': True, u'description': None, u'offer_id_by_partner': u'165227', u'title': u'Naglar - IBX F\xf6rsta bes\xf6ket', u'updated_at': u'2017-01-09', u'price': u'395.00', u'business_id': 344, u'partner_link': u'www.bokadirekt.se/public/places/dig-i-fokus-4715/naglar-ibx-foersta-besoeket-165227', u'created_at': u'2017-01-09', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'link', u'category_id': 35, u'categorization_required': False, u'id': 1420}, {u'offer_quantity': None, u'SKU': None, u'is_bookable': True, u'description': None, u'offer_id_by_partner': u'DINNER', u'title': u'Middag', u'updated_at': u'2017-01-09', u'price': None, u'business_id': 272, u'partner_link': None, u'created_at': u'2017-01-09', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'booking_form', u'category_id': 88, u'categorization_required': False, u'id': 1087}, {u'offer_quantity': None, u'SKU': None, u'is_bookable': True, u'description': None, u'offer_id_by_partner': u'AFTERNOONTEA', u'title': u'Afternoon tea', u'updated_at': u'2017-01-09', u'price': None, u'business_id': 274, u'partner_link': None, u'created_at': u'2017-01-09', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'booking_form', u'category_id': 89, u'categorization_required': False, u'id': 1101}]}
-{u'offer_quantity': None, u'SKU': None, u'is_bookable': True, u'description': None, u'offer_id_by_partner': u'LUNCH', u'title': u'Lunch', u'updated_at': u'2017-01-09', u'price': None, u'business_id': 236, u'partner_link': None, u'created_at': u'2017-01-09', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'booking_form', u'category_id': 86, u'categorization_required': False, u'id': 887}
-887
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{u'meta': {u'pagination': {u'count': 10, u'links': {u'next': u'http://54.93.81.169/api/v1/offers?page=2'}, u'current_page': 1, u'total_pages': 58, u'per_page': 10, u'total': 579}}, u'data': [{u'offer_quantity': None, u'SKU': None, u'description': None, u'offer_id_by_partner': u'120427', u'title': u'Nagelf\xf6rl\xe4ngning - Avancerade Dekorationer (Nail art) ', u'updated_at': u'2017-01-20', u'main_category_id': 13, u'created_at': u'2017-01-20', u'business_id': 7, u'partner_link': u'www.bokadirekt.se/public/places/nails-by-sussie-5735/nagelfoerlaengning-avancerade-dekorationer-nail-art-120427', u'price': u'0.00', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'link', u'is_bookable': True, u'categorization_required': False, u'id': 29}, {u'offer_quantity': None, u'SKU': None, u'description': None, u'offer_id_by_partner': u'37149', u'title': u'Medicinsk Fotv\xe5rd 45 min pris vardagar 550kr, helgpris 650kr.', u'updated_at': u'2017-01-20', u'main_category_id': 11, u'created_at': u'2017-01-20', u'business_id': 4, u'partner_link': u'www.bokadirekt.se/public/places/fotvardsteamet-4131/medicinsk-fotvard-45-min-pris-vardagar-550kr-helgpris-650kr-37149', u'price': u'0.00', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'link', u'is_bookable': True, u'categorization_required': False, u'id': 11}, {u'offer_quantity': None, u'SKU': None, u'description': None, u'offer_id_by_partner': u'126995', u'title': u'Nagelreparation (lagning av nagel)', u'updated_at': u'2017-01-20', u'main_category_id': 13, u'created_at': u'2017-01-20', u'business_id': 5, u'partner_link': u'www.bokadirekt.se/public/places/lilac-salong-10610/nagelreparation-lagning-av-nagel-126995', u'price': u'75.00', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'link', u'is_bookable': True, u'categorization_required': False, u'id': 16}, {u'offer_quantity': None, u'SKU': None, u'description': None, u'offer_id_by_partner': u'57312', u'title': u'Lagning av nagel/naglar', u'updated_at': u'2017-01-20', u'main_category_id': 36, u'created_at': u'2017-01-20', u'business_id': 7, u'partner_link': u'www.bokadirekt.se/public/places/nails-by-sussie-5735/lagning-av-nagelnaglar-57312', u'price': u'80.00', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'link', u'is_bookable': True, u'categorization_required': False, u'id': 27}, {u'offer_quantity': None, u'SKU': None, u'description': None, u'offer_id_by_partner': u'43324', u'title': u'Naglar - Ny tipp ', u'updated_at': u'2017-01-20', u'main_category_id': 13, u'created_at': u'2017-01-20', u'business_id': 9, u'partner_link': u'www.bokadirekt.se/public/places/dig-i-fokus-4715/naglar-ny-tipp-43324', u'price': u'80.00', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'link', u'is_bookable': True, u'categorization_required': False, u'id': 38}, {u'offer_quantity': None, u'SKU': None, u'description': None, u'offer_id_by_partner': u'117135', u'title': u'Lagning av naglar', u'updated_at': u'2017-01-20', u'main_category_id': 13, u'created_at': u'2017-01-20', u'business_id': 6, u'partner_link': u'www.bokadirekt.se/public/places/paulas-9610/lagning-av-naglar-117135', u'price': u'100.00', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'link', u'is_bookable': True, u'categorization_required': False, u'id': 20}, {u'offer_quantity': None, u'SKU': None, u'description': None, u'offer_id_by_partner': u'40078', u'title': u'Naglar - Lackning 60 min', u'updated_at': u'2017-01-20', u'main_category_id': 13, u'created_at': u'2017-01-20', u'business_id': 1, u'partner_link': u'www.bokadirekt.se/public/places/salong-winblad-4328/naglar-lackning-60-min-40078', u'price': u'150.00', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'link', u'is_bookable': True, u'categorization_required': False, u'id': 50}, {u'offer_quantity': None, u'SKU': None, u'description': None, u'offer_id_by_partner': u'126982', u'title': u'Minimanikyr p\xe5 gel\xe9 naglar', u'updated_at': u'2017-01-20', u'main_category_id': 13, u'created_at': u'2017-01-20', u'business_id': 5, u'partner_link': u'www.bokadirekt.se/public/places/lilac-salong-10610/minimanikyr-pa-gele-naglar-126982', u'price': u'230.00', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'link', u'is_bookable': True, u'categorization_required': False, u'id': 17}, {u'offer_quantity': None, u'SKU': None, u'description': None, u'offer_id_by_partner': u'64236', u'title': u'Naglar-Manikyr', u'updated_at': u'2017-01-20', u'main_category_id': 13, u'created_at': u'2017-01-20', u'business_id': 1, u'partner_link': u'www.bokadirekt.se/public/places/salong-winblad-4328/naglar-manikyr-64236', u'price': u'250.00', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'link', u'is_bookable': True, u'categorization_required': False, u'id': 47}, {u'offer_quantity': None, u'SKU': None, u'description': None, u'offer_id_by_partner': u'117136', u'title': u'Lackning av naglar', u'updated_at': u'2017-01-20', u'main_category_id': 13, u'created_at': u'2017-01-20', u'business_id': 6, u'partner_link': u'www.bokadirekt.se/public/places/paulas-9610/lackning-av-naglar-117136', u'price': u'250.00', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'link', u'is_bookable': True, u'categorization_required': False, u'id': 21}]}
+{u'offer_quantity': None, u'SKU': None, u'description': None, u'offer_id_by_partner': u'37149', u'title': u'Medicinsk Fotv\xe5rd 45 min pris vardagar 550kr, helgpris 650kr.', u'updated_at': u'2017-01-20', u'main_category_id': 11, u'created_at': u'2017-01-20', u'business_id': 4, u'partner_link': u'www.bokadirekt.se/public/places/fotvardsteamet-4131/medicinsk-fotvard-45-min-pris-vardagar-550kr-helgpris-650kr-37149', u'price': u'0.00', u'status': u'suggested', u'delivery_cost': None, u'booking_flow': u'link', u'is_bookable': True, u'categorization_required': False, u'id': 11}
+11
 &lt;Response [200]&gt;
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">offers.py::Test_004_bestOffers::test_01_best_offers_showed_correctly</td>
-          <td class="col-duration">1.44</td>
+          <td class="col-duration">1.05</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
@@ -525,30 +574,43 @@ Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wv
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">management.py::test_authorization</td>
-          <td class="col-duration">0.19</td>
+          <td class="col-name">offers.py::Test_004_offer_liking_disliking::test_01_offer_liked_and_disliked_correctly</td>
+          <td class="col-duration">11.90</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:53:25 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQwMDUsImV4cCI6MTQ4NDI5NzYwNSwibmJmIjoxNDg0Mjk0MDA1LCJqdGkiOiI3NDYyNzk5MDM3YTI5NDk3YjIwNGQ4ZGFiZjE0YjM4OCJ9.uJDKiPNQAvolb_jDy5xkjG7YWfo6muLa16lvT7KAdXI'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQwMDUsImV4cCI6MTQ4NDI5NzYwNSwibmJmIjoxNDg0Mjk0MDA1LCJqdGkiOiI3NDYyNzk5MDM3YTI5NDk3YjIwNGQ4ZGFiZjE0YjM4OCJ9.uJDKiPNQAvolb_jDy5xkjG7YWfo6muLa16lvT7KAdXI
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:21:36 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNDk2LCJleHAiOjE0ODU0MjYwOTYsIm5iZiI6MTQ4NTQyMjQ5NiwianRpIjoiODQ4YmVhMzYzMzE2MDZiNGQxZDQ5OGRjNDBiOTQxZDUifQ.oNP6jiwdBUdTgaEesFfN-hzwtF5A6GnlR3nfv-qFCf0'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNDk2LCJleHAiOjE0ODU0MjYwOTYsIm5iZiI6MTQ4NTQyMjQ5NiwianRpIjoiODQ4YmVhMzYzMzE2MDZiNGQxZDQ5OGRjNDBiOTQxZDUifQ.oNP6jiwdBUdTgaEesFfN-hzwtF5A6GnlR3nfv-qFCf0
+{u'offer_quantity': 0, u'SKU': u'string', u'description': u'string', u'offer_id_by_partner': u'string', u'title': u'string1', u'updated_at': u'2017-01-26', u'main_category_id': 97, u'created_at': u'2017-01-26', u'business_id': 115, u'partner_link': None, u'price': None, u'status': None, u'delivery_cost': u'0.00', u'booking_flow': None, u'is_bookable': False, u'categorization_required': False, u'id': 647}
+&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::test_authorization</td>
+          <td class="col-duration">5.19</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:21:45 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNTA1LCJleHAiOjE0ODU0MjYxMDUsIm5iZiI6MTQ4NTQyMjUwNSwianRpIjoiZWIwMWU3YTNmZjcxYzg4YjkxOGE0NTVmYzZiMTljMjQifQ.fCa0GYy6qM49Qu9xuVeaLedsy5VEEBiLIMnsMyvVrzo'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNTA1LCJleHAiOjE0ODU0MjYxMDUsIm5iZiI6MTQ4NTQyMjUwNSwianRpIjoiZWIwMWU3YTNmZjcxYzg4YjkxOGE0NTVmYzZiMTljMjQifQ.fCa0GYy6qM49Qu9xuVeaLedsy5VEEBiLIMnsMyvVrzo
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_business_Creation::test_01_business_created_correctly</td>
-          <td class="col-duration">10.42</td>
+          <td class="col-duration">15.40</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:53:30 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQwMTAsImV4cCI6MTQ4NDI5NzYxMCwibmJmIjoxNDg0Mjk0MDEwLCJqdGkiOiJkODcxN2EwMjA4N2I1NjBiNjc4MTM4OTY4MGYwYjNlYyJ9._IPFc9Q1MUEU625eUC9DBQLvT9QiZTHEveAyJ0no2ac'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQwMTAsImV4cCI6MTQ4NDI5NzYxMCwibmJmIjoxNDg0Mjk0MDEwLCJqdGkiOiJkODcxN2EwMjA4N2I1NjBiNjc4MTM4OTY4MGYwYjNlYyJ9._IPFc9Q1MUEU625eUC9DBQLvT9QiZTHEveAyJ0no2ac
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:21:55 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNTE1LCJleHAiOjE0ODU0MjYxMTUsIm5iZiI6MTQ4NTQyMjUxNSwianRpIjoiOWVjNDc1MzkwYjg2ZTIyYzZkZTQ5MzM3Nzg2NjFjMjMifQ.vRZpcf-t42YcyAzizP6oxVQCTV1BtRE2XAqI75WQksE'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNTE1LCJleHAiOjE0ODU0MjYxMTUsIm5iZiI6MTQ4NTQyMjUxNSwianRpIjoiOWVjNDc1MzkwYjg2ZTIyYzZkZTQ5MzM3Nzg2NjFjMjMifQ.vRZpcf-t42YcyAzizP6oxVQCTV1BtRE2XAqI75WQksE
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_business_Creation::test_01_business_not_created_because_empty_userdata</td>
-          <td class="col-duration">0.07</td>
+          <td class="col-duration">0.06</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
@@ -557,13 +619,13 @@ Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wv
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_business_Deleting::test_01_business_deleted_correctly</td>
-          <td class="col-duration">10.70</td>
+          <td class="col-duration">15.69</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:53:41 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQwMjEsImV4cCI6MTQ4NDI5NzYyMSwibmJmIjoxNDg0Mjk0MDIxLCJqdGkiOiJmMDZmNTI1MDhlOTg0OTFmYjA0Nzk5MDBkYWIzYTBiYyJ9.F4iWunnhKep6ZukLLUFPVngCqwiz8oB2-A4TSa1PQfQ'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQwMjEsImV4cCI6MTQ4NDI5NzYyMSwibmJmIjoxNDg0Mjk0MDIxLCJqdGkiOiJmMDZmNTI1MDhlOTg0OTFmYjA0Nzk5MDBkYWIzYTBiYyJ9.F4iWunnhKep6ZukLLUFPVngCqwiz8oB2-A4TSa1PQfQ
-{u'description': u'string', u'geo_longitude': u'22.4519749', u'created_at': u'2017-01-13 07:53:46', u'updated_at': u'2017-01-13 07:53:46', u'business_id_by_partner': u'string', u'phone': None, u'email': u'13012017095346@test.com', u'link': None, u'address': u'string', u'logo': None, u'partner_id': 1, u'id': 393, u'geo_latitude': u'48.92279', u'name': u'string'}
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:22:11 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNTMxLCJleHAiOjE0ODU0MjYxMzEsIm5iZiI6MTQ4NTQyMjUzMSwianRpIjoiZjU1MWU2ODE5ZjM0YjU1MGM5NjBkOWU2ZTU0ZWUyZTIifQ.T9pCL3HptlHMsuVEzIFJlQv7MG3CDWywr1mv0ZULSOY'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNTMxLCJleHAiOjE0ODU0MjYxMzEsIm5iZiI6MTQ4NTQyMjUzMSwianRpIjoiZjU1MWU2ODE5ZjM0YjU1MGM5NjBkOWU2ZTU0ZWUyZTIifQ.T9pCL3HptlHMsuVEzIFJlQv7MG3CDWywr1mv0ZULSOY
+{u'description': u'string', u'geo_longitude': u'22.4519749', u'created_at': u'2017-01-26 09:22:21', u'updated_at': u'2017-01-26 09:22:21', u'business_id_by_partner': u'string', u'phone': None, u'email': u'26012017112221@test.com', u'link': None, u'address': u'string', u'logo': None, u'partner_id': 1, u'id': 147, u'geo_latitude': u'48.92279', u'name': u'string'}
 &lt;Response [200]&gt;
 &lt;Response [200]&gt;
 </div></td></tr></tbody>
@@ -571,35 +633,35 @@ Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wv
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_category_Creation::test_01_category_created_correctly</td>
-          <td class="col-duration">10.51</td>
+          <td class="col-duration">15.42</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:53:51 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQwMzEsImV4cCI6MTQ4NDI5NzYzMSwibmJmIjoxNDg0Mjk0MDMxLCJqdGkiOiJkNGJlNzU5YWNjNmU5YTRkOWRjZjExMGZlYzlmMDZiNCJ9.1iLSoJv1KEbExSuy60o7NkceiqHM3-8Hr5j1iJOzqfA'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQwMzEsImV4cCI6MTQ4NDI5NzYzMSwibmJmIjoxNDg0Mjk0MDMxLCJqdGkiOiJkNGJlNzU5YWNjNmU5YTRkOWRjZjExMGZlYzlmMDZiNCJ9.1iLSoJv1KEbExSuy60o7NkceiqHM3-8Hr5j1iJOzqfA
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:22:27 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNTQ3LCJleHAiOjE0ODU0MjYxNDcsIm5iZiI6MTQ4NTQyMjU0NywianRpIjoiZDZjYWEwNjMxOGM2YmMyOTMxNTQzOWVkZjFhZGZjY2MifQ.B8Jg2f1UMqGPI1S6gOPvaObrOmo-XOqpPJFXXdG9yJc'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNTQ3LCJleHAiOjE0ODU0MjYxNDcsIm5iZiI6MTQ4NTQyMjU0NywianRpIjoiZDZjYWEwNjMxOGM2YmMyOTMxNTQzOWVkZjFhZGZjY2MifQ.B8Jg2f1UMqGPI1S6gOPvaObrOmo-XOqpPJFXXdG9yJc
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_category_Deleting::test_01_category_cant_be_deleted_because_id_doesnt_exist</td>
-          <td class="col-duration">10.38</td>
+          <td class="col-duration">15.36</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:54:02 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQwNDIsImV4cCI6MTQ4NDI5NzY0MiwibmJmIjoxNDg0Mjk0MDQyLCJqdGkiOiJhNmQxMzY1MzliN2M4ZDBiOGFjMjFhMzRiMDM3Njc3MCJ9.5W-YgrkkUE8mLq0nduUAtB2lrOJR2PjZ633P7mtJ13Q'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQwNDIsImV4cCI6MTQ4NDI5NzY0MiwibmJmIjoxNDg0Mjk0MDQyLCJqdGkiOiJhNmQxMzY1MzliN2M4ZDBiOGFjMjFhMzRiMDM3Njc3MCJ9.5W-YgrkkUE8mLq0nduUAtB2lrOJR2PjZ633P7mtJ13Q
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:22:42 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNTYyLCJleHAiOjE0ODU0MjYxNjIsIm5iZiI6MTQ4NTQyMjU2MiwianRpIjoiMmI4ZGRjMjBhN2I1YjU4MWIwNTc1ODljOTRiNzk5OTUifQ.9P1ObIw6t3zn38i85qVwYuu36si5H8cA4tAJ6k1__Cg'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNTYyLCJleHAiOjE0ODU0MjYxNjIsIm5iZiI6MTQ4NTQyMjU2MiwianRpIjoiMmI4ZGRjMjBhN2I1YjU4MWIwNTc1ODljOTRiNzk5OTUifQ.9P1ObIw6t3zn38i85qVwYuu36si5H8cA4tAJ6k1__Cg
 &lt;Response [422]&gt;
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_category_Deleting::test_01_category_deleted_correctly</td>
-          <td class="col-duration">10.79</td>
+          <td class="col-duration">15.73</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:54:12 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQwNTIsImV4cCI6MTQ4NDI5NzY1MiwibmJmIjoxNDg0Mjk0MDUyLCJqdGkiOiJmNTc5MTMwNGQxMTlkMjkwYjRkMWJmMjUwYjY0OWQ5MSJ9.dQxihPKrabZjoW3jxUDa4QHnCq7FV2AvCuW_EyHzv6Q'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQwNTIsImV4cCI6MTQ4NDI5NzY1MiwibmJmIjoxNDg0Mjk0MDUyLCJqdGkiOiJmNTc5MTMwNGQxMTlkMjkwYjRkMWJmMjUwYjY0OWQ5MSJ9.dQxihPKrabZjoW3jxUDa4QHnCq7FV2AvCuW_EyHzv6Q
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:22:57 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNTc3LCJleHAiOjE0ODU0MjYxNzcsIm5iZiI6MTQ4NTQyMjU3NywianRpIjoiODlhNzdlMjg3ODQ3YThkMjAzNDFjNWFhZDk5NzYyMTcifQ.ZmwznHJt0db8CQnDGSYcl-11a3PRL7W-OId-6EwESxg'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNTc3LCJleHAiOjE0ODU0MjYxNzcsIm5iZiI6MTQ4NTQyMjU3NywianRpIjoiODlhNzdlMjg3ODQ3YThkMjAzNDFjNWFhZDk5NzYyMTcifQ.ZmwznHJt0db8CQnDGSYcl-11a3PRL7W-OId-6EwESxg
 &lt;Response [200]&gt;
 &lt;Response [200]&gt;
 </div></td></tr></tbody>
@@ -607,231 +669,231 @@ Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wv
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_category_Deleting::test_01_not_deleted_because_of_alphabetical_id</td>
-          <td class="col-duration">10.39</td>
+          <td class="col-duration">15.37</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:54:23 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQwNjMsImV4cCI6MTQ4NDI5NzY2MywibmJmIjoxNDg0Mjk0MDYzLCJqdGkiOiI2MGQzNmZlODhlYmMxZDI2YjFkMTdlYTdkZTBhNGFhZiJ9.aLFIUj2WcPObRypA0rrwh4p8yLoskKlltw1tbMRIZx8'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQwNjMsImV4cCI6MTQ4NDI5NzY2MywibmJmIjoxNDg0Mjk0MDYzLCJqdGkiOiI2MGQzNmZlODhlYmMxZDI2YjFkMTdlYTdkZTBhNGFhZiJ9.aLFIUj2WcPObRypA0rrwh4p8yLoskKlltw1tbMRIZx8
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:23:13 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNTkzLCJleHAiOjE0ODU0MjYxOTMsIm5iZiI6MTQ4NTQyMjU5MywianRpIjoiZDJjODg5NjAxNGIyNTY1NDQ4YzQ0NmU2YmVmMTNlMGUifQ.CvCMUgsJawkYlk54eAUIHoJQ52IreAx7SnNVpR7HbR4'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNTkzLCJleHAiOjE0ODU0MjYxOTMsIm5iZiI6MTQ4NTQyMjU5MywianRpIjoiZDJjODg5NjAxNGIyNTY1NDQ4YzQ0NmU2YmVmMTNlMGUifQ.CvCMUgsJawkYlk54eAUIHoJQ52IreAx7SnNVpR7HbR4
 &lt;Response [500]&gt;
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_user_Creation::test_01_user_created_correctly</td>
-          <td class="col-duration">8.84</td>
+          <td class="col-duration">12.46</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:54:31 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQwNzIsImV4cCI6MTQ4NDI5NzY3MiwibmJmIjoxNDg0Mjk0MDcyLCJqdGkiOiIxNjNlNzBmZTQ5ZTZhOTM5MTFkNzJiN2ExN2JmYTZhNiJ9.YO24tvtAnQ3jaNLPp_8-5Sj20xsf4WbuLXjtXEBxChk'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQwNzIsImV4cCI6MTQ4NDI5NzY3MiwibmJmIjoxNDg0Mjk0MDcyLCJqdGkiOiIxNjNlNzBmZTQ5ZTZhOTM5MTFkNzJiN2ExN2JmYTZhNiJ9.YO24tvtAnQ3jaNLPp_8-5Sj20xsf4WbuLXjtXEBxChk
-python
-13012017095435@test.com
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:23:26 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNjA3LCJleHAiOjE0ODU0MjYyMDcsIm5iZiI6MTQ4NTQyMjYwNywianRpIjoiMjIwMDAxYzcxYmIzZWI5MDM5NGE1MzQ1YTE4Y2I0MGIifQ.mlcbBTf7_1fpIe52xdt-t4lVV3OZmqVARFTfpxxMlVw'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNjA3LCJleHAiOjE0ODU0MjYyMDcsIm5iZiI6MTQ4NTQyMjYwNywianRpIjoiMjIwMDAxYzcxYmIzZWI5MDM5NGE1MzQ1YTE4Y2I0MGIifQ.mlcbBTf7_1fpIe52xdt-t4lVV3OZmqVARFTfpxxMlVw
+answer
+26012017112335@test.com
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_user_Creation::test_02_user_not_created_empty_values</td>
-          <td class="col-duration">6.36</td>
+          <td class="col-duration">11.36</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:54:40 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQwODAsImV4cCI6MTQ4NDI5NzY4MCwibmJmIjoxNDg0Mjk0MDgwLCJqdGkiOiJkNjA0Y2I0OGY1YWNkMzA4NTE4MTg0OTk3MDZiZmFlNyJ9.TMxeE7WGqSFrwa9302VI5jOoJ7xLxvY6O1ez6FSHZQE'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQwODAsImV4cCI6MTQ4NDI5NzY4MCwibmJmIjoxNDg0Mjk0MDgwLCJqdGkiOiJkNjA0Y2I0OGY1YWNkMzA4NTE4MTg0OTk3MDZiZmFlNyJ9.TMxeE7WGqSFrwa9302VI5jOoJ7xLxvY6O1ez6FSHZQE
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:23:39 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNjE5LCJleHAiOjE0ODU0MjYyMTksIm5iZiI6MTQ4NTQyMjYxOSwianRpIjoiMjNiNjcxNzA2MDdkZmNlMDQ1YWU2NGZkNmQ2YTFhYWQifQ.lMhQ2lBiyn6U2UuRMnq5epfTb0cNlmv9wYmfdB6-fpI'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNjE5LCJleHAiOjE0ODU0MjYyMTksIm5iZiI6MTQ4NTQyMjYxOSwianRpIjoiMjNiNjcxNzA2MDdkZmNlMDQ1YWU2NGZkNmQ2YTFhYWQifQ.lMhQ2lBiyn6U2UuRMnq5epfTb0cNlmv9wYmfdB6-fpI
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_user_Creation::test_03_user_not_created_wrong_email_format</td>
-          <td class="col-duration">6.35</td>
+          <td class="col-duration">11.36</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:54:47 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQwODcsImV4cCI6MTQ4NDI5NzY4NywibmJmIjoxNDg0Mjk0MDg3LCJqdGkiOiI3YjM5ODg3ZTExYjBkNDhhMTQxZmIyMjY4YWE3Y2VmNCJ9.Q3Ondv8LjMajycDVj1PEbGoA0sAxcgEKbnc-4u3kWls'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQwODcsImV4cCI6MTQ4NDI5NzY4NywibmJmIjoxNDg0Mjk0MDg3LCJqdGkiOiI3YjM5ODg3ZTExYjBkNDhhMTQxZmIyMjY4YWE3Y2VmNCJ9.Q3Ondv8LjMajycDVj1PEbGoA0sAxcgEKbnc-4u3kWls
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:23:50 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNjMwLCJleHAiOjE0ODU0MjYyMzAsIm5iZiI6MTQ4NTQyMjYzMCwianRpIjoiM2M5NmVlNzFlMzgyNDUzNTQwZDMwYjU5NjZlMjI1ODUifQ.3ewxLhAmp9z-WIIe9Y46TCN5GSKkTVw4HvWgrME_Tzg'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNjMwLCJleHAiOjE0ODU0MjYyMzAsIm5iZiI6MTQ4NTQyMjYzMCwianRpIjoiM2M5NmVlNzFlMzgyNDUzNTQwZDMwYjU5NjZlMjI1ODUifQ.3ewxLhAmp9z-WIIe9Y46TCN5GSKkTVw4HvWgrME_Tzg
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_All_users::test_01_all_users_opened</td>
-          <td class="col-duration">6.36</td>
+          <td class="col-duration">11.37</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:54:53 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQwOTMsImV4cCI6MTQ4NDI5NzY5MywibmJmIjoxNDg0Mjk0MDkzLCJqdGkiOiJlMjQwNGIzMjAxNWNlMWE0ODFmMzc1NTM4MGMxN2FiYyJ9.-cJ7TfX5tS9E-z1-STuECIhbS0lCEttS6ySOnwfkHEw'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQwOTMsImV4cCI6MTQ4NDI5NzY5MywibmJmIjoxNDg0Mjk0MDkzLCJqdGkiOiJlMjQwNGIzMjAxNWNlMWE0ODFmMzc1NTM4MGMxN2FiYyJ9.-cJ7TfX5tS9E-z1-STuECIhbS0lCEttS6ySOnwfkHEw
-{"data":[{"id":1,"full_name":"FullName","email":"29122016162359@test.com","is_active":false,"facebook_id":null,"avatar":null,"birthday":null,"phone":null,"gender":"male"},{"id":2,"full_name":"FullName","email":"29122016162404@test.com","is_active":false,"facebook_id":null,"avatar":null,"birthday":null,"phone":null,"gender":"male"},{"id":3,"full_name":"FullName","email":"29122016162415@test.com","is_active":false,"facebook_id":null,"avatar":null,"birthday":null,"phone":null,"gender":"male"},{"id":4,"full_name":"FullName","email":"29122016162425@test.com","is_active":false,"facebook_id":null,"avatar":null,"birthday":null,"phone":null,"gender":"male"},{"id":5,"full_name":"FullName","email":"29122016162436@test.com","is_active":false,"facebook_id":null,"avatar":null,"birthday":null,"phone":null,"gender":"male"},{"id":6,"full_name":"FullName","email":"29122016162446@test.com","is_active":false,"facebook_id":null,"avatar":null,"birthday":null,"phone":null,"gender":"male"},{"id":7,"full_name":"FullName","email":"29122016162457@test.com","is_active":false,"facebook_id":null,"avatar":null,"birthday":null,"phone":null,"gender":"male"},{"id":9,"full_name":"FullName","email":"29122016162512@test.com","is_active":false,"facebook_id":null,"avatar":null,"birthday":null,"phone":null,"gender":"male"},{"id":10,"full_name":"FullName","email":"29122016162518@test.com","is_active":false,"facebook_id":null,"avatar":null,"birthday":null,"phone":null,"gender":"male"},{"id":11,"full_name":"FullName","email":"29122016162524@test.com","is_active":false,"facebook_id":null,"avatar":null,"birthday":null,"phone":null,"gender":"male"}],"meta":{"pagination":{"total":245,"count":10,"per_page":10,"current_page":1,"total_pages":25,"links":{"next":"http:\/\/54.93.81.169\/api\/v1\/management\/users?page=2"}}}}
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:24:02 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNjQyLCJleHAiOjE0ODU0MjYyNDIsIm5iZiI6MTQ4NTQyMjY0MiwianRpIjoiMDI4ZDk2MThiYzZjYjM2NTFlYWM4N2JjMzNiOTUyNzEifQ.PLfoGmr_26oOMnJ80s-_uHHag06a2HhwYYL-U3jGdBw'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNjQyLCJleHAiOjE0ODU0MjYyNDIsIm5iZiI6MTQ4NTQyMjY0MiwianRpIjoiMDI4ZDk2MThiYzZjYjM2NTFlYWM4N2JjMzNiOTUyNzEifQ.PLfoGmr_26oOMnJ80s-_uHHag06a2HhwYYL-U3jGdBw
+{"data":[{"id":1,"full_name":"John Doe","email":"john.doed@mail.com","is_active":false,"facebook_id":null,"avatar_id":null,"birthday":null,"phone":null,"gender":"male"},{"id":3,"full_name":"Testing Vitaliy","email":"testing23011@mailinator.com","is_active":false,"facebook_id":null,"avatar_id":null,"birthday":null,"phone":null,"gender":"male"},{"id":4,"full_name":"FullName","email":"23012017094011@test.com","is_active":false,"facebook_id":null,"avatar_id":null,"birthday":null,"phone":null,"gender":"male"},{"id":6,"full_name":"xylophone","email":"23012017094154@test.com","is_active":false,"facebook_id":null,"avatar_id":null,"birthday":"1991-08-06","phone":null,"gender":"male"},{"id":39,"full_name":"python","email":"25012017140753@test.com","is_active":false,"facebook_id":null,"avatar_id":null,"birthday":"1991-08-06","phone":null,"gender":"male"},{"id":8,"full_name":"FullName","email":"23012017100817@test.com","is_active":false,"facebook_id":null,"avatar_id":null,"birthday":null,"phone":null,"gender":"male"},{"id":30,"full_name":"python","email":"24012017163134@test.com","is_active":false,"facebook_id":null,"avatar_id":null,"birthday":"1991-08-06","phone":null,"gender":"male"},{"id":9,"full_name":"jumble","email":"23012017101003@test.com","is_active":false,"facebook_id":null,"avatar_id":null,"birthday":"1991-08-06","phone":null,"gender":"male"},{"id":23,"full_name":"test","email":"focus5080@gmail.com","is_active":false,"facebook_id":null,"avatar_id":null,"birthday":null,"phone":null,"gender":"male"},{"id":11,"full_name":"xylophone","email":"23012017110803@test.com","is_active":false,"facebook_id":null,"avatar_id":null,"birthday":"1991-08-06","phone":null,"gender":"male"}],"meta":{"pagination":{"total":34,"count":10,"per_page":10,"current_page":1,"total_pages":4,"links":{"next":"http:\/\/54.93.81.169\/api\/v1\/management\/users?page=2"}}}}
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_user_Show::test_01_user_page_showed_correctly</td>
-          <td class="col-duration">6.52</td>
+          <td class="col-duration">11.50</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:54:59 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQwOTksImV4cCI6MTQ4NDI5NzY5OSwibmJmIjoxNDg0Mjk0MDk5LCJqdGkiOiJiZTA5ZDJlNjE2YzhmNjg1MDNhMjZlMjAzMTM5NzYxYyJ9.yUpfC8V4Cgys58Mcm_9BGfDRGkVSBkusPVaKrS4hsH4'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQwOTksImV4cCI6MTQ4NDI5NzY5OSwibmJmIjoxNDg0Mjk0MDk5LCJqdGkiOiJiZTA5ZDJlNjE2YzhmNjg1MDNhMjZlMjAzMTM5NzYxYyJ9.yUpfC8V4Cgys58Mcm_9BGfDRGkVSBkusPVaKrS4hsH4
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:24:13 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNjUzLCJleHAiOjE0ODU0MjYyNTMsIm5iZiI6MTQ4NTQyMjY1MywianRpIjoiYjJhYzZkYjFkOTQxZDFiNGMyYzFkY2M4ZTJmYzg3NzAifQ.ifxprbqNcu4DfgxoZ7_XIhG6ewFryr-ZnTaAjdzFmD4'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNjUzLCJleHAiOjE0ODU0MjYyNTMsIm5iZiI6MTQ4NTQyMjY1MywianRpIjoiYjJhYzZkYjFkOTQxZDFiNGMyYzFkY2M4ZTJmYzg3NzAifQ.ifxprbqNcu4DfgxoZ7_XIhG6ewFryr-ZnTaAjdzFmD4
 &lt;Response [200]&gt;
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_user_Deleting::test_01_user_deleted_correctly</td>
-          <td class="col-duration">1.81</td>
+          <td class="col-duration">1.60</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"23c4d91107b6cc1a0b5b37fa41f8d0ff6ca03b6c"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:55:03 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMwMywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWdudXAiLCJpYXQiOjE0ODQyOTQxMDQsImV4cCI6MTQ4NDI5NzcwNCwibmJmIjoxNDg0Mjk0MTA0LCJqdGkiOiI3MGRkMGM4NDYxOTAzZTFmNzkwNzczMjhjMWVjZGNmZiJ9.9hL3mKD9DRmLgFtHomBLTgld8fqQg-l7uQNsWHEwlv0'}
-303
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '185', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"94753b86f3e064edf7d4462ab703fb00c880d5c2"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:24:21 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjQ2LCJpc3MiOiJodHRwOlwvXC81NC45My44MS4xNjlcL2FwaVwvdjFcL2F1dGhcL3NpZ251cCIsImlhdCI6MTQ4NTQyMjY2MywiZXhwIjoxNDg1NDI2MjYzLCJuYmYiOjE0ODU0MjI2NjMsImp0aSI6IjVjMmFhMGFiZDMwN2EyZGEwZjJkYTM0N2UwYTIzNjFhIn0.xoA2LMy0d5w6xgPfKQEwQBItQJFOpm4D_5XH9SMjFwI'}
+46
 &lt;Response [200]&gt;
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_ServerRoles::test_01_all_roles_showed_successfully</td>
-          <td class="col-duration">9.38</td>
+          <td class="col-duration">14.39</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:55:08 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxMDgsImV4cCI6MTQ4NDI5NzcwOCwibmJmIjoxNDg0Mjk0MTA4LCJqdGkiOiJiOTc3N2Y4NDEyN2Q1MDI1OTM4YjBiMWYwYmVjOGZmZSJ9.W8IAaFVDjSPfAmFGLutbXBh-BUbwFc1-wR4sqobejyM'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxMDgsImV4cCI6MTQ4NDI5NzcwOCwibmJmIjoxNDg0Mjk0MTA4LCJqdGkiOiJiOTc3N2Y4NDEyN2Q1MDI1OTM4YjBiMWYwYmVjOGZmZSJ9.W8IAaFVDjSPfAmFGLutbXBh-BUbwFc1-wR4sqobejyM
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:24:26 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNjY2LCJleHAiOjE0ODU0MjYyNjYsIm5iZiI6MTQ4NTQyMjY2NiwianRpIjoiMTQ4NWQ5OWIzNGNmMzQ2NDNkMDhmNWE2OWE4YjQwZjEifQ.6-uU0sKlrLYlnKZfmqP2XwhsEkpu1Jin2q72URVfgps'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNjY2LCJleHAiOjE0ODU0MjYyNjYsIm5iZiI6MTQ4NTQyMjY2NiwianRpIjoiMTQ4NWQ5OWIzNGNmMzQ2NDNkMDhmNWE2OWE4YjQwZjEifQ.6-uU0sKlrLYlnKZfmqP2XwhsEkpu1Jin2q72URVfgps
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_ServerRoles::test_01_all_roles_showed_unsuccessfully</td>
-          <td class="col-duration">6.38</td>
+          <td class="col-duration">11.37</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:55:17 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxMTcsImV4cCI6MTQ4NDI5NzcxNywibmJmIjoxNDg0Mjk0MTE3LCJqdGkiOiIzYjBkYWMzODI0N2MyZWJmNmFkZDI5ZWYzNzVlMGI5YSJ9.0la8PHq9maoqFJq0bBub1cxZ7HFZW2TZkrNnsFbOCx4'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxMTcsImV4cCI6MTQ4NDI5NzcxNywibmJmIjoxNDg0Mjk0MTE3LCJqdGkiOiIzYjBkYWMzODI0N2MyZWJmNmFkZDI5ZWYzNzVlMGI5YSJ9.0la8PHq9maoqFJq0bBub1cxZ7HFZW2TZkrNnsFbOCx4
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:24:40 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNjgxLCJleHAiOjE0ODU0MjYyODEsIm5iZiI6MTQ4NTQyMjY4MSwianRpIjoiNDM3MDVjMmE2MjFlMDdjZDA4MzYwZjg5MjI2YjA1NzQifQ.daz6E0IZ5ThUXbKUIEVF9rPULKn1OGqsO7oYncjoVWY'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNjgxLCJleHAiOjE0ODU0MjYyODEsIm5iZiI6MTQ4NTQyMjY4MSwianRpIjoiNDM3MDVjMmE2MjFlMDdjZDA4MzYwZjg5MjI2YjA1NzQifQ.daz6E0IZ5ThUXbKUIEVF9rPULKn1OGqsO7oYncjoVWY
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_ServerActions::test_01_all_actions_showed_successfully</td>
-          <td class="col-duration">6.38</td>
+          <td class="col-duration">11.36</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:55:23 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxMjQsImV4cCI6MTQ4NDI5NzcyNCwibmJmIjoxNDg0Mjk0MTI0LCJqdGkiOiIzYzEyMWJjMTliZjI4ZDU5YjFkM2JmNzljMTNmMTZhNCJ9.0sNN_RLPGVBWVGFkCDBJ8J75TD-Fzc6I9x6tArFG8LI'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxMjQsImV4cCI6MTQ4NDI5NzcyNCwibmJmIjoxNDg0Mjk0MTI0LCJqdGkiOiIzYzEyMWJjMTliZjI4ZDU5YjFkM2JmNzljMTNmMTZhNCJ9.0sNN_RLPGVBWVGFkCDBJ8J75TD-Fzc6I9x6tArFG8LI
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:24:52 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNjkyLCJleHAiOjE0ODU0MjYyOTIsIm5iZiI6MTQ4NTQyMjY5MiwianRpIjoiODlmMDJmODhmMWYzMTU2ODViODRjZTlhYTVhNDlkMjIifQ.roMrNv_bwgOhN5ucyIEW2QxMbC3m0cY2BpXsAtx_sR8'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNjkyLCJleHAiOjE0ODU0MjYyOTIsIm5iZiI6MTQ4NTQyMjY5MiwianRpIjoiODlmMDJmODhmMWYzMTU2ODViODRjZTlhYTVhNDlkMjIifQ.roMrNv_bwgOhN5ucyIEW2QxMbC3m0cY2BpXsAtx_sR8
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_ServerRolesCreate::test_01_roles_create_successfully</td>
-          <td class="col-duration">6.65</td>
+          <td class="col-duration">11.66</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>bccm
-{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:55:30 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxMzAsImV4cCI6MTQ4NDI5NzczMCwibmJmIjoxNDg0Mjk0MTMwLCJqdGkiOiI4NTcwMzU5NzRmNDFjZjFmYTRlMGU2NTMzODQ4MjcyMSJ9.GI-etNGMUiiLh_RSvcBDAEbbSXn8niVvek7_6TWA5M8'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxMzAsImV4cCI6MTQ4NDI5NzczMCwibmJmIjoxNDg0Mjk0MTMwLCJqdGkiOiI4NTcwMzU5NzRmNDFjZjFmYTRlMGU2NTMzODQ4MjcyMSJ9.GI-etNGMUiiLh_RSvcBDAEbbSXn8niVvek7_6TWA5M8
-{u'id': 87, u'name': u'bccm'}
-87
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>ikfl
+{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:25:03 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNzAzLCJleHAiOjE0ODU0MjYzMDMsIm5iZiI6MTQ4NTQyMjcwMywianRpIjoiZjFhYjA1MjhkZDBmMmYxMmVmYTUzNDJkNjFkNWEzZjYifQ.ydX9mPoCdl7GKObxZ3kiWRdHK_e-F3tJsF5JkZHv6fg'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNzAzLCJleHAiOjE0ODU0MjYzMDMsIm5iZiI6MTQ4NTQyMjcwMywianRpIjoiZjFhYjA1MjhkZDBmMmYxMmVmYTUzNDJkNjFkNWEzZjYifQ.ydX9mPoCdl7GKObxZ3kiWRdHK_e-F3tJsF5JkZHv6fg
+{u'id': 32, u'name': u'ikfl'}
+32
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_ServerShowRole::test_01_roles_show_successfully</td>
-          <td class="col-duration">6.45</td>
+          <td class="col-duration">11.42</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:55:36 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxMzcsImV4cCI6MTQ4NDI5NzczNywibmJmIjoxNDg0Mjk0MTM3LCJqdGkiOiIwNmRiZTJhODIzZWEyYjcwOWFiYzVkYTkzNDRmZGJjMSJ9.izc650u81JTrG6Uyi21h7xf6I3VH-AFQ67qzd2pZVVU'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxMzcsImV4cCI6MTQ4NDI5NzczNywibmJmIjoxNDg0Mjk0MTM3LCJqdGkiOiIwNmRiZTJhODIzZWEyYjcwOWFiYzVkYTkzNDRmZGJjMSJ9.izc650u81JTrG6Uyi21h7xf6I3VH-AFQ67qzd2pZVVU
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:25:15 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNzE1LCJleHAiOjE0ODU0MjYzMTUsIm5iZiI6MTQ4NTQyMjcxNSwianRpIjoiNDUwNDBkZDM0ZjFmNDI1MDQ2YTk0NzAyODRhNzc5N2MifQ.7UNs7i_xlx21996UsHnCAR0nfO0nfav5ZGWOYkhv7rw'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNzE1LCJleHAiOjE0ODU0MjYzMTUsIm5iZiI6MTQ4NTQyMjcxNSwianRpIjoiNDUwNDBkZDM0ZjFmNDI1MDQ2YTk0NzAyODRhNzc5N2MifQ.7UNs7i_xlx21996UsHnCAR0nfO0nfav5ZGWOYkhv7rw
 5
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_ServerUpdateRole::test_01_roles_show_successfully</td>
-          <td class="col-duration">12.88</td>
+          <td class="col-duration">22.85</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:55:43 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxNDMsImV4cCI6MTQ4NDI5Nzc0MywibmJmIjoxNDg0Mjk0MTQzLCJqdGkiOiI1MmE5NWQ2MDIwYWUwZmEzOTI4ZjJlOGY4N2RjNTZlNCJ9.H-mNmccxCFsBlC5kSdtCmUgazmkgCAdCkKT3Cf1wvC4'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxNDMsImV4cCI6MTQ4NDI5Nzc0MywibmJmIjoxNDg0Mjk0MTQzLCJqdGkiOiI1MmE5NWQ2MDIwYWUwZmEzOTI4ZjJlOGY4N2RjNTZlNCJ9.H-mNmccxCFsBlC5kSdtCmUgazmkgCAdCkKT3Cf1wvC4
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:25:26 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNzI2LCJleHAiOjE0ODU0MjYzMjYsIm5iZiI6MTQ4NTQyMjcyNiwianRpIjoiNjBjYTgyNTBlOWI0OTMzMTFkMTU4OWQxZTFmNjM3MTgifQ.XyBCQ70KctWtoyaDVCmHXegTn7pvlwEOr8YgD6RSdsY'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNzI2LCJleHAiOjE0ODU0MjYzMjYsIm5iZiI6MTQ4NTQyMjcyNiwianRpIjoiNjBjYTgyNTBlOWI0OTMzMTFkMTU4OWQxZTFmNjM3MTgifQ.XyBCQ70KctWtoyaDVCmHXegTn7pvlwEOr8YgD6RSdsY
 3
-abli
-{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:55:49 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxNDksImV4cCI6MTQ4NDI5Nzc0OSwibmJmIjoxNDg0Mjk0MTQ5LCJqdGkiOiJjYWJkYjIxMGNmNTcwZjI4NzBjOWMyMzE5OTI2Y2Q3NSJ9.DRXe8dw8VblpExxyUXYl92nrokJC6BEO0FhomoFpL7k'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxNDksImV4cCI6MTQ4NDI5Nzc0OSwibmJmIjoxNDg0Mjk0MTQ5LCJqdGkiOiJjYWJkYjIxMGNmNTcwZjI4NzBjOWMyMzE5OTI2Y2Q3NSJ9.DRXe8dw8VblpExxyUXYl92nrokJC6BEO0FhomoFpL7k
-{"id":88,"name":"abli"}
-{u'id': 88, u'name': u'abli'}
-bcla
+bmfc
+{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:25:38 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNzM4LCJleHAiOjE0ODU0MjYzMzgsIm5iZiI6MTQ4NTQyMjczOCwianRpIjoiZmQyYjdiZTBkNDljYzc1YzdjN2Y4ODJmYjEzYmQ2MDAifQ.CZFN5ihsa6k0WcaPBDQQdib_htjKXXn0K9Bnemy11Hg'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNzM4LCJleHAiOjE0ODU0MjYzMzgsIm5iZiI6MTQ4NTQyMjczOCwianRpIjoiZmQyYjdiZTBkNDljYzc1YzdjN2Y4ODJmYjEzYmQ2MDAifQ.CZFN5ihsa6k0WcaPBDQQdib_htjKXXn0K9Bnemy11Hg
+{"id":33,"name":"bmfc"}
+{u'id': 33, u'name': u'bmfc'}
+dfei
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_offer_Creation::test_01_offer_created_correctly</td>
-          <td class="col-duration">6.39</td>
+          <td class="col-duration">11.39</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:55:56 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxNTYsImV4cCI6MTQ4NDI5Nzc1NiwibmJmIjoxNDg0Mjk0MTU2LCJqdGkiOiIxMDZmZjljODljOGRjNWY4OWE5YTQ3MzgwYjJlMjQyMyJ9.1eoOpOmUHi2fAklCKeJjeFoetXzshLw-XvHomiYJxaI'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxNTYsImV4cCI6MTQ4NDI5Nzc1NiwibmJmIjoxNDg0Mjk0MTU2LCJqdGkiOiIxMDZmZjljODljOGRjNWY4OWE5YTQ3MzgwYjJlMjQyMyJ9.1eoOpOmUHi2fAklCKeJjeFoetXzshLw-XvHomiYJxaI
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:25:49 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNzQ5LCJleHAiOjE0ODU0MjYzNDksIm5iZiI6MTQ4NTQyMjc0OSwianRpIjoiZWRhNWVkOGUzM2U4M2EyMzdiZDdlOThmMDljMGQzNTMifQ.00o3fvCqaYLai_PKAejmRVbmRKLpdd1MqqaWSG7js60'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNzQ5LCJleHAiOjE0ODU0MjYzNDksIm5iZiI6MTQ4NTQyMjc0OSwianRpIjoiZWRhNWVkOGUzM2U4M2EyMzdiZDdlOThmMDljMGQzNTMifQ.00o3fvCqaYLai_PKAejmRVbmRKLpdd1MqqaWSG7js60
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_offer_Approving::test_01_offer_approved_correctly</td>
-          <td class="col-duration">6.72</td>
+          <td class="col-duration">11.69</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:56:02 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxNjIsImV4cCI6MTQ4NDI5Nzc2MiwibmJmIjoxNDg0Mjk0MTYyLCJqdGkiOiI1MDA5ZjA0ZTM1N2JmZWY4Yzc4ODg4Mzk1NjBmZTdmYyJ9.SKJ-PTEm4WlnInRrUt_1RAR8Emxw01QY5NYgffK1trM'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxNjIsImV4cCI6MTQ4NDI5Nzc2MiwibmJmIjoxNDg0Mjk0MTYyLCJqdGkiOiI1MDA5ZjA0ZTM1N2JmZWY4Yzc4ODg4Mzk1NjBmZTdmYyJ9.SKJ-PTEm4WlnInRrUt_1RAR8Emxw01QY5NYgffK1trM
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:26:01 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNzYxLCJleHAiOjE0ODU0MjYzNjEsIm5iZiI6MTQ4NTQyMjc2MSwianRpIjoiYTUzNTlhMzE1NzliZDZjMWFhMDUyMGExNGMxYTA1OGYifQ.ohLasFchoJfwJPqykBl0ZXx4Irz1GMek-nF8NvIL1bE'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNzYxLCJleHAiOjE0ODU0MjYzNjEsIm5iZiI6MTQ4NTQyMjc2MSwianRpIjoiYTUzNTlhMzE1NzliZDZjMWFhMDUyMGExNGMxYTA1OGYifQ.ohLasFchoJfwJPqykBl0ZXx4Irz1GMek-nF8NvIL1bE
 &lt;Response [200]&gt;
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_offer_Disapproving::test_01_offer_disapproved_correctly</td>
-          <td class="col-duration">6.66</td>
+          <td class="col-duration">11.67</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:56:09 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxNjksImV4cCI6MTQ4NDI5Nzc2OSwibmJmIjoxNDg0Mjk0MTY5LCJqdGkiOiIxNWUzNTM5NjQ2MGEzMjNiN2RlODA3YTNiNzNmZmJlOCJ9.15i3DwywcyNfhq18pXPXzLoPHeFgCAraJVidHNoRlqw'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxNjksImV4cCI6MTQ4NDI5Nzc2OSwibmJmIjoxNDg0Mjk0MTY5LCJqdGkiOiIxNWUzNTM5NjQ2MGEzMjNiN2RlODA3YTNiNzNmZmJlOCJ9.15i3DwywcyNfhq18pXPXzLoPHeFgCAraJVidHNoRlqw
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:26:12 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNzcyLCJleHAiOjE0ODU0MjYzNzIsIm5iZiI6MTQ4NTQyMjc3MiwianRpIjoiY2M5NGQ2YWUzZWJmZjRmMzk3NzI0ZjI1N2Y4YzlhMTIifQ.2kAp3bMgFbTYFngL-dVJdqfYoG7NI_XzIAxHd4KsDBg'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNzcyLCJleHAiOjE0ODU0MjYzNzIsIm5iZiI6MTQ4NTQyMjc3MiwianRpIjoiY2M5NGQ2YWUzZWJmZjRmMzk3NzI0ZjI1N2Y4YzlhMTIifQ.2kAp3bMgFbTYFngL-dVJdqfYoG7NI_XzIAxHd4KsDBg
 &lt;Response [200]&gt;
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_offer_Publishing::test_01_offer_published_correctly</td>
-          <td class="col-duration">6.69</td>
+          <td class="col-duration">11.68</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:56:16 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxNzYsImV4cCI6MTQ4NDI5Nzc3NiwibmJmIjoxNDg0Mjk0MTc2LCJqdGkiOiI0MjBmYWJhYmY3MTBlNmEyMDJjYTZhMmFhMWI0ODVmNCJ9.w1Zv_F78Sg4OPCFxUVKsFnNhGWD74FvdkAwrFQ94SFI'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxNzYsImV4cCI6MTQ4NDI5Nzc3NiwibmJmIjoxNDg0Mjk0MTc2LCJqdGkiOiI0MjBmYWJhYmY3MTBlNmEyMDJjYTZhMmFhMWI0ODVmNCJ9.w1Zv_F78Sg4OPCFxUVKsFnNhGWD74FvdkAwrFQ94SFI
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:26:24 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNzg0LCJleHAiOjE0ODU0MjYzODQsIm5iZiI6MTQ4NTQyMjc4NCwianRpIjoiN2I0ZTQ1MmE3MDNiZDhjYjQyNzNmNWQyYTExZTFjZDAifQ.ucr-9z5qMk5Ul4hHGMkZimUuFpmljUgn8EKy62OUkOo'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNzg0LCJleHAiOjE0ODU0MjYzODQsIm5iZiI6MTQ4NTQyMjc4NCwianRpIjoiN2I0ZTQ1MmE3MDNiZDhjYjQyNzNmNWQyYTExZTFjZDAifQ.ucr-9z5qMk5Ul4hHGMkZimUuFpmljUgn8EKy62OUkOo
 &lt;Response [200]&gt;
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_offer_Unpublishing::test_01_offer_unpublished_correctly</td>
-          <td class="col-duration">6.69</td>
+          <td class="col-duration">11.72</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:56:22 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxODIsImV4cCI6MTQ4NDI5Nzc4MiwibmJmIjoxNDg0Mjk0MTgyLCJqdGkiOiJlYjU4YTIxYWM3YjNiNDU0MWY0NDgwMzkyMDE2NDMwMSJ9.UqnLZnhW5StsRbo0JU0SoEJFhBNxjmH2V7qZ2yQaMxU'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxODIsImV4cCI6MTQ4NDI5Nzc4MiwibmJmIjoxNDg0Mjk0MTgyLCJqdGkiOiJlYjU4YTIxYWM3YjNiNDU0MWY0NDgwMzkyMDE2NDMwMSJ9.UqnLZnhW5StsRbo0JU0SoEJFhBNxjmH2V7qZ2yQaMxU
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:26:36 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNzk2LCJleHAiOjE0ODU0MjYzOTYsIm5iZiI6MTQ4NTQyMjc5NiwianRpIjoiMmVmMDNhMDc3ZWYyMmNiYzdjMzJlYTY2MzYwNTJmNjIifQ.UI2qjuzJP7aeelgY9RSwC0x3QQSjTH_brRUAg0gFR8U'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyNzk2LCJleHAiOjE0ODU0MjYzOTYsIm5iZiI6MTQ4NTQyMjc5NiwianRpIjoiMmVmMDNhMDc3ZWYyMmNiYzdjMzJlYTY2MzYwNTJmNjIifQ.UI2qjuzJP7aeelgY9RSwC0x3QQSjTH_brRUAg0gFR8U
 &lt;Response [200]&gt;
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_offer_Extra_Categories::test_01_offer_added_and_removed_extra_categories_correctly</td>
-          <td class="col-duration">7.21</td>
+          <td class="col-duration">12.19</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:56:29 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxODksImV4cCI6MTQ4NDI5Nzc4OSwibmJmIjoxNDg0Mjk0MTg5LCJqdGkiOiJlMTg4YWNkZjIyZjZjNWYwYjMyZWQzMjc1YjQ3YjNiNSJ9.zruoN_O4cMMPubqLPiIHN9i4b2VHsjAs6NNDQbnIIGY'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxODksImV4cCI6MTQ4NDI5Nzc4OSwibmJmIjoxNDg0Mjk0MTg5LCJqdGkiOiJlMTg4YWNkZjIyZjZjNWYwYjMyZWQzMjc1YjQ3YjNiNSJ9.zruoN_O4cMMPubqLPiIHN9i4b2VHsjAs6NNDQbnIIGY
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:26:47 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyODA3LCJleHAiOjE0ODU0MjY0MDcsIm5iZiI6MTQ4NTQyMjgwNywianRpIjoiZTlmNjY0NDg3OThjODFhODk1YTg1NWFiYjVmOTI0MjMifQ.7Q7PB0VaH5KGA4kVfH8iFYdbJFSW6ydhnqlOfD9iJuw'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyODA3LCJleHAiOjE0ODU0MjY0MDcsIm5iZiI6MTQ4NTQyMjgwNywianRpIjoiZTlmNjY0NDg3OThjODFhODk1YTg1NWFiYjVmOTI0MjMifQ.7Q7PB0VaH5KGA4kVfH8iFYdbJFSW6ydhnqlOfD9iJuw
 &lt;Response [200]&gt;
 &lt;Response [200]&gt;
 </div></td></tr></tbody>
@@ -839,12 +901,12 @@ Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wv
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_offer_Deleting::test_01_offer_deleted_correctly</td>
-          <td class="col-duration">6.69</td>
+          <td class="col-duration">11.70</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:56:36 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxOTYsImV4cCI6MTQ4NDI5Nzc5NiwibmJmIjoxNDg0Mjk0MTk2LCJqdGkiOiI4MmQwNTUyNGNlYzJjYjczODk5ZDUwYjNiMjJiZGY1NyJ9.wiaIz6ALX5f0hxkWWCZXjw6_C0W245xtmIKlC0rnuHI'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQxOTYsImV4cCI6MTQ4NDI5Nzc5NiwibmJmIjoxNDg0Mjk0MTk2LCJqdGkiOiI4MmQwNTUyNGNlYzJjYjczODk5ZDUwYjNiMjJiZGY1NyJ9.wiaIz6ALX5f0hxkWWCZXjw6_C0W245xtmIKlC0rnuHI
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:26:59 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyODIwLCJleHAiOjE0ODU0MjY0MjAsIm5iZiI6MTQ4NTQyMjgyMCwianRpIjoiNjc0MTlhNTZlY2MxNTVhOTAyMDlkMjQ3ZTUzYTEwNzEifQ.DIYTDvhrFzti7Qo1fdzyV3ZZ4WFtt2xWyTZapCxZ-cg'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyODIwLCJleHAiOjE0ODU0MjY0MjAsIm5iZiI6MTQ4NTQyMjgyMCwianRpIjoiNjc0MTlhNTZlY2MxNTVhOTAyMDlkMjQ3ZTUzYTEwNzEifQ.DIYTDvhrFzti7Qo1fdzyV3ZZ4WFtt2xWyTZapCxZ-cg
 &lt;Response [200]&gt;
 &lt;Response [200]&gt;
 </div></td></tr></tbody>
@@ -852,24 +914,24 @@ Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wv
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_All_Partners::test_01_all_partners_opened</td>
-          <td class="col-duration">6.38</td>
+          <td class="col-duration">11.37</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:56:43 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQyMDMsImV4cCI6MTQ4NDI5NzgwMywibmJmIjoxNDg0Mjk0MjAzLCJqdGkiOiJjOTYyMjcyNGVjM2I1NDhhMzYyOWQ4MTNhN2JkMGYxNCJ9.p2Re1Jafvsdp5PebNhD_OGYSNEwlD9m6hE9Ud6n4DKc'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQyMDMsImV4cCI6MTQ4NDI5NzgwMywibmJmIjoxNDg0Mjk0MjAzLCJqdGkiOiJjOTYyMjcyNGVjM2I1NDhhMzYyOWQ4MTNhN2JkMGYxNCJ9.p2Re1Jafvsdp5PebNhD_OGYSNEwlD9m6hE9Ud6n4DKc
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:27:11 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyODMxLCJleHAiOjE0ODU0MjY0MzEsIm5iZiI6MTQ4NTQyMjgzMSwianRpIjoiYWU4NDYxY2NlY2I0YTU4ZjY2OTRkM2NiY2Y3YTgwOGEifQ.7Hp9fQU7xVuUObMcQzFzqyHD6_JJdYEtsWzqd9Iqmw8'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyODMxLCJleHAiOjE0ODU0MjY0MzEsIm5iZiI6MTQ4NTQyMjgzMSwianRpIjoiYWU4NDYxY2NlY2I0YTU4ZjY2OTRkM2NiY2Y3YTgwOGEifQ.7Hp9fQU7xVuUObMcQzFzqyHD6_JJdYEtsWzqd9Iqmw8
 &lt;Response [200]&gt;
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_Partner_Show::test_01_partner_page_showed_correctly</td>
-          <td class="col-duration">6.43</td>
+          <td class="col-duration">11.41</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:56:49 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQyMDksImV4cCI6MTQ4NDI5NzgwOSwibmJmIjoxNDg0Mjk0MjA5LCJqdGkiOiJjNWQyODJkNzczNGEyZmYxMGMwMzVhMjBlZGM5Y2I5YiJ9.F4W2kDZdEOU6KPfejJTu8YT770nEBNotRu5tKlAZQ6E'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQyMDksImV4cCI6MTQ4NDI5NzgwOSwibmJmIjoxNDg0Mjk0MjA5LCJqdGkiOiJjNWQyODJkNzczNGEyZmYxMGMwMzVhMjBlZGM5Y2I5YiJ9.F4W2kDZdEOU6KPfejJTu8YT770nEBNotRu5tKlAZQ6E
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:27:23 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyODQzLCJleHAiOjE0ODU0MjY0NDMsIm5iZiI6MTQ4NTQyMjg0MywianRpIjoiOWVjOGNlN2U1ZWFlMmMyMmVmZTVhZWM1YjQ5MGZjOGMifQ.fApUASpN-ctMZ96A0Bbpbtp3XMSN1l8w0jPuF0o1NeA'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyODQzLCJleHAiOjE0ODU0MjY0NDMsIm5iZiI6MTQ4NTQyMjg0MywianRpIjoiOWVjOGNlN2U1ZWFlMmMyMmVmZTVhZWM1YjQ5MGZjOGMifQ.fApUASpN-ctMZ96A0Bbpbtp3XMSN1l8w0jPuF0o1NeA
 6
 &lt;Response [200]&gt;
 </div></td></tr></tbody>
@@ -877,37 +939,75 @@ Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wv
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_Partner_Updating::test_01_partner_updated_correctly</td>
-          <td class="col-duration">6.38</td>
+          <td class="col-duration">11.35</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:56:56 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQyMTYsImV4cCI6MTQ4NDI5NzgxNiwibmJmIjoxNDg0Mjk0MjE2LCJqdGkiOiIzM2FiODE0N2M3Y2Y3ZjEzYzU0NDI1NTY4YzczMzZjZSJ9.LINER4ZYeqY3ztWgubZsDR2EO_8PM4WY6lYKq7TQ3SQ'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQyMTYsImV4cCI6MTQ4NDI5NzgxNiwibmJmIjoxNDg0Mjk0MjE2LCJqdGkiOiIzM2FiODE0N2M3Y2Y3ZjEzYzU0NDI1NTY4YzczMzZjZSJ9.LINER4ZYeqY3ztWgubZsDR2EO_8PM4WY6lYKq7TQ3SQ
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:27:34 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyODU0LCJleHAiOjE0ODU0MjY0NTQsIm5iZiI6MTQ4NTQyMjg1NCwianRpIjoiYTE2NDQyYzA3M2I5YmI2ZTJlN2U5M2U1OWZiMzE0MTQifQ.OLZ1WP49rVJMtpRZirQrNErW083PuK5bdJeBdkI1ri8'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyODU0LCJleHAiOjE0ODU0MjY0NTQsIm5iZiI6MTQ4NTQyMjg1NCwianRpIjoiYTE2NDQyYzA3M2I5YmI2ZTJlN2U5M2U1OWZiMzE0MTQifQ.OLZ1WP49rVJMtpRZirQrNErW083PuK5bdJeBdkI1ri8
 &lt;Response [200]&gt;
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_Role_Attaching::test_01_role_is_attached_successfully</td>
-          <td class="col-duration">6.36</td>
+          <td class="col-duration">11.37</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:57:02 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQyMjIsImV4cCI6MTQ4NDI5NzgyMiwibmJmIjoxNDg0Mjk0MjIyLCJqdGkiOiI3M2NmNWUzODU0NDEyZTYwYTJiYTBkYTUxNmM0OWIxZiJ9.ZK9kWZuA8EEuy7JgHXEvo5b9zgsuBOsKreAWTRbvM5A'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQyMjIsImV4cCI6MTQ4NDI5NzgyMiwibmJmIjoxNDg0Mjk0MjIyLCJqdGkiOiI3M2NmNWUzODU0NDEyZTYwYTJiYTBkYTUxNmM0OWIxZiJ9.ZK9kWZuA8EEuy7JgHXEvo5b9zgsuBOsKreAWTRbvM5A
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:27:45 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyODY1LCJleHAiOjE0ODU0MjY0NjUsIm5iZiI6MTQ4NTQyMjg2NSwianRpIjoiYzdmNzZkMGEwZTI3MWQwNWIzZGQxMzZkZmMzMmVmODIifQ._bsSy0mFfCcY-7wSNfXqAMurDtLqh1IZERyqmInw3cs'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyODY1LCJleHAiOjE0ODU0MjY0NjUsIm5iZiI6MTQ4NTQyMjg2NSwianRpIjoiYzdmNzZkMGEwZTI3MWQwNWIzZGQxMzZkZmMzMmVmODIifQ._bsSy0mFfCcY-7wSNfXqAMurDtLqh1IZERyqmInw3cs
 &lt;Response [204]&gt;
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">management.py::Test_004_Role_Detaching::test_01_role_is_detached_successfully</td>
-          <td class="col-duration">6.41</td>
+          <td class="col-duration">11.39</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '202', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"850c7b827ec0a95319a4720d57cd5067187e9e51"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Fri, 13 Jan 2017 07:57:08 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQyMjksImV4cCI6MTQ4NDI5NzgyOSwibmJmIjoxNDg0Mjk0MjI5LCJqdGkiOiJjYWUzZmE0NTY5Yjc5ODA1MTNmOWE5ZWM4NjhkODQ1OCJ9.KSFK-KFeOj5_MD9GlmL2uKo0gkb5Aqg6NT6eEbGRHZI'}
-Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wvNTQuOTMuODEuMTY5XC9hcGlcL3YxXC9hdXRoXC9zaWduaW4iLCJpYXQiOjE0ODQyOTQyMjksImV4cCI6MTQ4NDI5NzgyOSwibmJmIjoxNDg0Mjk0MjI5LCJqdGkiOiJjYWUzZmE0NTY5Yjc5ODA1MTNmOWE5ZWM4NjhkODQ1OCJ9.KSFK-KFeOj5_MD9GlmL2uKo0gkb5Aqg6NT6eEbGRHZI
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:27:57 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyODc3LCJleHAiOjE0ODU0MjY0NzcsIm5iZiI6MTQ4NTQyMjg3NywianRpIjoiODdjYWExNjgwNzA0OGQzMTFhY2ExYTI2YjUyY2Y1MDUifQ.2OK_iyl7lnRVKADcc9S8_CpwYDN6lyAxPNsR1DY74eQ'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyODc3LCJleHAiOjE0ODU0MjY0NzcsIm5iZiI6MTQ4NTQyMjg3NywianRpIjoiODdjYWExNjgwNzA0OGQzMTFhY2ExYTI2YjUyY2Y1MDUifQ.2OK_iyl7lnRVKADcc9S8_CpwYDN6lyAxPNsR1DY74eQ
 &lt;Response [204]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_Image_Attaching::test_01_image_is_attached_successfully</td>
+          <td class="col-duration">11.49</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:28:08 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyODg4LCJleHAiOjE0ODU0MjY0ODgsIm5iZiI6MTQ4NTQyMjg4OCwianRpIjoiNGUzZGMzZjgwZTdhODMzMDA2OTJkMTYyOThlMzljZmQifQ.zIkALgUXcynmKXBsqQcXHPIK3RYnU_rSf6WU5rqJmDM'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyODg4LCJleHAiOjE0ODU0MjY0ODgsIm5iZiI6MTQ4NTQyMjg4OCwianRpIjoiNGUzZGMzZjgwZTdhODMzMDA2OTJkMTYyOThlMzljZmQifQ.zIkALgUXcynmKXBsqQcXHPIK3RYnU_rSf6WU5rqJmDM
+&lt;Response [201]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_attach_image_to_business::test_01_image_is_attached_successfully</td>
+          <td class="col-duration">15.89</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:28:22 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyOTAyLCJleHAiOjE0ODU0MjY1MDIsIm5iZiI6MTQ4NTQyMjkwMiwianRpIjoiOGU4MzZiYjQ4ODgyZmY0OGI5ZGIwYjY3NzJhNGI1NmYifQ.yKoJnUyBbDTYlKwudnafV3Ga-SMdELO7VQlrXeceOqI'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyOTAyLCJleHAiOjE0ODU0MjY1MDIsIm5iZiI6MTQ4NTQyMjkwMiwianRpIjoiOGU4MzZiYjQ4ODgyZmY0OGI5ZGIwYjY3NzJhNGI1NmYifQ.yKoJnUyBbDTYlKwudnafV3Ga-SMdELO7VQlrXeceOqI
+{u'description': u'string', u'geo_longitude': u'22.4519749', u'created_at': u'2017-01-26 09:28:32', u'updated_at': u'2017-01-26 09:28:32', u'business_id_by_partner': u'string', u'phone': None, u'email': u'26012017112832@test.com', u'link': None, u'address': u'string', u'logo': None, u'partner_id': 1, u'id': 148, u'geo_latitude': u'48.92279', u'name': u'string'}
+&lt;Response [201]&gt;
+&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">management.py::Test_004_Image_Uploading::test_01_image_is_upload_successfully</td>
+          <td class="col-duration">11.92</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:28:35 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyOTE2LCJleHAiOjE0ODU0MjY1MTYsIm5iZiI6MTQ4NTQyMjkxNiwianRpIjoiOTFhNDQxMWVmZWNiZTdkNTVmMGVhZThmYzdkOGRiMGYifQ.t7cPn17C-1VGWLDw9tD1wNPba-cxn5XwWWjaLmnGwok'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyOTE2LCJleHAiOjE0ODU0MjY1MTYsIm5iZiI6MTQ4NTQyMjkxNiwianRpIjoiOTFhNDQxMWVmZWNiZTdkNTVmMGVhZThmYzdkOGRiMGYifQ.t7cPn17C-1VGWLDw9tD1wNPba-cxn5XwWWjaLmnGwok
+{u'user_id': 3, u'created_at': u'2017-01-26', u'updated_at': u'2017-01-26', u'image_src': u'https://s3.eu-central-1.amazonaws.com/compradofiles/uploads/pictures/1501857383/1485422924_pic', u'partner_url': None, u'id': 634}
 </div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
@@ -922,7 +1022,7 @@ Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wv
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">search.py::Test_004_Search::test_02_search_successfully</td>
-          <td class="col-duration">0.14</td>
+          <td class="col-duration">0.20</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
@@ -931,7 +1031,7 @@ Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wv
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">search.py::Test_004_Search1::test_01_search_successfully</td>
-          <td class="col-duration">0.14</td>
+          <td class="col-duration">0.13</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
@@ -941,7 +1041,7 @@ Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wv
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">search.py::Test_004_Search2::test_01_search_successfully</td>
-          <td class="col-duration">0.14</td>
+          <td class="col-duration">0.13</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
@@ -951,7 +1051,7 @@ Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wv
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">search.py::Test_004_Search3::test_01_search_successfully</td>
-          <td class="col-duration">0.13</td>
+          <td class="col-duration">0.12</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
@@ -981,8 +1081,109 @@ Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjI2NywiaXNzIjoiaHR0cDpcL1wv
         <tr>
           <td class="col-result">Passed</td>
           <td class="col-name">search.py::Test_004_Search6::test_01_search_successfully</td>
-          <td class="col-duration">0.17</td>
+          <td class="col-duration">0.19</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="5">
-            <div class="empty log">No log output captured.</div></td></tr></tbody></table></body></html>
+            <div class="empty log">No log output captured.</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">tags.py::test_authorization</td>
+          <td class="col-duration">5.20</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:28:46 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyOTI2LCJleHAiOjE0ODU0MjY1MjYsIm5iZiI6MTQ4NTQyMjkyNiwianRpIjoiM2RhMGVkNzEwNjZmYmI0MzhjZjQxOGM1OWQzNTk3NjIifQ.AmwGM3L6u4atk_leepliFuj9vD9d-cSMvfkSHea-qzE'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyOTI2LCJleHAiOjE0ODU0MjY1MjYsIm5iZiI6MTQ4NTQyMjkyNiwianRpIjoiM2RhMGVkNzEwNjZmYmI0MzhjZjQxOGM1OWQzNTk3NjIifQ.AmwGM3L6u4atk_leepliFuj9vD9d-cSMvfkSHea-qzE
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">tags.py::Test_004_All_tags::test_01_all_tags_opened</td>
+          <td class="col-duration">5.35</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:28:51 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyOTMxLCJleHAiOjE0ODU0MjY1MzEsIm5iZiI6MTQ4NTQyMjkzMSwianRpIjoiZTFjN2NiZjA4NzQ2YzJiYTdjM2Y4YWM5YzMxNWI3MDEifQ.V0QQQx9FkJwyy9dpD97aX0-EsuZ4uGZadEIXwP27H6w'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyOTMxLCJleHAiOjE0ODU0MjY1MzEsIm5iZiI6MTQ4NTQyMjkzMSwianRpIjoiZTFjN2NiZjA4NzQ2YzJiYTdjM2Y4YWM5YzMxNWI3MDEifQ.V0QQQx9FkJwyy9dpD97aX0-EsuZ4uGZadEIXwP27H6w
+&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">tags.py::Test_004_tag_Show::test_01_tag_page_short_version_showed_correctly</td>
+          <td class="col-duration">5.52</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:28:56 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyOTM2LCJleHAiOjE0ODU0MjY1MzYsIm5iZiI6MTQ4NTQyMjkzNiwianRpIjoiMzNjYmRkZjE3NDhjYTcwNWEwMWNmZGZlMjZkMWM5ZjUifQ.zFOkSKnCNY1pXwCvvX-2Rx4JXD9UP0BbZit5LOuIFNw'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyOTM2LCJleHAiOjE0ODU0MjY1MzYsIm5iZiI6MTQ4NTQyMjkzNiwianRpIjoiMzNjYmRkZjE3NDhjYTcwNWEwMWNmZGZlMjZkMWM5ZjUifQ.zFOkSKnCNY1pXwCvvX-2Rx4JXD9UP0BbZit5LOuIFNw
+{u'meta': {u'pagination': {u'count': 10, u'links': {u'next': u'http://54.93.81.169/api/v1/management/tags?page=2'}, u'current_page': 1, u'total_pages': 4, u'per_page': 10, u'total': 34}}, u'data': [{u'is_special': False, u'matching_coefficient': 0, u'id': 1, u'name': u'Medicinsk fotv\xe5rd'}, {u'is_special': False, u'matching_coefficient': 0, u'id': 2, u'name': u'Fotv\xe5rd Pedikyr'}, {u'is_special': False, u'matching_coefficient': 0, u'id': 3, u'name': u'\xc5terbes\xf6k naglar'}, {u'is_special': False, u'matching_coefficient': 0, u'id': 4, u'name': u'P\xe5fyllning naturell'}, {u'is_special': False, u'matching_coefficient': 0, u'id': 5, u'name': u'Fransf\xf6rl\xe4ngnng'}, {u'is_special': False, u'matching_coefficient': 0, u'id': 6, u'name': u'Naglar Manikyr'}, {u'is_special': False, u'matching_coefficient': 0, u'id': 7, u'name': u'Kiropraktik \xc5terbes\xf6k'}, {u'is_special': False, u'matching_coefficient': 0, u'id': 8, u'name': u'Naprapatbehandling'}, {u'is_special': False, u'matching_coefficient': 0, u'id': 9, u'name': u'Normal p\xe5fyllning singel'}, {u'is_special': False, u'matching_coefficient': 0, u'id': 10, u'name': u'Stor p\xe5fyllning volym'}]}
+{u'is_special': False, u'matching_coefficient': 0, u'id': 1, u'name': u'Medicinsk fotv\xe5rd'}
+1
+&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">tags.py::Test_004_tag_Show::test_01_tag_page_showed_correctly</td>
+          <td class="col-duration">5.48</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:29:02 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyOTQyLCJleHAiOjE0ODU0MjY1NDIsIm5iZiI6MTQ4NTQyMjk0MiwianRpIjoiOGZkM2I4MGZmMzQyMjU0NmRhYjFhYTU0NWUyYzU2ODYifQ.rC-jkEac2W-jx4_A6Rf7E-F4elIT75wr56W6GgC9J-0'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyOTQyLCJleHAiOjE0ODU0MjY1NDIsIm5iZiI6MTQ4NTQyMjk0MiwianRpIjoiOGZkM2I4MGZmMzQyMjU0NmRhYjFhYTU0NWUyYzU2ODYifQ.rC-jkEac2W-jx4_A6Rf7E-F4elIT75wr56W6GgC9J-0
+{u'meta': {u'pagination': {u'count': 10, u'links': {u'next': u'http://54.93.81.169/api/v1/management/tags?page=2'}, u'current_page': 1, u'total_pages': 4, u'per_page': 10, u'total': 34}}, u'data': [{u'is_special': False, u'matching_coefficient': 0, u'id': 1, u'name': u'Medicinsk fotv\xe5rd'}, {u'is_special': False, u'matching_coefficient': 0, u'id': 2, u'name': u'Fotv\xe5rd Pedikyr'}, {u'is_special': False, u'matching_coefficient': 0, u'id': 3, u'name': u'\xc5terbes\xf6k naglar'}, {u'is_special': False, u'matching_coefficient': 0, u'id': 4, u'name': u'P\xe5fyllning naturell'}, {u'is_special': False, u'matching_coefficient': 0, u'id': 5, u'name': u'Fransf\xf6rl\xe4ngnng'}, {u'is_special': False, u'matching_coefficient': 0, u'id': 6, u'name': u'Naglar Manikyr'}, {u'is_special': False, u'matching_coefficient': 0, u'id': 7, u'name': u'Kiropraktik \xc5terbes\xf6k'}, {u'is_special': False, u'matching_coefficient': 0, u'id': 8, u'name': u'Naprapatbehandling'}, {u'is_special': False, u'matching_coefficient': 0, u'id': 9, u'name': u'Normal p\xe5fyllning singel'}, {u'is_special': False, u'matching_coefficient': 0, u'id': 10, u'name': u'Stor p\xe5fyllning volym'}]}
+{u'is_special': False, u'matching_coefficient': 0, u'id': 1, u'name': u'Medicinsk fotv\xe5rd'}
+1
+&lt;Response [200]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">tags.py::Test_004_tags_Creation::test_01_tags_created_correctly</td>
+          <td class="col-duration">15.39</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:29:12 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyOTUyLCJleHAiOjE0ODU0MjY1NTIsIm5iZiI6MTQ4NTQyMjk1MiwianRpIjoiZjUzYTAzMWEyYTFlYjFhZTllNjI2YzkyNzE5MTY4ZmQifQ.0wKf5-IiSm8m2KDgQrPu9E_Os0Z1ZyO2Kue-aeKVDUs'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyOTUyLCJleHAiOjE0ODU0MjY1NTIsIm5iZiI6MTQ4NTQyMjk1MiwianRpIjoiZjUzYTAzMWEyYTFlYjFhZTllNjI2YzkyNzE5MTY4ZmQifQ.0wKf5-IiSm8m2KDgQrPu9E_Os0Z1ZyO2Kue-aeKVDUs
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">tags.py::Test_004_tags_Deleting::test_01_not_deleted_because_of_alphabetical_id</td>
+          <td class="col-duration">15.40</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:29:28 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyOTY4LCJleHAiOjE0ODU0MjY1NjgsIm5iZiI6MTQ4NTQyMjk2OCwianRpIjoiNGI2MzkxODcyYzZmZTRjNjU0NjM0YjgxZDc1NjZjZGIifQ.nwaRMy-pbLU_MuIH1PSNu64PJOeQRNZrkJlytQfzlW4'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyOTY4LCJleHAiOjE0ODU0MjY1NjgsIm5iZiI6MTQ4NTQyMjk2OCwianRpIjoiNGI2MzkxODcyYzZmZTRjNjU0NjM0YjgxZDc1NjZjZGIifQ.nwaRMy-pbLU_MuIH1PSNu64PJOeQRNZrkJlytQfzlW4
+&lt;Response [500]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">tags.py::Test_004_tags_Deleting::test_01_tags_cant_be_deleted_because_id_doesnt_exist</td>
+          <td class="col-duration">15.40</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:29:43 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyOTgzLCJleHAiOjE0ODU0MjY1ODMsIm5iZiI6MTQ4NTQyMjk4MywianRpIjoiMzhlYmYwN2E0M2UwOTViNjRlZjA0NjRmMzRlZjYwNDEifQ.k5I1aJM0Qqz-nblKAV9qjwSsD1SOowKTNJDBNltbPBk'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyOTgzLCJleHAiOjE0ODU0MjY1ODMsIm5iZiI6MTQ4NTQyMjk4MywianRpIjoiMzhlYmYwN2E0M2UwOTViNjRlZjA0NjRmMzRlZjYwNDEifQ.k5I1aJM0Qqz-nblKAV9qjwSsD1SOowKTNJDBNltbPBk
+&lt;Response [422]&gt;
+</div></td></tr></tbody>
+      <tbody class="passed results-table-row">
+        <tr>
+          <td class="col-result">Passed</td>
+          <td class="col-name">tags.py::Test_004_tags_Deleting::test_01_tags_deleted_correctly</td>
+          <td class="col-duration">15.68</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="5">
+            <div class="log">----------------------------- Captured stdout call -----------------------------<br/>{'Content-Length': '194', 'Server': 'Apache/2.4.18 (Ubuntu)', 'Connection': 'close', 'ETag': '"6023233309e2d397fd8d7178126123b3f04d2d14"', 'Cache-Control': 'private, must-revalidate', 'Date': 'Thu, 26 Jan 2017 09:29:58 GMT', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyOTk5LCJleHAiOjE0ODU0MjY1OTksIm5iZiI6MTQ4NTQyMjk5OSwianRpIjoiNDJjN2RjZGYwNmU5YzU5NjE0NDk3ODM2NmU4MGQ2MDcifQ.gREtkqeztlsI7f-EJvbuxPZXWR0DIY3Afa75mtHZKi4'}
+Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMsImlzcyI6Imh0dHA6XC9cLzU0LjkzLjgxLjE2OVwvYXBpXC92MVwvYXV0aFwvc2lnbmluIiwiaWF0IjoxNDg1NDIyOTk5LCJleHAiOjE0ODU0MjY1OTksIm5iZiI6MTQ4NTQyMjk5OSwianRpIjoiNDJjN2RjZGYwNmU5YzU5NjE0NDk3ODM2NmU4MGQ2MDcifQ.gREtkqeztlsI7f-EJvbuxPZXWR0DIY3Afa75mtHZKi4
+&lt;Response [200]&gt;
+&lt;Response [200]&gt;
+</div></td></tr></tbody></table></body></html>

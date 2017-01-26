@@ -15,6 +15,7 @@ UPGRADE_REQUIRED = 426
 FORBIDDEN = 403
 NOTFOUND = 404
 BADDATA = 422
+UPDATED = 204
 
 
 
@@ -109,6 +110,67 @@ class Test_004_category_Show(unittest.TestCase):
         print response2
         self.assertEqual(response2.status_code, SUCCESS)
 
+class Test_004_Tag_Attaching_To_Category(unittest.TestCase):
+    def __init__(self, *a, **kw):
+        super(Test_004_Tag_Attaching_To_Category, self).__init__(*a, **kw)
+
+    def test_01_category_created_correctly(self):
+        with open('USER_DATA.json') as data_file:
+            data = json.load(data_file)
+        s = requests.Session()
+        time.sleep(5)
+        token, index = test_authorization()
+        time.sleep(5)
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
+        self.host = host
+        self.command_category_create = 'management/categories/create'
+
+
+        self.url_category_create = 'http://{}/{}'.format(self.host, self.command_category_create)
+        userdata = json.dumps({"parent_id": 3, "is_last": "false", "title": "string", "description": "string"})
+
+        response2 = s.post(self.url_category_create, data=userdata, headers=headers)
+
+        self.assertEqual(response2.status_code, SUCCESS)
+        res = json.loads(response2.content)
+        index = res['id']
+        self.host = host
+        self.command_tags_create = 'management/tags/create'
+
+        self.url_tags_create = 'http://{}/{}'.format(self.host, self.command_tags_create)
+        userdata = json.dumps({"name": "TestName", "matching_coefficient": 0, "is_special": "false"})
+
+        response2 = s.post(self.url_tags_create, data=userdata, headers=headers)
+        cont = json.loads(response2.content)
+        identifier = cont['id']
+        self.assertEqual(response2.status_code, SUCCESS)
+
+        self.command_tag_attaching_to_category = 'management/categories/attach/tag'
+        self.category_id = 'category_id'
+        self.tag_id = 'tag_id'
+
+        self.url_tag_attaching_to_category = 'http://{}/{}?{}={}&{}={}'.format(self.host, self.command_tag_attaching_to_category, self.category_id, index, self.tag_id, identifier)
+
+        response2 = s.post(self.url_tag_attaching_to_category, headers=headers)
+        print response2.content
+        self.assertEqual(response2.status_code, UPDATED)
+
+        self.command_tag_detaching_to_category = 'management/categories/detach/tag'
+        self.category_id = 'category_id'
+        self.tag_id = 'tag_id'
+
+        self.url_tag_detaching_to_category = 'http://{}/{}?{}={}&{}={}'.format(self.host, self.command_tag_detaching_to_category, self.category_id, index, self.tag_id, identifier)
+
+        response2 = s.delete(self.url_tag_detaching_to_category, headers=headers)
+        print response2.content
+        self.assertEqual(response2.status_code, UPDATED)
+
+        self.command_category_delete = 'management/categories/delete'
+
+        self.url_category_delete = 'http://{}/{}/{}'.format(self.host, self.command_category_delete, index)
+        response2 = s.delete(self.url_category_delete, headers=headers)
+        print response2
+        self.assertEqual(response2.status_code, SUCCESS)
 
 
 

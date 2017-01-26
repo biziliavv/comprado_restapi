@@ -74,7 +74,7 @@ class Test_004_ServerRegister(unittest.TestCase):
             data = json.load(data_file)
         s = requests.Session()
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
-        userdata = json.dumps({"email": "a.storozhenko@live.com", "full_name": "test"})
+        userdata = json.dumps({"email": "testing2301@mailinator.com", "full_name": "test"})
         response2 = s.post(self.url_signup, data=userdata, headers=headers)
         self.assertEqual(response2.status_code, BADDATA)
 
@@ -103,7 +103,7 @@ class Test_004_ServerLogin(unittest.TestCase):
         s = requests.Session()
         email_value = time.strftime("%d%m%Y" + "%H%M%S") + "@" + "test.com"
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
-        userdata = json.dumps({"email": "test10025@mailinator.com", "password": "33969288"})
+        userdata = json.dumps({"email": "testing23011@mailinator.com", "password": "13021139"})
         response2 = s.post(self.url_signin, data=userdata, headers=headers)
         self.assertEqual(response2.status_code, SUCCESS)
 
@@ -160,10 +160,11 @@ class Test_Recovery_Password(unittest.TestCase):
 
         s = requests.Session()
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
-        userdata = json.dumps({"email": "test04013@mailinator.com"})
+        userdata = json.dumps({"email": "testing2301@mailinator.com"})
         response2 = s.post(self.url_recovery_password, data=userdata, headers=headers)
         res = response2.headers
         reset_token = res['reset_token']
+        print reset_token
 
         self.assertEqual(response2.status_code, MAIL_SENT)
         self.command_reset_password = 'auth/reset'

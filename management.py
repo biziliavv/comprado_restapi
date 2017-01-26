@@ -19,6 +19,8 @@ NOTFOUND = 404
 BADDATA = 422
 WRONGID = 500
 ACTION_IS_DONE = 204
+DETACHED = 202
+
 
 email_value = time.strftime("%d%m%Y" + "%H%M%S") + "@" + "test.com"
 EMAIL = 'biziliavv@gmail.com'
@@ -596,7 +598,7 @@ class Test_004_offer_Creation(unittest.TestCase):
         self.command_offer_create = 'management/offers/create'
 
         self.url_offer_create = 'http://{}/{}'.format(self.host, self.command_offer_create)
-        userdata = json.dumps({"title": "string1", "description": "string", "business_id": 358, "category_id": 160, "SKU": "string","offer_quantity": 0, "offer_id_by_partner": "string", "delivery_cost": 0, "vat": 0})
+        userdata = json.dumps({"title": "string1", "description": "string", "business_id": 115, "main_category_id": 97, "SKU": "string","offer_quantity": 0, "offer_id_by_partner": "string", "delivery_cost": 0, "vat": 0})
 
         response2 = s.post(self.url_offer_create, data=userdata, headers=headers)
 
@@ -621,7 +623,7 @@ class Test_004_offer_Approving(unittest.TestCase):
         self.command_offer_delete = 'management/offers/delete'
 
         self.url_offer_create = 'http://{}/{}'.format(self.host, self.command_offer_create)
-        userdata = json.dumps({"title": "string1", "description": "string", "business_id": 358, "category_id": 160, "SKU": "string","offer_quantity": 0, "offer_id_by_partner": "string", "delivery_cost": 0, "vat": 0})
+        userdata = json.dumps({"title": "string1", "description": "string", "business_id": 115, "main_category_id": 97, "SKU": "string","offer_quantity": 0, "offer_id_by_partner": "string", "delivery_cost": 0, "vat": 0})
 
         response2 = s.post(self.url_offer_create, data=userdata, headers=headers)
 
@@ -661,7 +663,7 @@ class Test_004_offer_Disapproving(unittest.TestCase):
         self.command_offer_delete = 'management/offers/delete'
 
         self.url_offer_create = 'http://{}/{}'.format(self.host, self.command_offer_create)
-        userdata = json.dumps({"title": "string1", "description": "string", "business_id": 358, "category_id": 160, "SKU": "string","offer_quantity": 0, "offer_id_by_partner": "string", "delivery_cost": 0, "vat": 0})
+        userdata = json.dumps({"title": "string1", "description": "string", "business_id": 115, "main_category_id": 97, "SKU": "string","offer_quantity": 0, "offer_id_by_partner": "string", "delivery_cost": 0, "vat": 0})
 
         response2 = s.post(self.url_offer_create, data=userdata, headers=headers)
 
@@ -702,7 +704,7 @@ class Test_004_offer_Publishing(unittest.TestCase):
         self.command_offer_delete = 'management/offers/delete'
 
         self.url_offer_create = 'http://{}/{}'.format(self.host, self.command_offer_create)
-        userdata = json.dumps({"title": "string1", "description": "string", "business_id": 358, "category_id": 160, "SKU": "string","offer_quantity": 0, "offer_id_by_partner": "string", "delivery_cost": 0, "vat": 0})
+        userdata = json.dumps({"title": "string1", "description": "string", "business_id": 115, "main_category_id": 97, "SKU": "string","offer_quantity": 0, "offer_id_by_partner": "string", "delivery_cost": 0, "vat": 0})
 
         response2 = s.post(self.url_offer_create, data=userdata, headers=headers)
 
@@ -743,7 +745,7 @@ class Test_004_offer_Unpublishing(unittest.TestCase):
         self.command_offer_delete = 'management/offers/delete'
 
         self.url_offer_create = 'http://{}/{}'.format(self.host, self.command_offer_create)
-        userdata = json.dumps({"title": "string1", "description": "string", "business_id": 358, "category_id": 160, "SKU": "string","offer_quantity": 0, "offer_id_by_partner": "string", "delivery_cost": 0, "vat": 0})
+        userdata = json.dumps({"title": "string1", "description": "string", "business_id": 115, "main_category_id": 97, "SKU": "string","offer_quantity": 0, "offer_id_by_partner": "string", "delivery_cost": 0, "vat": 0})
 
         response2 = s.post(self.url_offer_create, data=userdata, headers=headers)
 
@@ -796,7 +798,7 @@ class Test_004_offer_Extra_Categories(unittest.TestCase):
         self.command_offer_delete = 'management/offers/delete'
 
         self.url_offer_create = 'http://{}/{}'.format(self.host, self.command_offer_create)
-        userdata = json.dumps({"title": "string1", "description": "string", "business_id": 358, "category_id": 160, "SKU": "string","offer_quantity": 0, "offer_id_by_partner": "string", "delivery_cost": 0, "vat": 0})
+        userdata = json.dumps({"title": "string1", "description": "string", "business_id": 115, "main_category_id": 97, "SKU": "string","offer_quantity": 0, "offer_id_by_partner": "string", "delivery_cost": 0, "vat": 0})
 
         response2 = s.post(self.url_offer_create, data=userdata, headers=headers)
 
@@ -818,7 +820,7 @@ class Test_004_offer_Extra_Categories(unittest.TestCase):
                                                                                    self.offer_ids, index,
                                                                                    self.category_ids, identifier)
 
-        response2 = s.post(self.url_offer_detach_extra_categories, headers=headers)
+        response2 = s.delete(self.url_offer_detach_extra_categories, headers=headers)
 
         self.assertEqual(response2.status_code, ACTION_IS_DONE)
         self.command_category_delete = 'management/categories/delete'
@@ -853,7 +855,7 @@ class Test_004_offer_Deleting(unittest.TestCase):
 
             self.url_offer_create = 'http://{}/{}'.format(self.host, self.command_offer_create)
 
-            userdata = json.dumps({"title": "string1", "description": "string", "business_id": 358, "category_id": 160, "SKU": "string", "offer_quantity": 0, "offer_id_by_partner": "string", "delivery_cost": 0, "vat": 0})
+            userdata = json.dumps({"title": "string1", "description": "string", "business_id": 115, "main_category_id": 97, "SKU": "string", "offer_quantity": 0, "offer_id_by_partner": "string", "delivery_cost": 0, "vat": 0})
 
             response2 = s.post(self.url_offer_create, data=userdata, headers=headers)
             res = json.loads(response2.content)
@@ -993,7 +995,7 @@ class Test_004_Role_Attaching(unittest.TestCase):
         token, user_id = test_authorization()
         time.sleep(3)
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
-        role_id = 2
+        role_id = 11
         self.host = host
         self.command_role_attach = 'management/users/attach/role'
         self.userId = 'userId'
@@ -1016,16 +1018,139 @@ class Test_004_Role_Detaching(unittest.TestCase):
         token, user_id = test_authorization()
         time.sleep(3)
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
-        role_id = 2
+        role_id = 11
         self.host = host
         self.command_role_detach = 'management/users/detach/role'
         self.userId = 'userId'
         self.role_id = 'role_id'
         self.url_role_detach = 'http://{}/{}?{}={}&{}={}'.format(self.host, self.command_role_detach, self.userId,
                                                                  user_id, self.role_id, role_id)
-        response2 = s.post(self.url_role_detach, headers=headers)
+        response2 = s.delete(self.url_role_detach, headers=headers)
         print response2
         self.assertEqual(response2.status_code, ACTION_IS_DONE)
+
+
+class Test_004_Image_Attaching(unittest.TestCase):
+    def __init__(self, *a, **kw):
+        super(Test_004_Image_Attaching, self).__init__(*a, **kw)
+
+    def test_01_image_is_attached_successfully(self):
+        with open('USER_DATA.json') as data_file:
+            data = json.load(data_file)
+        s = requests.Session()
+        time.sleep(3)
+        token, user_id = test_authorization()
+        time.sleep(3)
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
+        self.partner_id = 'partner_id'
+        partner_id = 6
+        self.image_id = 'image_id'
+        image_id = 612
+        self.host = host
+        self.command_image_attach = 'management/partners/image/attach'
+        self.command_image_detach = 'management/partners/image/detach'
+
+
+        self.url_image_attach = 'http://{}/{}?{}={}&{}={}'.format(self.host, self.command_image_attach, self.partner_id,
+                                                                 partner_id, self.image_id, image_id)
+        response2 = s.post(self.url_image_attach, headers=headers)
+        print response2
+        self.assertEqual(response2.status_code, ADDED)
+        self.url_image_detach = 'http://{}/{}?{}={}&{}={}'.format(self.host, self.command_image_detach, self.partner_id,
+                                                                 partner_id, self.image_id, image_id)
+        response2 = s.delete(self.url_image_detach, headers=headers)
+        self.assertEqual(response2.status_code, DETACHED)
+
+
+class Test_004_attach_image_to_business(unittest.TestCase):
+    def __init__(self, *a, **kw):
+        super(Test_004_attach_image_to_business, self).__init__(*a, **kw)
+
+    def test_01_image_is_attached_successfully(self):
+        with open('USER_DATA.json') as data_file:
+            data = json.load(data_file)
+        s = requests.Session()
+        time.sleep(5)
+        token, index = test_authorization()
+        time.sleep(5)
+        headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
+        self.host = host
+        self.command_business_create = 'management/businesses/create'
+
+        self.url_business_create = 'http://{}/{}'.format(self.host, self.command_business_create)
+        email_value = time.strftime("%d%m%Y" + "%H%M%S") + "@" + "test.com"
+        userdata = json.dumps \
+            ({"partner_id": 1, "email": email_value, "business_id_by_partner": "string", "address": "string", "geo_latitude": "48.92279", "geo_longitude": "22.4519749", "name": "string", "description": "string"})
+
+        response2 = s.post(self.url_business_create, data=userdata, headers=headers)
+        self.assertEqual(response2.status_code, SUCCESS)
+        res = json.loads(response2.content)
+        print res
+        identificator = res['id']
+
+        self.command_businesses_image_attach = 'management/businesses/image/attach'
+        self.command_businesses_image_detach = 'management/businesses/image/detach'
+
+        self.business_id = 'business_id'
+        self.image_id = 'image_id'
+        image_id = 612
+        self.url_businesses_image_attach = 'http://{}/{}?{}={}&{}={}'.format(self.host, self.command_businesses_image_attach, self.business_id,
+                                                                  identificator, self.image_id, image_id)
+        response2 = s.post(self.url_businesses_image_attach, headers=headers)
+        print response2
+        self.assertEqual(response2.status_code, ADDED)
+        self.url_businesses_image_detach = 'http://{}/{}?{}={}&{}={}'.format(self.host,
+                                                                             self.command_businesses_image_detach,
+                                                                             self.business_id,
+                                                                             identificator, self.image_id, image_id)
+        response2 = s.delete(self.url_businesses_image_detach, headers=headers)
+        self.assertEqual(response2.status_code, DETACHED)
+
+        self.command_business_delete = 'management/businesses/delete'
+        self.url_business_delete = 'http://{}/{}/{}'.format(self.host, self.command_business_delete, identificator)
+        response2 = s.delete(self.url_business_delete, headers=headers)
+        print response2
+        self.assertEqual(response2.status_code, SUCCESS)
+
+
+class Test_004_Image_Uploading(unittest.TestCase):
+    def __init__(self, *a, **kw):
+        super(Test_004_Image_Uploading, self).__init__(*a, **kw)
+
+    def test_01_image_is_upload_successfully(self):
+        with open('USER_DATA.json') as data_file:
+            data = json.load(data_file)
+        s = requests.Session()
+        time.sleep(3)
+        token, user_id = test_authorization()
+        time.sleep(3)
+        headers = {'Authorization': token}
+        self.partner_id = 'partner_id'
+        partner_id = 6
+        self.image_id = 'image_id'
+        image_id = 612
+        self.host = host
+        self.command_image_upload = 'management/images/upload'
+        self.command_image_delete = 'management/images/delete'
+
+
+        self.url_image_upload = 'http://{}/{}'.format(self.host, self.command_image_upload)
+        postdata = {}
+        files = {'image': open('picture.jpg', 'rb')}
+
+        response2 = s.post(self.url_image_upload, headers=headers, data=postdata, files=files )
+        res = json.loads(response2.content)
+        print res
+        identificator = res['id']
+
+
+        self.assertEqual(response2.status_code, SUCCESS)
+
+        self.url_image_delete = 'http://{}/{}/{}'.format(self.host, self.command_image_delete, identificator)
+        response2 = s.delete(self.url_image_delete, headers=headers)
+        self.assertEqual(response2.status_code, SUCCESS)
+
+
 
 
 if __name__ == '__main__':

@@ -139,8 +139,8 @@ class Test_My_Profile_Change_Password(unittest.TestCase):
         self.url_sign_in = 'http://{}/{}'.format(host, self.command_sign_in)
         s = requests.Session()
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
-        passvalue = "33969288"
-        userdata = json.dumps({"email": "test10025@mailinator.com", "password": passvalue})
+        passvalue = "string"
+        userdata = json.dumps({"email": "testing2301@mailinator.com", "password": passvalue})
         response2 = s.post(self.url_sign_in, data=userdata, headers=headers)
         res = response2.headers
         print res
@@ -160,8 +160,8 @@ class Test_My_Profile_Change_Password(unittest.TestCase):
         self.url_sign_in = 'http://{}/{}'.format(host, self.command_sign_in)
         s = requests.Session()
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
-        passvalue = "33969288"
-        userdata = json.dumps({"email": "test10025@mailinator.com", "password": passvalue})
+        passvalue = "string"
+        userdata = json.dumps({"email": "testing2301@mailinator.com", "password": passvalue})
         response2 = s.post(self.url_sign_in, data=userdata, headers=headers)
         res = response2.headers
         print res
@@ -183,8 +183,8 @@ class Test_My_Profile_Change_Password(unittest.TestCase):
         self.url_sign_in = 'http://{}/{}'.format(host, self.command_sign_in)
         s = requests.Session()
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
-        passvalue = "33969288"
-        userdata = json.dumps({"email": "test10025@mailinator.com", "password": passvalue})
+        passvalue = "string"
+        userdata = json.dumps({"email": "testing2301@mailinator.com", "password": passvalue})
         response2 = s.post(self.url_sign_in, data=userdata, headers=headers)
         res = response2.headers
         print res

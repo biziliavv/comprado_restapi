@@ -30,10 +30,11 @@ def test_authorization():
 
         email_value = time.strftime("%d%m%Y" + "%H%M%S") + "@" + "test.com"
 
-        userdata = json.dumps({"email": "test10025@mailinator.com", "password": "33969288"})
+        userdata = json.dumps({"email": "testing23011@mailinator.com", "password": "13021139"})
         response2 = s.post(url_signin, data=userdata, headers=headers)
         res = response2.headers
         print res
+        time.sleep(3)
         auth_token = res['Authorization']
         cont = json.loads(response2.content)
         index = cont['id']
