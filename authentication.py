@@ -74,7 +74,7 @@ class Test_004_ServerRegister(unittest.TestCase):
             data = json.load(data_file)
         s = requests.Session()
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
-        userdata = json.dumps({"email": "testing2301@mailinator.com", "full_name": "test"})
+        userdata = json.dumps({"email": "tester06022@mailinator.com", "full_name": "test"})
         response2 = s.post(self.url_signup, data=userdata, headers=headers)
         self.assertEqual(response2.status_code, BADDATA)
 
@@ -103,7 +103,7 @@ class Test_004_ServerLogin(unittest.TestCase):
         s = requests.Session()
         email_value = time.strftime("%d%m%Y" + "%H%M%S") + "@" + "test.com"
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
-        userdata = json.dumps({"email": "testing23011@mailinator.com", "password": "13021139"})
+        userdata = json.dumps({ "email": "tester0602@mailinator.com", "password": "Hu2VC6wldDP2AtId"})
         response2 = s.post(self.url_signin, data=userdata, headers=headers)
         self.assertEqual(response2.status_code, SUCCESS)
 
@@ -132,7 +132,7 @@ class Test_004_ServerLoginByFacebook(unittest.TestCase):
 
         s = requests.Session()
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
-        userdata = json.dumps({"access_token": "EAAJgkA7ZBGS0BAL6pZCJ2W53aRPnnMuL3cqmKzoFmKYG0ZCDGKUL1fhcOowhoJwLSoAZBseuAaaIfWRIVzVEf0XwIQI2SsDSzXXgCn7GiuMkX8LRajRSJy4wHSItmGgBRpPXbqkr3kweuExvxLdTCrZBKyxCv8XUZD"})
+        userdata = json.dumps({"access_token": "EAAJgkA7ZBGS0BAFSUo2p9JWkppeGZBmVKXaOA0MP4DA1Mhipz9HdL18A1MvafUxzlZAvqj81yE7chPFclBXrzIMk9nFPzZCdoUofdpqdci9aL97WJdlUs1gngyYD6atoj4w3Pv8hGynjQs4VIqJrBvNNKS1cugEZD"})
         response2 = s.post(self.url_signinbyfb, data=userdata, headers=headers)
 
         self.assertEqual(response2.status_code, SUCCESS)
@@ -160,7 +160,7 @@ class Test_Recovery_Password(unittest.TestCase):
 
         s = requests.Session()
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
-        userdata = json.dumps({"email": "testing2301@mailinator.com"})
+        userdata = json.dumps({"email": "tester06022@mailinator.com"})
         response2 = s.post(self.url_recovery_password, data=userdata, headers=headers)
         res = response2.headers
         reset_token = res['reset_token']

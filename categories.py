@@ -138,7 +138,7 @@ class Test_004_Tag_Attaching_To_Category(unittest.TestCase):
         self.command_tags_create = 'management/tags/create'
 
         self.url_tags_create = 'http://{}/{}'.format(self.host, self.command_tags_create)
-        userdata = json.dumps({"name": "TestName", "matching_coefficient": 0, "is_special": "false"})
+        userdata = json.dumps({"name": "TestName", "matching_coefficient": 0, "is_special": False})
 
         response2 = s.post(self.url_tags_create, data=userdata, headers=headers)
         cont = json.loads(response2.content)

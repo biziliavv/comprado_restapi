@@ -116,7 +116,7 @@ class Test_004_My_Profile_Edit(unittest.TestCase):
         token, index = test_authorization()
         time.sleep(5)
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER, 'Authorization': token}
-        userdata = json.dumps({"name": "TestVtuier"})
+        userdata = json.dumps({"full_name": "TestVtuier"})
 
         response2 = s.patch(self.url_profile_edit, data=userdata, headers=headers)
 
@@ -140,7 +140,7 @@ class Test_My_Profile_Change_Password(unittest.TestCase):
         s = requests.Session()
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
         passvalue = "string"
-        userdata = json.dumps({"email": "testing2301@mailinator.com", "password": passvalue})
+        userdata = json.dumps({"email": "tester06021@mailinator.com", "password": passvalue})
         response2 = s.post(self.url_sign_in, data=userdata, headers=headers)
         res = response2.headers
         print res
@@ -161,7 +161,7 @@ class Test_My_Profile_Change_Password(unittest.TestCase):
         s = requests.Session()
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
         passvalue = "string"
-        userdata = json.dumps({"email": "testing2301@mailinator.com", "password": passvalue})
+        userdata = json.dumps({"email": "tester06021@mailinator.com", "password": passvalue})
         response2 = s.post(self.url_sign_in, data=userdata, headers=headers)
         res = response2.headers
         print res
@@ -175,7 +175,7 @@ class Test_My_Profile_Change_Password(unittest.TestCase):
         cont = json.loads(response2.content)
         print res
 
-        self.assertEqual(cont['message'], "Wrong password")
+        self.assertEqual(response2.status_code, BADDATA)
 
     def test_02_user_change_password_empty_old_password(self):
         with open('USER_DATA.json') as data_file:
@@ -184,7 +184,7 @@ class Test_My_Profile_Change_Password(unittest.TestCase):
         s = requests.Session()
         headers = {'content-type': DEFAULT_HEADER, 'accept': DEFAULT_HEADER}
         passvalue = "string"
-        userdata = json.dumps({"email": "testing2301@mailinator.com", "password": passvalue})
+        userdata = json.dumps({"email": "tester06021@mailinator.com", "password": passvalue})
         response2 = s.post(self.url_sign_in, data=userdata, headers=headers)
         res = response2.headers
         print res
@@ -198,6 +198,6 @@ class Test_My_Profile_Change_Password(unittest.TestCase):
         cont = json.loads(response2.content)
         print res
 
-        self.assertEqual(cont['errors']['old_password'], "The old password field is required.")
+        self.assertEqual(response2.status_code, BADDATA)
 if __name__ == '__main__':
     unittest.main()

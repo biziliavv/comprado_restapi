@@ -98,11 +98,17 @@ class Test_004_bestOffers(unittest.TestCase):
         self.host = host
         self.command_best_offers = 'offers/best'
         self.isocode = 'isocode1'
-        self.isocode_value = 'en'
+        self.isocode_value = 'sv'
         self.category_ids_title = 'category_ids'
         self.category_ids_numbers = '85%2C86%2C87'
-        self.url_best_offers = 'http://{}/{}?{}={}&{}={}'.format(self.host, self.command_best_offers,
-                                                                  self.isocode, self.isocode_value, self.category_ids_title, self.category_ids_numbers)
+        self.sort_by = 'sort_by'
+        sort_by_value = 'price'
+        self.latitude = 'latitude'
+        latitude_value = '59.3258414'
+        self.longitude = 'longitude'
+        longitude_value = '17.7073729'
+        self.url_best_offers = 'http://{}/{}?{}={}&{}={}&{}={}&{}={}&{}={}'.format(self.host, self.command_best_offers,
+                                                                  self.isocode, self.isocode_value, self.category_ids_title, self.category_ids_numbers,self.latitude, latitude_value, self.longitude, longitude_value, self.sort_by, sort_by_value)
         response2 = s.get(self.url_best_offers, headers=headers)
         print response2
         self.assertEqual(response2.status_code, SUCCESS)
