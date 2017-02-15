@@ -32,8 +32,7 @@ class Test_004_business_Creation(unittest.TestCase):
         super(Test_004_business_Creation, self).__init__(*a, **kw)
 
     def test_01_business_created_correctly(self):
-        with open('USER_DATA.json') as data_file:
-            data = json.load(data_file)
+
         s = requests.Session()
         time.sleep(5)
         token, index = test_authorization()

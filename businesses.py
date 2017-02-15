@@ -62,10 +62,8 @@ class Test_004_business_Show(unittest.TestCase):
         businesses = s.get(self.url_all_businesses, headers=headers)
         m = json.loads(businesses.content)
 
-        print m
-        print m['data'][0]
         index = int(m['data'][0]['id'])
-        print index
+
         self.host = host
         self.command_business_show = 'businesses/show'
 

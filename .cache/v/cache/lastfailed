@@ -1,21 +1,17 @@
 {
   "authentication.py::Test_004_ServerLogin::test_01_signed_in_successfully": true, 
-  "authentication.py::Test_004_ServerRegister::test_04_register_already_registered_email": true, 
   "categories.py::Test_004_Tag_Attaching_To_Category::test_01_category_created_correctly": true, 
-  "management.py::Test_004_Role_Attaching::test_01_role_is_attached_successfully": true, 
-  "management.py::Test_004_Role_Detaching::test_01_role_is_detached_successfully": true, 
   "management.py::Test_004_offer_Approving::test_01_offer_approved_correctly": true, 
+  "management.py::Test_004_offer_Creation::test_01_offer_created_correctly": true, 
   "management.py::Test_004_offer_Deleting::test_01_offer_deleted_correctly": true, 
   "management.py::Test_004_offer_Disapproving::test_01_offer_disapproved_correctly": true, 
   "management.py::Test_004_offer_Extra_Categories::test_01_offer_added_and_removed_extra_categories_correctly": true, 
   "management.py::Test_004_offer_Publishing::test_01_offer_published_correctly": true, 
   "management.py::Test_004_offer_Require_Categorization::test_01_offer_require_categorization_set_correctly": true, 
   "management.py::Test_004_offer_Unpublishing::test_01_offer_unpublished_correctly": true, 
-  "management.py::Test_004_user_Creation::test_01_user_created_correctly": true, 
-  "management.py::Test_004_user_Creation::test_02_user_not_created_empty_values": true, 
-  "management.py::Test_004_user_Creation::test_03_user_not_created_wrong_email_format": true, 
   "my_account.py::Test_My_Profile_Change_Password::test_01_user_change_password_successfully": true, 
   "my_account.py::Test_My_Profile_Change_Password::test_02_user_change_password_empty_old_password": true, 
   "my_account.py::Test_My_Profile_Change_Password::test_02_user_change_password_wrong_old_password": true, 
+  "offers.py::Test_004_offer_Show::test_01_offer_page_showed_correctly": true, 
   "offers.py::Test_004_offer_liking_disliking::test_01_offer_liked_and_disliked_correctly": true
 }

@@ -191,5 +191,6 @@ class Test_Refresh_Token(unittest.TestCase):
         newToken = res['Authorization']
         self.assertNotEqual(token, newToken)
         self.assertEqual(response2.status_code, MAIL_SENT)
+
 if __name__ == '__main__':
     unittest.main()
