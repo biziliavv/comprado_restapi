@@ -147,6 +147,7 @@ class Test_004_offer_liking_disliking(unittest.TestCase):
         res = json.loads(response2.content)
         index = res['id']
 
+
         self.command_offer_create = 'management/offers/create'
 
         self.url_offer_create = 'http://{}/{}'.format(self.host, self.command_offer_create)
