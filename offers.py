@@ -80,7 +80,7 @@ class Test_004_offer_Show(unittest.TestCase):
         self.host = host
         self.command_offer_show = 'offers/show'
 
-        self.url_offer_show = 'http://{}/{}/{}'.format(self.host, self.command_offer_show, index)
+        self.url_offer_show = 'http://{}/{}/{}?{}={}&{}={}&{}={}'.format(self.host, self.command_offer_show, index, self.isocode, self.isocode_value, self.latitude, latitude_value, self.longitude, longitude_value)
         response2 = s.get(self.url_offer_show, headers=headers)
         print response2
         self.assertEqual(response2.status_code, SUCCESS)

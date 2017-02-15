@@ -2,18 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2879e55e-9427-4d5d-beba-67d5846c3683" name="Default" comment="Myaccounts">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/special_categories.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.cache/v/cache/lastfailed" afterPath="$PROJECT_DIR$/.cache/v/cache/lastfailed" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/authentication.py" afterPath="$PROJECT_DIR$/authentication.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/authorization.py" afterPath="$PROJECT_DIR$/authorization.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/categories.py" afterPath="$PROJECT_DIR$/categories.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/for_test.py" afterPath="$PROJECT_DIR$/for_test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/management.py" afterPath="$PROJECT_DIR$/management.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/my_account.py" afterPath="$PROJECT_DIR$/my_account.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/offers.py" afterPath="$PROJECT_DIR$/offers.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/report.html" afterPath="$PROJECT_DIR$/report.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tags.py" afterPath="$PROJECT_DIR$/tags.py" />
     </list>
     <ignored path="comprado_restapi.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,9 +33,9 @@
     <SUITE FILE_PATH="coverage/comprado_restapi$signin_fb.coverage" NAME="signin_fb Coverage Results" MODIFIED="1483456456503" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/comprado_restapi$tags.coverage" NAME="tags Coverage Results" MODIFIED="1485503688215" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/comprado_restapi$Unnamed__1_.coverage" NAME="Unnamed (1) Coverage Results" MODIFIED="1480949778023" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/comprado_restapi$offers.coverage" NAME="offers Coverage Results" MODIFIED="1485869091309" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/comprado_restapi$offers.coverage" NAME="offers Coverage Results" MODIFIED="1487146722995" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/comprado_restapi$sign_up.coverage" NAME="sign_up Coverage Results" MODIFIED="1481134030367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/comprado_restapi$for_test.coverage" NAME="for_test Coverage Results" MODIFIED="1486737138323" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/comprado_restapi$for_test.coverage" NAME="for_test Coverage Results" MODIFIED="1487080142332" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/comprado_restapi$special_categories.coverage" NAME="special_categories Coverage Results" MODIFIED="1486475421534" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/comprado_restapi$search.coverage" NAME="search Coverage Results" MODIFIED="1482418590961" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/comprado_restapi$Unnamed__2_.coverage" NAME="Unnamed (2) Coverage Results" MODIFIED="1481096502851" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -77,8 +70,8 @@
       <file leaf-file-name="authorization.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/authorization.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="32" column="98" selection-start-line="32" selection-start-column="98" selection-end-line="32" selection-end-column="98" />
+            <state relative-caret-position="525">
+              <caret line="41" column="24" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -87,18 +80,8 @@
       <file leaf-file-name="management.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/management.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="14805">
-              <caret line="997" column="31" selection-start-line="996" selection-start-column="12" selection-end-line="997" selection-end-column="113" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="offers.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/offers.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="14" />
+            <state relative-caret-position="-65">
+              <caret line="624" column="121" selection-start-line="624" selection-start-column="121" selection-end-line="624" selection-end-column="121" />
               <folding />
             </state>
           </provider>
@@ -114,44 +97,42 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="offers.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/offers.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="109">
+              <caret line="135" column="0" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="my_account.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/my_account.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2670">
+              <caret line="186" column="67" selection-start-line="186" selection-start-column="67" selection-end-line="186" selection-end-column="67" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="authentication.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/authentication.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1905">
-              <caret line="134" column="210" selection-start-line="134" selection-start-column="210" selection-end-line="134" selection-end-column="210" />
+            <state relative-caret-position="2310">
+              <caret line="161" column="76" selection-start-line="161" selection-start-column="9" selection-end-line="161" selection-end-column="76" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="for_test.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="for_test.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/for_test.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+            <state relative-caret-position="4350">
+              <caret line="297" column="113" selection-start-line="296" selection-start-column="12" selection-end-line="297" selection-end-column="113" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="categories.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/categories.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1875">
-              <caret line="130" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tags.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tags.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="21" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="215" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -172,9 +153,16 @@
         <entry file="file://$PROJECT_DIR$/run.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="26" selection-start-line="0" selection-start-column="26" selection-end-line="0" selection-end-column="26" />
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="128" />
               <folding />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="picture.jpg" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/picture.jpg">
+          <provider selected="true" editor-type-id="images">
+            <state />
           </provider>
         </entry>
       </file>
@@ -213,14 +201,14 @@
         <option value="$PROJECT_DIR$/signin_fb.py" />
         <option value="$PROJECT_DIR$/tags.py" />
         <option value="$PROJECT_DIR$/categories.py" />
-        <option value="$PROJECT_DIR$/offers.py" />
-        <option value="$PROJECT_DIR$/management.py" />
         <option value="$PROJECT_DIR$/my_account.py" />
         <option value="$PROJECT_DIR$/special_categories.py" />
         <option value="$PROJECT_DIR$/authentication.py" />
         <option value="$PROJECT_DIR$/run.sh" />
         <option value="$PROJECT_DIR$/authorization.py" />
+        <option value="$PROJECT_DIR$/management.py" />
         <option value="$PROJECT_DIR$/for_test.py" />
+        <option value="$PROJECT_DIR$/offers.py" />
       </list>
     </option>
   </component>
@@ -291,7 +279,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -320,6 +307,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -336,7 +324,7 @@
       <recent name="$PROJECT_DIR$/Authentication" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.for_test">
+  <component name="RunManager" selected="Python tests.offers">
     <configuration default="false" name="run.sh" type="BashConfigurationType" factoryName="Bash" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="INTERPRETER_PATH" value="/bin/bash" />
@@ -959,22 +947,22 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="for_test - 2017.02.10 at 16h 27m 40s.xml">
-      <configuration name="for_test" configurationId="tests" />
-    </history-entry>
-    <history-entry file="for_test - 2017.02.10 at 16h 29m 10s.xml">
-      <configuration name="for_test" configurationId="tests" />
-    </history-entry>
-    <history-entry file="for_test - 2017.02.10 at 16h 29m 57s.xml">
-      <configuration name="for_test" configurationId="tests" />
-    </history-entry>
-    <history-entry file="for_test - 2017.02.10 at 16h 32m 02s.xml">
-      <configuration name="for_test" configurationId="tests" />
-    </history-entry>
-    <history-entry file="for_test - 2017.02.10 at 16h 32m 36s.xml">
-      <configuration name="for_test" configurationId="tests" />
-    </history-entry>
     <history-entry file="offers - 2017.01.31 at 15h 25m 10s.xml">
+      <configuration name="offers" configurationId="tests" />
+    </history-entry>
+    <history-entry file="offers - 2017.02.14 at 15h 46m 45s.xml">
+      <configuration name="offers" configurationId="tests" />
+    </history-entry>
+    <history-entry file="offers - 2017.02.15 at 10h 09m 51s.xml">
+      <configuration name="offers" configurationId="tests" />
+    </history-entry>
+    <history-entry file="offers - 2017.02.15 at 10h 17m 33s.xml">
+      <configuration name="offers" configurationId="tests" />
+    </history-entry>
+    <history-entry file="offers - 2017.02.15 at 10h 18m 17s.xml">
+      <configuration name="offers" configurationId="tests" />
+    </history-entry>
+    <history-entry file="offers - 2017.02.15 at 10h 19m 00s.xml">
       <configuration name="offers" configurationId="tests" />
     </history-entry>
     <history-entry file="special_categories - 2017.02.07 at 10h 08m 56s.xml">
@@ -1003,13 +991,13 @@
     <frame x="0" y="23" width="1366" height="687" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1336858" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3284974" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13821752" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277311" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32746115" sideWeight="0.50532484" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3284974" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277311" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32605043" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40168068" sideWeight="0.4939577" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40168068" sideWeight="0.4939577" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32605043" sideWeight="0.4946752" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -1205,6 +1193,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/categories.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1875">
+          <caret line="130" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tags.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="21" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="215" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/businesses.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="35" column="3" selection-start-line="35" selection-start-column="3" selection-end-line="43" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/special_categories.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2445">
+          <caret line="168" column="0" selection-start-line="168" selection-start-column="0" selection-end-line="169" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/picture.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1214,13 +1233,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2670">
           <caret line="186" column="67" selection-start-line="186" selection-start-column="67" selection-end-line="186" selection-end-column="67" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/businesses.py">
+    <entry file="file://$PROJECT_DIR$/for_test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="35" column="3" selection-start-line="35" selection-start-column="3" selection-end-line="43" selection-end-column="56" />
+        <state relative-caret-position="4350">
+          <caret line="297" column="113" selection-start-line="296" selection-start-column="12" selection-end-line="297" selection-end-column="113" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="128" />
           <folding />
         </state>
       </provider>
@@ -1235,76 +1263,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/authentication.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1905">
-          <caret line="134" column="210" selection-start-line="134" selection-start-column="210" selection-end-line="134" selection-end-column="210" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/categories.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1875">
-          <caret line="130" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="130" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tags.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="21" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="215" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/special_categories.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2445">
-          <caret line="168" column="0" selection-start-line="168" selection-start-column="0" selection-end-line="169" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="26" selection-start-line="0" selection-start-column="26" selection-end-line="0" selection-end-column="26" />
+        <state relative-caret-position="2310">
+          <caret line="161" column="76" selection-start-line="161" selection-start-column="9" selection-end-line="161" selection-end-column="76" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/authorization.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="32" column="98" selection-start-line="32" selection-start-column="98" selection-end-line="32" selection-end-column="98" />
+        <state relative-caret-position="525">
+          <caret line="41" column="24" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/management.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14805">
-          <caret line="997" column="31" selection-start-line="996" selection-start-column="12" selection-end-line="997" selection-end-column="113" />
+        <state relative-caret-position="-65">
+          <caret line="624" column="121" selection-start-line="624" selection-start-column="121" selection-end-line="624" selection-end-column="121" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/offers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/for_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+        <state relative-caret-position="109">
+          <caret line="135" column="0" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
           <folding />
         </state>
       </provider>
